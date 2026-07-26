@@ -26,6 +26,29 @@ Para cada fase:
 5. encerrar e anotar o arquivo JSONL correspondente;
 6. comparar o snapshot registrado com o estado visivel.
 
+Execucao de uma fase:
+
+```powershell
+cd C:\MinicraftBotIA\bot-smoke-test
+$env:SHADOW_PHASE='1'
+$env:SHADOW_MAX_SNAPSHOTS='3'
+node shadow-mode.js
+```
+
+Trocar `SHADOW_PHASE` de 1 a 12. O processo encerra automaticamente depois de
+tres decisoes. Para as fases 7 e 8, definir `SHELTER_STATUS` como `absent` ou
+`present`. Para as fases 9 e 10, registrar `BASE_X`, `BASE_Y` e `BASE_Z`.
+
+Depois das 12 fases:
+
+```powershell
+node summarize-matrix.js
+```
+
+O agregador gera `matrix-results/0006D-latest.md` e
+`matrix-results/0006D-latest.json`, contendo apenas resultados agregados e
+amostras relevantes para auditoria. Os JSONL brutos continuam ignorados pelo Git.
+
 ## Matriz
 
 | Fase | Estado |

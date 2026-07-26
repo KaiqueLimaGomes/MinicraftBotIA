@@ -26,6 +26,9 @@ jobs:
       - name: Shadow configuration tests
         run: node bot-smoke-test/shadow-config.test.js
 
+      - name: Matrix analysis tests
+        run: node bot-smoke-test/matrix-analysis.test.js
+
       - name: Syntax checks
         run: |
           node --check planner-benchmark/protected-benchmark.js

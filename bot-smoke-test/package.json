@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node index.js",
     "shadow": "node shadow-mode.js",
-    "test:snapshot": "node state-snapshot.test.js && node shadow-config.test.js"
+    "shadow:matrix:summary": "node summarize-matrix.js",
+    "test:snapshot": "node state-snapshot.test.js && node shadow-config.test.js && node matrix-analysis.test.js"
   },
   "dependencies": {
     "mineflayer": "^4.33.0"

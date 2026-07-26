@@ -136,6 +136,17 @@ function summarize(items) {
     protectedWarmP95Ms: percentile(protectedLatencies.slice(1), 0.95),
     maxPlannerCalls: Math.max(...items.map(row => row.protected.attempts)),
     totalOllamaCalls: callIndex
+    ,
+    failureTaxonomy: countBy(
+      items.flatMap(row => row.protected.failures ?? []),
+      failure => failure.category
+    ),
+    mechanicalRepairTaxonomy: countBy(
+      items.flatMap(row => row.protected.mechanicalRepairs ?? []),
+      repair => repair.reason
+    ),
+    intentionalSafetyOverrideRate: rate(items, row => row.protected.source === 'safety_override'),
+    llmFailureFallbackRate: rate(items, row => row.protected.source === 'fallback')
   }
 }
 
@@ -153,11 +164,25 @@ Modelo: ${MODEL}
 | Estrategicamente correta | ${pct(x.rawStrategicRate)} | ${pct(x.protectedStrategicRate)} | observacao |
 | Cenarios criticos corretos | - | ${pct(x.criticalCorrectRate)} | 100% |
 | Uso de fallback | - | ${pct(x.fallbackRate)} | <= 20% |
+| Safety override intencional | - | ${pct(x.intentionalSafetyOverrideRate)} | separado |
+| Fallback por falha da LLM | - | ${pct(x.llmFailureFallbackRate)} | <= 20% |
 | Reparo bem-sucedido | - | ${pct(x.repairSuccessRate)} | >= 70% |
 | Latencia aquecida p95 | ${x.rawWarmP95Ms} ms | ${x.protectedWarmP95Ms} ms | <= 2000 ms |
 | Maximo de chamadas por decisao | 1 | ${x.maxPlannerCalls} | 2 |
 
 O planner protegido permite uma unica correcao. Se ela falha, aplica fallback deterministico.
+
+## Taxonomia de falhas
+
+\`\`\`json
+${JSON.stringify(x.failureTaxonomy, null, 2)}
+\`\`\`
+
+## Reparos mecanicos
+
+\`\`\`json
+${JSON.stringify(x.mechanicalRepairTaxonomy, null, 2)}
+\`\`\`
 `
 }
 
@@ -173,4 +198,13 @@ function percentile(values, quantile) {
 
 function pct(value) {
   return `${Math.round(value * 100)}%`
+}
+
+function countBy(items, keyFn) {
+  const counts = {}
+  for (const item of items) {
+    const key = keyFn(item) ?? 'UNKNOWN'
+    counts[key] = (counts[key] ?? 0) + 1
+  }
+  return counts
 }

@@ -1,8 +1,10 @@
 import { allowedActions, executableActions, normalizeState } from './action-catalog.js'
 import { parseStrictJson } from './decision-schema.js'
+import { failureRecord } from './failure-taxonomy.js'
 import { fallbackDecision } from './fallback-policy.js'
-import { normalizeDecision } from './normalize-decision.js'
+import { validateIntent } from './intent-schema.js'
 import { assessQuality } from './quality-policy.js'
+import { executableActionSpecs, resolveIntent } from './resolve-intent.js'
 import { safetyOverride } from './safety-policy.js'
 import { validateDecision } from './validate-decision.js'
 
@@ -10,36 +12,74 @@ export function createPlanner({ generate }) {
   return {
     async decide(inputState) {
       const state = normalizeState(inputState)
+      const failures = []
       const forced = safetyOverride(state)
-      if (forced) return result(forced, 'safety_override', false, false, validateDecision(forced, state), 0)
+      if (forced) {
+        failures.push({ stage: 'safety', category: 'SAFETY_OVERRIDE', code: 'SAFETY_OVERRIDE' })
+        return result(forced, 'safety_override', false, false, validateDecision(forced, state), 0, failures, [])
+      }
 
       let attempts = 0
-      let raw = await generate(buildPrompt(state))
+      let candidate = await requestIntent(generate, buildPrompt(state), state)
       attempts++
-      let candidate = parseAndNormalize(raw)
-      let validation = candidate.ok
-        ? validateDecision(candidate.value, state)
-        : parseFailure(candidate.error, state)
 
-      if (validation.status === 'VALID') {
-        return result(candidate.value, 'llm', false, false, withQuality(validation, candidate.value, state), attempts)
+      if (candidate.ok) {
+        const validation = validateDecision(candidate.decision, state)
+        if (validation.status === 'VALID') {
+          return result(candidate.decision, 'llm', false, false,
+            withQuality(validation, candidate.decision, state), attempts, failures, candidate.mechanicalRepairs)
+        }
+        failures.push(failureRecord('initial', validation.error, { originalAction: candidate.decision.action }))
+      } else {
+        failures.push(failureRecord('initial', candidate.error, { rawResponse: candidate.raw }))
       }
 
-      raw = await generate(buildRepairPrompt(state, raw, validation))
+      const repairPrompt = buildRepairPrompt(state, failures.at(-1))
+      candidate = await requestIntent(generate, repairPrompt, state)
       attempts++
-      candidate = parseAndNormalize(raw)
-      validation = candidate.ok
-        ? validateDecision(candidate.value, state)
-        : parseFailure(candidate.error, state)
 
-      if (validation.status === 'VALID') {
-        return result(candidate.value, 'llm_repair', true, false, withQuality(validation, candidate.value, state), attempts)
+      if (candidate.ok) {
+        const validation = validateDecision(candidate.decision, state)
+        if (validation.status === 'VALID') {
+          return result(candidate.decision, 'llm_repair', true, false,
+            withQuality(validation, candidate.decision, state), attempts, failures, candidate.mechanicalRepairs)
+        }
+        failures.push(failureRecord('repair', validation.error, { originalAction: candidate.decision.action }))
+      } else {
+        failures.push(failureRecord('repair', candidate.error, { rawResponse: candidate.raw }))
       }
 
+      failures.push({
+        stage: 'fallback',
+        category: 'REPAIR_FAILED',
+        code: 'REPAIR_FAILED',
+        previousCategory: failures.at(-1)?.category
+      })
       const fallback = fallbackDecision(state)
-      return result(fallback, 'fallback', true, true, validateDecision(fallback, state), attempts)
+      return result(fallback, 'fallback', true, true, validateDecision(fallback, state), attempts, failures, [])
     }
   }
+}
+
+async function requestIntent(generate, prompt, state) {
+  let raw
+  try {
+    raw = await generate(prompt)
+  } catch (error) {
+    return { ok: false, raw: null, error: { code: 'MODEL_UNAVAILABLE', details: { message: error.message } } }
+  }
+  const parsed = parseStrictJson(raw)
+  if (!parsed.ok) return { ok: false, raw, error: parsed.error }
+  const intent = {
+    goal: parsed.value.goal,
+    action: String(parsed.value.action ?? '').trim().toLowerCase().replaceAll(' ', '_'),
+    priority: parsed.value.priority,
+    reason: parsed.value.reason
+  }
+  const schema = validateIntent(intent)
+  if (!schema.ok) return { ok: false, raw, error: schema.error }
+  const resolved = resolveIntent(intent, state)
+  return resolved.ok ? { ok: true, raw, ...resolved } : { ok: false, raw, error: resolved.error }
 }
 
 function withQuality(validation, decision, state) {
@@ -47,62 +87,42 @@ function withQuality(validation, decision, state) {
   return { ...validation, status: quality.status, quality }
 }
 
-function parseAndNormalize(raw) {
-  const parsed = parseStrictJson(raw)
-  return parsed.ok ? { ok: true, value: normalizeDecision(parsed.value) } : parsed
-}
-
-function parseFailure(error, state) {
-  return {
-    status: 'INVALID_REPAIRABLE',
-    structural: false,
-    executable: false,
-    error,
-    validActionsNow: executableActions(state)
-  }
-}
-
 function buildPrompt(state) {
-  return `${rules()}\nState:\n${JSON.stringify(state)}\nChoose the single best next action.`
+  const actions = executableActions(state)
+  return `You choose one high-level intention for a Minecraft survival bot.
+Return ONLY JSON:
+{"goal":"string","action":"allowed_action","priority":1,"reason":"string"}
+Actions executable now: ${actions.join(', ')}
+Choose only from this list. Threats, hunger, inventory and time override progression.
+State: ${JSON.stringify(state)}`
 }
 
-function buildRepairPrompt(state, invalidResponse, validation) {
-  return `${rules()}
-State:
-${JSON.stringify(state)}
-The previous response was invalid:
-${JSON.stringify({
-  error: validation.error?.code,
-  details: validation.error?.details,
-  invalid_response: invalidResponse,
-  valid_actions_now: validation.validActionsNow
-})}
-Correct it once. Return only the corrected JSON object.`
+function buildRepairPrompt(state, failure) {
+  return `Your previous Minecraft decision was invalid.
+Error: ${JSON.stringify(failure)}
+Valid actions now:
+${executableActionSpecs(state).map(spec =>
+  `- ${spec.action}: targets=[${spec.targets.join(',')}], quantity=${spec.quantity.min}..${spec.quantity.max}`
+).join('\n')}
+Return ONLY corrected JSON:
+{"goal":"string","action":"one_action_from_the_list","priority":1,"reason":"string"}
+Do not choose an action outside the list.`
 }
 
-function rules() {
-  return `You are the planner for a Minecraft survival bot.
-Return ONLY valid JSON with this schema:
-{"goal":"string","action":"string","target":"string","quantity":0,"priority":1,"reason":"string"}
-Allowed actions: ${allowedActions.join(', ')}
-Never select an action that cannot start from the observed state.
-Use progression only when its required prerequisite is actually missing.
-Never repeat a completed progression step.
-Inventory, threats, hunger and time override generic progression.`
-}
-
-function result(decision, source, repaired, fallbackUsed, validation, attempts) {
+function result(decision, source, repaired, fallbackUsed, validation, attempts, failures, mechanicalRepairs) {
   return {
     decision,
     source,
     repaired,
     fallbackUsed,
     attempts,
+    failures,
+    mechanicalRepairs,
     validation: {
       classification: validation.status,
       structural: validation.structural,
       executable: validation.executable,
-      safetyApproved: source !== 'llm' || validation.status === 'VALID'
+      safetyApproved: source === 'safety_override' || validation.executable
     }
   }
 }

@@ -10,16 +10,25 @@
     "protectedStructuralRate": 1,
     "protectedExecutableRate": 1,
     "criticalCorrectRate": 1,
-    "fallbackRate": 0.3333333333333333,
-    "repairAttemptRate": 0.5833333333333334,
-    "repairSuccessRate": 0.42857142857142855,
+    "fallbackRate": 0,
+    "repairAttemptRate": 0,
+    "repairSuccessRate": 1,
     "rawStrategicRate": 0.25,
-    "protectedStrategicRate": 0.8333333333333334,
-    "coldStartMs": 1195,
-    "rawWarmP95Ms": 1561,
-    "protectedWarmP95Ms": 2669,
-    "maxPlannerCalls": 2,
-    "totalOllamaCalls": 26
+    "protectedStrategicRate": 0.5,
+    "coldStartMs": 3821,
+    "rawWarmP95Ms": 1439,
+    "protectedWarmP95Ms": 939,
+    "maxPlannerCalls": 1,
+    "totalOllamaCalls": 19,
+    "failureTaxonomy": {
+      "SAFETY_OVERRIDE": 5
+    },
+    "mechanicalRepairTaxonomy": {
+      "DETERMINISTIC_TARGET": 7,
+      "DEFAULT_QUANTITY": 7
+    },
+    "intentionalSafetyOverrideRate": 0.4166666666666667,
+    "llmFailureFallbackRate": 0
   },
   "rows": [
     {
@@ -27,35 +36,48 @@
       "critical": false,
       "run": 1,
       "raw": {
-        "latencyMs": 1195,
+        "latencyMs": 3821,
         "structural": false,
         "executable": false,
         "strategicCorrect": false,
         "action": "build_temporary_shelter"
       },
       "protected": {
-        "latencyMs": 1576,
+        "latencyMs": 855,
         "decision": {
-          "goal": "collect_wood",
-          "action": "collect_wood",
-          "target": "oak_tree",
-          "quantity": 1,
+          "goal": "Survive the night",
+          "action": "explore_area",
+          "target": "nearby_area",
+          "quantity": 0,
           "priority": 1,
-          "reason": "The player is near an oak tree, which is essential for building planks and further tools. Collecting wood is the first step in progression and is required before crafting any items."
+          "reason": "The state indicates no shelter, no crafting table, and unknown time, so exploring to find a safe shelter and resources is the highest priority to prevent immediate threats and hunger."
         },
-        "source": "llm_repair",
-        "repaired": true,
+        "source": "llm",
+        "repaired": false,
         "fallbackUsed": false,
-        "attempts": 2,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "nearby_area",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 0,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
         "validation": {
-          "classification": "VALID",
+          "classification": "VALID_SUBOPTIMAL",
           "structural": true,
           "executable": true,
           "safetyApproved": true
         },
         "finalStructural": true,
         "finalExecutable": true,
-        "strategicCorrect": true
+        "strategicCorrect": false
       }
     },
     {
@@ -63,28 +85,41 @@
       "critical": false,
       "run": 1,
       "raw": {
-        "latencyMs": 1008,
+        "latencyMs": 1192,
         "structural": false,
         "executable": false,
         "strategicCorrect": false,
         "action": "build_temporary_shelter"
       },
       "protected": {
-        "latencyMs": 1867,
+        "latencyMs": 939,
         "decision": {
-          "goal": "collect_wood",
-          "action": "collect_wood",
-          "target": "oak_tree",
-          "quantity": 1,
+          "goal": "Survive the night",
+          "action": "explore_area",
+          "target": "nearby_area",
+          "quantity": 0,
           "priority": 1,
-          "reason": "The player is near an oak tree and has 8 oak logs in inventory. Collecting one more log is necessary to proceed with crafting planks and eventually building a shelter, which is essential for survival."
+          "reason": "The current state has no shelter and no crafting table, and the night is unknown. Exploring the area is essential to find a shelter and resources to craft tools and a crafting table, which are necessary to survive the night."
         },
-        "source": "llm_repair",
-        "repaired": true,
+        "source": "llm",
+        "repaired": false,
         "fallbackUsed": false,
-        "attempts": 2,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "nearby_area",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 0,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
         "validation": {
-          "classification": "VALID",
+          "classification": "VALID_SUBOPTIMAL",
           "structural": true,
           "executable": true,
           "safetyApproved": true
@@ -99,35 +134,48 @@
       "critical": false,
       "run": 1,
       "raw": {
-        "latencyMs": 741,
+        "latencyMs": 992,
         "structural": false,
         "executable": false,
         "strategicCorrect": false,
         "action": "build_temporary_shelter"
       },
       "protected": {
-        "latencyMs": 1545,
+        "latencyMs": 915,
         "decision": {
-          "goal": "survive",
-          "action": "craft_crafting_table",
-          "target": "crafting_table",
+          "goal": "Survive the night",
+          "action": "build_temporary_shelter",
+          "target": "near_current_position",
           "quantity": 1,
-          "priority": 7,
-          "reason": "Deterministic fallback policy"
+          "priority": 1,
+          "reason": "The state indicates no shelter is built, and night will arrive soon. Without shelter, the player is at risk of death due to threats and low health, making immediate shelter construction the highest priority."
         },
-        "source": "fallback",
-        "repaired": true,
-        "fallbackUsed": true,
-        "attempts": 2,
+        "source": "llm",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "near_current_position",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 1,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
         "validation": {
-          "classification": "VALID",
+          "classification": "VALID_SUBOPTIMAL",
           "structural": true,
           "executable": true,
           "safetyApproved": true
         },
         "finalStructural": true,
         "finalExecutable": true,
-        "strategicCorrect": true
+        "strategicCorrect": false
       }
     },
     {
@@ -135,35 +183,48 @@
       "critical": false,
       "run": 1,
       "raw": {
-        "latencyMs": 916,
+        "latencyMs": 963,
         "structural": false,
         "executable": false,
         "strategicCorrect": false,
         "action": "build_temporary_shelter"
       },
       "protected": {
-        "latencyMs": 1423,
+        "latencyMs": 763,
         "decision": {
-          "goal": "survive",
-          "action": "craft_tool",
-          "target": "wooden_pickaxe",
-          "quantity": 1,
-          "priority": 7,
-          "reason": "Deterministic fallback policy"
+          "goal": "Survive the night",
+          "action": "explore_area",
+          "target": "nearby_area",
+          "quantity": 0,
+          "priority": 1,
+          "reason": "The state indicates no shelter and no chest, and the threat of night is imminent. Exploring the area is necessary to find shelter or resources to survive the night."
         },
-        "source": "fallback",
-        "repaired": true,
-        "fallbackUsed": true,
-        "attempts": 2,
+        "source": "llm",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "nearby_area",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 0,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
         "validation": {
-          "classification": "VALID",
+          "classification": "VALID_SUBOPTIMAL",
           "structural": true,
           "executable": true,
           "safetyApproved": true
         },
         "finalStructural": true,
         "finalExecutable": true,
-        "strategicCorrect": true
+        "strategicCorrect": false
       }
     },
     {
@@ -171,35 +232,48 @@
       "critical": false,
       "run": 1,
       "raw": {
-        "latencyMs": 841,
+        "latencyMs": 960,
         "structural": false,
         "executable": false,
         "strategicCorrect": false,
         "action": "collect_wood"
       },
       "protected": {
-        "latencyMs": 1662,
+        "latencyMs": 816,
         "decision": {
-          "goal": "survive",
-          "action": "collect_food",
-          "target": "cow",
-          "quantity": 3,
-          "priority": 7,
-          "reason": "Deterministic fallback policy"
+          "goal": "Survive the night",
+          "action": "explore_area",
+          "target": "nearby_area",
+          "quantity": 0,
+          "priority": 1,
+          "reason": "The current hunger level is 12, and there is no shelter. Exploring the area is necessary to find resources and potential shelter to prevent hunger and health deterioration during the night."
         },
-        "source": "fallback",
-        "repaired": true,
-        "fallbackUsed": true,
-        "attempts": 2,
+        "source": "llm",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "nearby_area",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 0,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
         "validation": {
-          "classification": "VALID",
+          "classification": "VALID_SUBOPTIMAL",
           "structural": true,
           "executable": true,
           "safetyApproved": true
         },
         "finalStructural": true,
         "finalExecutable": true,
-        "strategicCorrect": true
+        "strategicCorrect": false
       }
     },
     {
@@ -207,7 +281,7 @@
       "critical": true,
       "run": 1,
       "raw": {
-        "latencyMs": 767,
+        "latencyMs": 873,
         "structural": true,
         "executable": true,
         "strategicCorrect": false,
@@ -227,6 +301,14 @@
         "repaired": false,
         "fallbackUsed": false,
         "attempts": 0,
+        "failures": [
+          {
+            "stage": "safety",
+            "category": "SAFETY_OVERRIDE",
+            "code": "SAFETY_OVERRIDE"
+          }
+        ],
+        "mechanicalRepairs": [],
         "validation": {
           "classification": "VALID",
           "structural": true,
@@ -243,35 +325,48 @@
       "critical": false,
       "run": 1,
       "raw": {
-        "latencyMs": 763,
+        "latencyMs": 849,
         "structural": true,
         "executable": true,
         "strategicCorrect": true,
         "action": "mine_coal"
       },
       "protected": {
-        "latencyMs": 2669,
+        "latencyMs": 931,
         "decision": {
-          "goal": "survive",
-          "action": "mine_coal",
-          "target": "coal_ore",
-          "quantity": 8,
-          "priority": 7,
-          "reason": "Deterministic fallback policy"
+          "goal": "Ensure survival during the night",
+          "action": "build_temporary_shelter",
+          "target": "near_current_position",
+          "quantity": 1,
+          "priority": 1,
+          "reason": "The current time is night, and while a shelter already exists, the state indicates no chest and no crafting table, making it critical to reinforce or establish a secure temporary shelter to protect against threats and ensure survival until dawn."
         },
-        "source": "fallback",
-        "repaired": true,
-        "fallbackUsed": true,
-        "attempts": 2,
+        "source": "llm",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "near_current_position",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 1,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
         "validation": {
-          "classification": "VALID",
+          "classification": "VALID_SUBOPTIMAL",
           "structural": true,
           "executable": true,
           "safetyApproved": true
         },
         "finalStructural": true,
         "finalExecutable": true,
-        "strategicCorrect": true
+        "strategicCorrect": false
       }
     },
     {
@@ -279,7 +374,7 @@
       "critical": true,
       "run": 1,
       "raw": {
-        "latencyMs": 794,
+        "latencyMs": 860,
         "structural": false,
         "executable": false,
         "strategicCorrect": false,
@@ -299,6 +394,14 @@
         "repaired": false,
         "fallbackUsed": false,
         "attempts": 0,
+        "failures": [
+          {
+            "stage": "safety",
+            "category": "SAFETY_OVERRIDE",
+            "code": "SAFETY_OVERRIDE"
+          }
+        ],
+        "mechanicalRepairs": [],
         "validation": {
           "classification": "VALID",
           "structural": true,
@@ -315,7 +418,7 @@
       "critical": true,
       "run": 1,
       "raw": {
-        "latencyMs": 813,
+        "latencyMs": 934,
         "structural": true,
         "executable": false,
         "strategicCorrect": false,
@@ -335,6 +438,14 @@
         "repaired": false,
         "fallbackUsed": false,
         "attempts": 0,
+        "failures": [
+          {
+            "stage": "safety",
+            "category": "SAFETY_OVERRIDE",
+            "code": "SAFETY_OVERRIDE"
+          }
+        ],
+        "mechanicalRepairs": [],
         "validation": {
           "classification": "VALID",
           "structural": true,
@@ -351,7 +462,7 @@
       "critical": true,
       "run": 1,
       "raw": {
-        "latencyMs": 637,
+        "latencyMs": 720,
         "structural": true,
         "executable": true,
         "strategicCorrect": true,
@@ -371,6 +482,14 @@
         "repaired": false,
         "fallbackUsed": false,
         "attempts": 0,
+        "failures": [
+          {
+            "stage": "safety",
+            "category": "SAFETY_OVERRIDE",
+            "code": "SAFETY_OVERRIDE"
+          }
+        ],
+        "mechanicalRepairs": [],
         "validation": {
           "classification": "VALID",
           "structural": true,
@@ -387,7 +506,7 @@
       "critical": true,
       "run": 1,
       "raw": {
-        "latencyMs": 1561,
+        "latencyMs": 1439,
         "structural": false,
         "executable": false,
         "strategicCorrect": false,
@@ -407,6 +526,14 @@
         "repaired": false,
         "fallbackUsed": false,
         "attempts": 0,
+        "failures": [
+          {
+            "stage": "safety",
+            "category": "SAFETY_OVERRIDE",
+            "code": "SAFETY_OVERRIDE"
+          }
+        ],
+        "mechanicalRepairs": [],
         "validation": {
           "classification": "VALID",
           "structural": true,
@@ -423,35 +550,48 @@
       "critical": false,
       "run": 1,
       "raw": {
-        "latencyMs": 677,
+        "latencyMs": 775,
         "structural": false,
         "executable": false,
         "strategicCorrect": true,
         "action": "mine_iron"
       },
       "protected": {
-        "latencyMs": 1547,
+        "latencyMs": 862,
         "decision": {
-          "goal": "survival",
-          "action": "mine_stone",
-          "target": "stone",
-          "quantity": 1,
+          "goal": "Ensure immediate survival by securing essential resources",
+          "action": "mine_iron",
+          "target": "iron_ore",
+          "quantity": 8,
           "priority": 1,
-          "reason": "Stone is available nearby and essential for crafting tools and building, which are necessary for long-term survival and progression."
+          "reason": "Iron is critical for crafting tools and weapons, and the player has a stone pickaxe but no crafting table, making it essential to prioritize iron ore mining to enable future progress and defense."
         },
-        "source": "llm_repair",
-        "repaired": true,
+        "source": "llm",
+        "repaired": false,
         "fallbackUsed": false,
-        "attempts": 2,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "iron_ore",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 8,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
         "validation": {
-          "classification": "VALID",
+          "classification": "VALID_SUBOPTIMAL",
           "structural": true,
           "executable": true,
           "safetyApproved": true
         },
         "finalStructural": true,
         "finalExecutable": true,
-        "strategicCorrect": false
+        "strategicCorrect": true
       }
     }
   ]

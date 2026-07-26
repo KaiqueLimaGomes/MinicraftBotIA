@@ -29,6 +29,7 @@ backups/
 node_modules/
 package-lock.json
 .npm-cache/
+bot-smoke-test/shadow-results/
 
 # Secrets / local machine settings
 .env

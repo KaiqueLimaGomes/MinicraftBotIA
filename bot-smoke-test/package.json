@@ -5,7 +5,8 @@
   "description": "Bot Mineflayer mínimo para validar conexão com o servidor Minecraft antes da IA.",
   "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "shadow": "node shadow-mode.js"
   },
   "dependencies": {
     "mineflayer": "^4.33.0"

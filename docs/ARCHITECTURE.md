@@ -55,8 +55,9 @@ O modelo local nao envia comandos diretamente ao Mineflayer. A decisao percorre:
 
 ```text
 Qwen3
+  -> intencao (goal, action, priority, reason)
   -> parse JSON estrito
-  -> normalizacao de aliases
+  -> resolucao deterministica de alvo e quantidade
   -> validacao estrutural
   -> validacao de executabilidade
   -> politica de seguranca
@@ -74,7 +75,7 @@ Classificacoes:
 
 Uma decisao reparavel recebe somente uma segunda tentativa. Se continuar invalida,
 o planner usa fallback deterministico. O executor Mineflayer ainda nao esta conectado
-ao planner enquanto as metas do Experimento 0005 nao forem atingidas.
+ao planner. A integracao atual e somente observacional (`shadow-mode.js`).
 
 ## Modulos
 
@@ -82,6 +83,9 @@ Os modulos estao em `planner-benchmark/planner/`:
 
 - `action-catalog.js`: acoes, alvos, aliases e pre-condicoes;
 - `decision-schema.js`: parse estrito e estrutura;
+- `intent-schema.js`: contrato reduzido da intencao;
+- `resolve-intent.js`: alvo e quantidade derivados do estado;
+- `failure-taxonomy.js`: causas de falha e fallback;
 - `normalize-decision.js`: normalizacao;
 - `validate-decision.js`: executabilidade;
 - `safety-policy.js`: situacoes criticas;

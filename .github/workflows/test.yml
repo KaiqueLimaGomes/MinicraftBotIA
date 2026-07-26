@@ -1,0 +1,32 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Planner tests
+        run: node planner-benchmark/planner/test.js
+
+      - name: Snapshot tests
+        run: node bot-smoke-test/state-snapshot.test.js
+
+      - name: Shadow configuration tests
+        run: node bot-smoke-test/shadow-config.test.js
+
+      - name: Syntax checks
+        run: |
+          node --check planner-benchmark/protected-benchmark.js
+          node --check bot-smoke-test/shadow-mode.js

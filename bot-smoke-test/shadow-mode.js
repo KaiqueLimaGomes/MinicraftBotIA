@@ -3,7 +3,12 @@ import path from 'node:path'
 import mineflayer from 'mineflayer'
 import { createPlanner } from '../planner-benchmark/planner/planner.js'
 import { validateDecision } from '../planner-benchmark/planner/validate-decision.js'
-import { createStateSnapshot, snapshotFingerprint } from './state-snapshot.js'
+import { registeredBaseFromEnv } from './shadow-config.js'
+import {
+  createStateSnapshot,
+  snapshotDecisionFingerprint,
+  snapshotWorldFingerprint
+} from './state-snapshot.js'
 
 const config = {
   host: process.env.MC_HOST ?? '127.0.0.1',
@@ -21,7 +26,7 @@ const ollamaTimeoutMs = Number(process.env.OLLAMA_TIMEOUT_MS ?? 10000)
 const logPath = path.resolve('shadow-results', `shadow-${new Date().toISOString().replaceAll(':', '-')}.jsonl`)
 const snapshotOptions = {
   shelterStatus: process.env.SHELTER_STATUS ?? 'unknown',
-  base: registeredBaseFromEnv()
+  base: registeredBaseFromEnv(process.env)
 }
 const bot = mineflayer.createBot(config)
 const planner = createPlanner({ generate })
@@ -68,20 +73,33 @@ async function observe() {
   deciding = true
   try {
     const before = createStateSnapshot(bot, snapshotOptions)
-    const beforeFingerprint = snapshotFingerprint(before)
+    const beforeDecisionFingerprint = snapshotDecisionFingerprint(before)
+    const beforeWorldFingerprint = snapshotWorldFingerprint(before)
     const started = performance.now()
     const output = await planner.decide(before)
     const latencyMs = Math.round(performance.now() - started)
     const after = createStateSnapshot(bot, snapshotOptions)
-    const stateChanged = beforeFingerprint !== snapshotFingerprint(after)
+    const worldChangedDuringInference =
+      beforeWorldFingerprint !== snapshotWorldFingerprint(after)
+    const decisionStateChangedDuringInference =
+      beforeDecisionFingerprint !== snapshotDecisionFingerprint(after)
     const stillValid = validateDecision(output.decision, after).catalogExecutable
-    const relation = decisionRelation(previousObservation, beforeFingerprint, output.decision.action)
-    previousObservation = { fingerprint: beforeFingerprint, action: output.decision.action }
+    const relation = decisionRelation(
+      previousObservation,
+      beforeDecisionFingerprint,
+      output.decision.action
+    )
+    previousObservation = {
+      fingerprint: beforeDecisionFingerprint,
+      action: output.decision.action
+    }
     const record = {
       type: 'shadow_decision',
       timestamp: new Date().toISOString(),
       latencyMs,
-      stateChangedDuringInference: stateChanged,
+      worldChangedDuringInference,
+      decisionStateChangedDuringInference,
+      stateChangedDuringInference: decisionStateChangedDuringInference,
       decisionStillExecutable: stillValid,
       decisionRelation: relation,
       snapshot: before,
@@ -89,7 +107,7 @@ async function observe() {
       planner: output
     }
     await appendRecord(record)
-    console.log(`[shadow] ${output.decision.action} source=${output.source} validAfter=${stillValid} changed=${stateChanged} ${latencyMs}ms`)
+    console.log(`[shadow] ${output.decision.action} source=${output.source} validAfter=${stillValid} decisionChanged=${decisionStateChangedDuringInference} ${latencyMs}ms`)
   } catch (error) {
     await appendRecord({
       type: 'shadow_error', timestamp: new Date().toISOString(), message: error.message
@@ -143,14 +161,4 @@ function decisionRelation(previous, fingerprint, action) {
   if (sameState) return 'same_state_different_decision'
   if (sameDecision) return 'changed_state_same_decision'
   return 'changed_state_different_decision'
-}
-
-function registeredBaseFromEnv() {
-  const values = [process.env.BASE_X, process.env.BASE_Y, process.env.BASE_Z]
-  if (values.some(value => value === undefined)) return null
-  return {
-    position: { x: Number(values[0]), y: Number(values[1]), z: Number(values[2]) },
-    hasChest: process.env.BASE_HAS_CHEST === 'true',
-    hasCraftingTable: process.env.BASE_HAS_CRAFTING_TABLE === 'true'
-  }
 }

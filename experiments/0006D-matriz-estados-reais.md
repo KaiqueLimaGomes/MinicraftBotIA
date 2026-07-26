@@ -7,6 +7,16 @@ servidor. O bot permanece em shadow mode e nao executa habilidades.
 
 ## Preparacao
 
+Pre-requisitos implementados:
+
+- coordenadas de base incompletas ou nao numericas encerram com erro;
+- coordenadas negativas e zero sao aceitas;
+- bau e bancada registrados na base aparecem no snapshot;
+- reparo recebe somente acoes estrategicamente admissiveis;
+- fingerprint decisorio inclui horario, urgencia noturna, abrigo, base e
+  infraestrutura;
+- testes locais e CI do GitHub cobrem essas regras.
+
 Para cada fase:
 
 1. preparar manualmente o estado no Minecraft;
@@ -53,3 +63,8 @@ Para cada fase:
 A execucao limitada so pode ser criada depois da matriz ser preenchida e aprovada.
 Ela sera desenvolvida na branch `feat/limited-skill-executor`, sem commit direto na
 `main`.
+
+## Estado
+
+Pronto para iniciar as 12 fases. Ainda nao executado, pois cada estado deve ser
+preparado e conferido visualmente no servidor.

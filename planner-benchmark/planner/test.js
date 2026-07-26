@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { admissibleActions, executableActions, normalizeState } from './action-catalog.js'
 import { createPlanner } from './planner.js'
 import { assessQuality } from './quality-policy.js'
+import { admissibleActionSpecs, executableActionSpecs } from './resolve-intent.js'
 
 const json = value => JSON.stringify(value)
 const base = {
@@ -93,6 +94,12 @@ await test('known base enables return and storage', async () => {
   })
   assert.equal(executableActions(state).includes('return_to_base'), true)
   assert.equal(executableActions(state).includes('store_items'), true)
+})
+
+await test('repair specs preserve strategic admissibility', async () => {
+  const state = normalizeState(base)
+  assert.equal(executableActionSpecs(state).some(spec => spec.action === 'explore_area'), true)
+  assert.equal(admissibleActionSpecs(state).some(spec => spec.action === 'explore_area'), false)
 })
 
 console.log('All planner tests passed.')

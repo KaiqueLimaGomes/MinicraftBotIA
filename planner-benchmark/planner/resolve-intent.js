@@ -45,14 +45,18 @@ export function resolveIntent(intent, state) {
 }
 
 export function executableActionSpecs(state) {
-  const admissible = new Set(admissibleActions(state))
   return Object.entries(actionCatalog)
-    .filter(([action, rule]) => rule.requires(state) && admissible.has(action))
+    .filter(([, rule]) => rule.requires(state))
     .map(([action, rule]) => ({
       action,
       targets: candidateTargets(action, state, rule.validTargets),
       quantity: rule.quantity
     }))
+}
+
+export function admissibleActionSpecs(state) {
+  const allowed = new Set(admissibleActions(state))
+  return executableActionSpecs(state).filter(spec => allowed.has(spec.action))
 }
 
 function resolveTarget(action, state, validTargets) {

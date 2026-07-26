@@ -4,7 +4,7 @@ import { failureRecord } from './failure-taxonomy.js'
 import { fallbackDecision } from './fallback-policy.js'
 import { validateIntent } from './intent-schema.js'
 import { assessQuality } from './quality-policy.js'
-import { executableActionSpecs, resolveIntent } from './resolve-intent.js'
+import { admissibleActionSpecs, resolveIntent } from './resolve-intent.js'
 import { safetyOverride } from './safety-policy.js'
 import { validateDecision } from './validate-decision.js'
 
@@ -120,7 +120,7 @@ function buildRepairPrompt(state, failure) {
   return `Your previous Minecraft decision was invalid.
 Error: ${JSON.stringify(failure)}
 Valid actions now:
-${executableActionSpecs(state).map(spec =>
+${admissibleActionSpecs(state).map(spec =>
   `- ${spec.action}: targets=[${spec.targets.join(',')}], quantity=${spec.quantity.min}..${spec.quantity.max}`
 ).join('\n')}
 Return ONLY corrected JSON:

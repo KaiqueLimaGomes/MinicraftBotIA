@@ -84,6 +84,30 @@ catalogo. Nao afirma que existe caminho, alcance, durabilidade, espaco ou receit
 executavel no mundo real. Cada habilidade futura devera implementar `canExecute()`
 antes de qualquer efeito no servidor.
 
+## Configuracao observacional
+
+Base manual:
+
+- `BASE_X`, `BASE_Y` e `BASE_Z` devem ser fornecidas juntas;
+- os valores devem ser numeros finitos;
+- valores negativos e zero sao validos;
+- `BASE_HAS_CHEST` e `BASE_HAS_CRAFTING_TABLE` registram infraestrutura conhecida.
+
+O shadow mode usa dois fingerprints:
+
+- `snapshotWorldFingerprint`: mudancas fisicas observadas;
+- `snapshotDecisionFingerprint`: tudo que pode alterar a escolha do planner,
+  incluindo tempo, urgencia noturna, inventario cheio, abrigo, base, bancada e bau.
+
+O prompt inicial e o reparo recebem o mesmo conjunto de acoes estrategicamente
+admissiveis.
+
+## Integracao continua
+
+O workflow `.github/workflows/test.yml` executa testes de planner, snapshot,
+configuracao da base e verificacoes de sintaxe em pushes para `main` e pull
+requests.
+
 ## Modulos
 
 Os modulos estao em `planner-benchmark/planner/`:

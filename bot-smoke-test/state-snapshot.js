@@ -36,7 +36,9 @@ export function createStateSnapshot(bot, options = {}) {
     shelterStatus,
     shelter: shelterStatus === 'present',
     tools: Object.keys(inventory).filter(isTool),
-    hasCraftingTable: inventory.crafting_table > 0 || nearbyBlocks.includes('crafting_table'),
+    hasCraftingTable: inventory.crafting_table > 0 ||
+      nearbyBlocks.includes('crafting_table') ||
+      Boolean(registeredBase?.hasCraftingTable),
     baseStatus: registeredBase ? 'known' : 'unknown',
     baseKnown: Boolean(registeredBase),
     base: registeredBase,
@@ -46,7 +48,7 @@ export function createStateSnapshot(bot, options = {}) {
   }
 }
 
-export function snapshotFingerprint(snapshot) {
+export function snapshotWorldFingerprint(snapshot) {
   return JSON.stringify({
     position: snapshot.position,
     health: snapshot.health,
@@ -56,6 +58,27 @@ export function snapshotFingerprint(snapshot) {
     threatImmediate: snapshot.threatImmediate
   })
 }
+
+export function snapshotDecisionFingerprint(snapshot) {
+  return JSON.stringify({
+    position: snapshot.position,
+    time: snapshot.time,
+    nightUrgent: snapshot.timeUntilNightSeconds !== null &&
+      snapshot.timeUntilNightSeconds <= 180,
+    health: snapshot.health,
+    hunger: snapshot.hunger,
+    inventory: snapshot.inventory,
+    inventoryFull: snapshot.inventoryFull,
+    nearby: snapshot.nearby,
+    shelterStatus: snapshot.shelterStatus,
+    baseStatus: snapshot.baseStatus,
+    hasCraftingTable: snapshot.hasCraftingTable,
+    hasChest: snapshot.hasChest,
+    threatImmediate: snapshot.threatImmediate
+  })
+}
+
+export const snapshotFingerprint = snapshotDecisionFingerprint
 
 function inventoryCounts(bot) {
   const counts = {}

@@ -1,0 +1,12 @@
+{
+  "name": "planner-benchmark",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Benchmark de modelos Ollama para planejamento de sobrevivência Minecraft.",
+  "type": "module",
+  "scripts": {
+    "start": "node benchmark.js",
+    "test": "node planner/test.js",
+    "benchmark:protected": "node protected-benchmark.js"
+  }
+}

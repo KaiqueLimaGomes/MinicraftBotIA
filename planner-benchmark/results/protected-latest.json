@@ -1,0 +1,458 @@
+{
+  "model": "qwen3:4b-instruct-2507-q4_K_M",
+  "summary": {
+    "model": "qwen3:4b-instruct-2507-q4_K_M",
+    "scenarios": 12,
+    "runsPerScenario": 1,
+    "totalCases": 12,
+    "rawStructuralRate": 0.3333333333333333,
+    "rawExecutableRate": 0.25,
+    "protectedStructuralRate": 1,
+    "protectedExecutableRate": 1,
+    "criticalCorrectRate": 1,
+    "fallbackRate": 0.3333333333333333,
+    "repairAttemptRate": 0.5833333333333334,
+    "repairSuccessRate": 0.42857142857142855,
+    "rawStrategicRate": 0.25,
+    "protectedStrategicRate": 0.8333333333333334,
+    "coldStartMs": 1195,
+    "rawWarmP95Ms": 1561,
+    "protectedWarmP95Ms": 2669,
+    "maxPlannerCalls": 2,
+    "totalOllamaCalls": 26
+  },
+  "rows": [
+    {
+      "scenario": "empty_inventory",
+      "critical": false,
+      "run": 1,
+      "raw": {
+        "latencyMs": 1195,
+        "structural": false,
+        "executable": false,
+        "strategicCorrect": false,
+        "action": "build_temporary_shelter"
+      },
+      "protected": {
+        "latencyMs": 1576,
+        "decision": {
+          "goal": "collect_wood",
+          "action": "collect_wood",
+          "target": "oak_tree",
+          "quantity": 1,
+          "priority": 1,
+          "reason": "The player is near an oak tree, which is essential for building planks and further tools. Collecting wood is the first step in progression and is required before crafting any items."
+        },
+        "source": "llm_repair",
+        "repaired": true,
+        "fallbackUsed": false,
+        "attempts": 2,
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "executable": true,
+          "safetyApproved": true
+        },
+        "finalStructural": true,
+        "finalExecutable": true,
+        "strategicCorrect": true
+      }
+    },
+    {
+      "scenario": "logs_no_planks",
+      "critical": false,
+      "run": 1,
+      "raw": {
+        "latencyMs": 1008,
+        "structural": false,
+        "executable": false,
+        "strategicCorrect": false,
+        "action": "build_temporary_shelter"
+      },
+      "protected": {
+        "latencyMs": 1867,
+        "decision": {
+          "goal": "collect_wood",
+          "action": "collect_wood",
+          "target": "oak_tree",
+          "quantity": 1,
+          "priority": 1,
+          "reason": "The player is near an oak tree and has 8 oak logs in inventory. Collecting one more log is necessary to proceed with crafting planks and eventually building a shelter, which is essential for survival."
+        },
+        "source": "llm_repair",
+        "repaired": true,
+        "fallbackUsed": false,
+        "attempts": 2,
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "executable": true,
+          "safetyApproved": true
+        },
+        "finalStructural": true,
+        "finalExecutable": true,
+        "strategicCorrect": false
+      }
+    },
+    {
+      "scenario": "planks_no_table",
+      "critical": false,
+      "run": 1,
+      "raw": {
+        "latencyMs": 741,
+        "structural": false,
+        "executable": false,
+        "strategicCorrect": false,
+        "action": "build_temporary_shelter"
+      },
+      "protected": {
+        "latencyMs": 1545,
+        "decision": {
+          "goal": "survive",
+          "action": "craft_crafting_table",
+          "target": "crafting_table",
+          "quantity": 1,
+          "priority": 7,
+          "reason": "Deterministic fallback policy"
+        },
+        "source": "fallback",
+        "repaired": true,
+        "fallbackUsed": true,
+        "attempts": 2,
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "executable": true,
+          "safetyApproved": true
+        },
+        "finalStructural": true,
+        "finalExecutable": true,
+        "strategicCorrect": true
+      }
+    },
+    {
+      "scenario": "table_no_tools",
+      "critical": false,
+      "run": 1,
+      "raw": {
+        "latencyMs": 916,
+        "structural": false,
+        "executable": false,
+        "strategicCorrect": false,
+        "action": "build_temporary_shelter"
+      },
+      "protected": {
+        "latencyMs": 1423,
+        "decision": {
+          "goal": "survive",
+          "action": "craft_tool",
+          "target": "wooden_pickaxe",
+          "quantity": 1,
+          "priority": 7,
+          "reason": "Deterministic fallback policy"
+        },
+        "source": "fallback",
+        "repaired": true,
+        "fallbackUsed": true,
+        "attempts": 2,
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "executable": true,
+          "safetyApproved": true
+        },
+        "finalStructural": true,
+        "finalExecutable": true,
+        "strategicCorrect": true
+      }
+    },
+    {
+      "scenario": "needs_food",
+      "critical": false,
+      "run": 1,
+      "raw": {
+        "latencyMs": 841,
+        "structural": false,
+        "executable": false,
+        "strategicCorrect": false,
+        "action": "collect_wood"
+      },
+      "protected": {
+        "latencyMs": 1662,
+        "decision": {
+          "goal": "survive",
+          "action": "collect_food",
+          "target": "cow",
+          "quantity": 3,
+          "priority": 7,
+          "reason": "Deterministic fallback policy"
+        },
+        "source": "fallback",
+        "repaired": true,
+        "fallbackUsed": true,
+        "attempts": 2,
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "executable": true,
+          "safetyApproved": true
+        },
+        "finalStructural": true,
+        "finalExecutable": true,
+        "strategicCorrect": true
+      }
+    },
+    {
+      "scenario": "night_soon",
+      "critical": true,
+      "run": 1,
+      "raw": {
+        "latencyMs": 767,
+        "structural": true,
+        "executable": true,
+        "strategicCorrect": false,
+        "action": "craft_crafting_table"
+      },
+      "protected": {
+        "latencyMs": 0,
+        "decision": {
+          "goal": "survive",
+          "action": "build_temporary_shelter",
+          "target": "near_current_position",
+          "quantity": 1,
+          "priority": 9,
+          "reason": "Night is imminent"
+        },
+        "source": "safety_override",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 0,
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "executable": true,
+          "safetyApproved": true
+        },
+        "finalStructural": true,
+        "finalExecutable": true,
+        "strategicCorrect": true
+      }
+    },
+    {
+      "scenario": "needs_coal",
+      "critical": false,
+      "run": 1,
+      "raw": {
+        "latencyMs": 763,
+        "structural": true,
+        "executable": true,
+        "strategicCorrect": true,
+        "action": "mine_coal"
+      },
+      "protected": {
+        "latencyMs": 2669,
+        "decision": {
+          "goal": "survive",
+          "action": "mine_coal",
+          "target": "coal_ore",
+          "quantity": 8,
+          "priority": 7,
+          "reason": "Deterministic fallback policy"
+        },
+        "source": "fallback",
+        "repaired": true,
+        "fallbackUsed": true,
+        "attempts": 2,
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "executable": true,
+          "safetyApproved": true
+        },
+        "finalStructural": true,
+        "finalExecutable": true,
+        "strategicCorrect": true
+      }
+    },
+    {
+      "scenario": "critical_hunger_food",
+      "critical": true,
+      "run": 1,
+      "raw": {
+        "latencyMs": 794,
+        "structural": false,
+        "executable": false,
+        "strategicCorrect": false,
+        "action": "collect_wood"
+      },
+      "protected": {
+        "latencyMs": 0,
+        "decision": {
+          "goal": "survive",
+          "action": "eat_food",
+          "target": "raw_beef",
+          "quantity": 1,
+          "priority": 10,
+          "reason": "Critical hunger and food is available"
+        },
+        "source": "safety_override",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 0,
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "executable": true,
+          "safetyApproved": true
+        },
+        "finalStructural": true,
+        "finalExecutable": true,
+        "strategicCorrect": true
+      }
+    },
+    {
+      "scenario": "critical_hunger_animal",
+      "critical": true,
+      "run": 1,
+      "raw": {
+        "latencyMs": 813,
+        "structural": true,
+        "executable": false,
+        "strategicCorrect": false,
+        "action": "collect_wood"
+      },
+      "protected": {
+        "latencyMs": 0,
+        "decision": {
+          "goal": "survive",
+          "action": "collect_food",
+          "target": "cow",
+          "quantity": 2,
+          "priority": 10,
+          "reason": "Critical hunger and food source is nearby"
+        },
+        "source": "safety_override",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 0,
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "executable": true,
+          "safetyApproved": true
+        },
+        "finalStructural": true,
+        "finalExecutable": true,
+        "strategicCorrect": true
+      }
+    },
+    {
+      "scenario": "low_health_threat",
+      "critical": true,
+      "run": 1,
+      "raw": {
+        "latencyMs": 637,
+        "structural": true,
+        "executable": true,
+        "strategicCorrect": true,
+        "action": "flee_threat"
+      },
+      "protected": {
+        "latencyMs": 0,
+        "decision": {
+          "goal": "survive",
+          "action": "flee_threat",
+          "target": "zombie",
+          "quantity": 0,
+          "priority": 10,
+          "reason": "Immediate threat with low health"
+        },
+        "source": "safety_override",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 0,
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "executable": true,
+          "safetyApproved": true
+        },
+        "finalStructural": true,
+        "finalExecutable": true,
+        "strategicCorrect": true
+      }
+    },
+    {
+      "scenario": "inventory_full",
+      "critical": true,
+      "run": 1,
+      "raw": {
+        "latencyMs": 1561,
+        "structural": false,
+        "executable": false,
+        "strategicCorrect": false,
+        "action": "build_temporary_shelter"
+      },
+      "protected": {
+        "latencyMs": 0,
+        "decision": {
+          "goal": "survive",
+          "action": "store_items",
+          "target": "base_chest",
+          "quantity": 0,
+          "priority": 9,
+          "reason": "Inventory is full and storage is known"
+        },
+        "source": "safety_override",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 0,
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "executable": true,
+          "safetyApproved": true
+        },
+        "finalStructural": true,
+        "finalExecutable": true,
+        "strategicCorrect": true
+      }
+    },
+    {
+      "scenario": "iron_and_coal",
+      "critical": false,
+      "run": 1,
+      "raw": {
+        "latencyMs": 677,
+        "structural": false,
+        "executable": false,
+        "strategicCorrect": true,
+        "action": "mine_iron"
+      },
+      "protected": {
+        "latencyMs": 1547,
+        "decision": {
+          "goal": "survival",
+          "action": "mine_stone",
+          "target": "stone",
+          "quantity": 1,
+          "priority": 1,
+          "reason": "Stone is available nearby and essential for crafting tools and building, which are necessary for long-term survival and progression."
+        },
+        "source": "llm_repair",
+        "repaired": true,
+        "fallbackUsed": false,
+        "attempts": 2,
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "executable": true,
+          "safetyApproved": true
+        },
+        "finalStructural": true,
+        "finalExecutable": true,
+        "strategicCorrect": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+# Minecraft server runtime
+server/world*/
+server/logs/
+server/cache/
+server/libraries/
+server/versions/
+server/crash-reports/
+server/plugins/
+server/usercache.json
+server/ops.json
+server/whitelist.json
+server/banned-*.json
+server/*.jar
+server/eula.txt
+server/server.properties
+server/*.yml
+server/version_history.json
+server/config/
+server/.console_history
+
+# Local AI / generated data
+logs/
+backups/
+*.log
+*.sqlite
+*.db
+
+# Node
+node_modules/
+package-lock.json
+.npm-cache/
+
+# Secrets / local machine settings
+.env
+*.local.json
+
+# OS/editor
+Thumbs.db
+.DS_Store
+.vscode/

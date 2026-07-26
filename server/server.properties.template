@@ -1,0 +1,17 @@
+# Copie este arquivo para server.properties depois da primeira execução do Paper.
+# Ajuste online-mode conforme seu tipo de conta/laboratório.
+
+gamemode=survival
+difficulty=normal
+pvp=false
+max-players=10
+view-distance=6
+simulation-distance=5
+spawn-protection=0
+white-list=false
+server-port=25565
+server-ip=
+
+# true: contas oficiais Microsoft/Mojang
+# false: laboratório privado/offline. Se usar false, mantenha restrito à rede local/Tailscale.
+online-mode=false

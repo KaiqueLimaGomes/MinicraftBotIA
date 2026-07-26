@@ -1,0 +1,13 @@
+{
+  "name": "bot-smoke-test",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Bot Mineflayer mínimo para validar conexão com o servidor Minecraft antes da IA.",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "mineflayer": "^4.33.0"
+  }
+}

@@ -60,6 +60,7 @@ Qwen3
   -> resolucao deterministica de alvo e quantidade
   -> validacao estrutural
   -> validacao de executabilidade
+  -> filtro de admissibilidade estrategica
   -> politica de seguranca
   -> classificacao de qualidade
   -> decisao final
@@ -67,7 +68,8 @@ Qwen3
 
 Classificacoes:
 
-- `VALID`: executavel e alinhada com a politica;
+- `VALID_PREFERRED`: opcao preferida pela politica;
+- `VALID_ACCEPTABLE`: opcao alternativa aceitavel;
 - `VALID_SUBOPTIMAL`: executavel, mas existe opcao deterministica preferivel;
 - `INVALID_REPAIRABLE`: formato, alvo ou pre-condicao podem ser corrigidos;
 - `UNSAFE_OVERRIDE`: reservado para uma escolha do modelo substituida pela politica
@@ -76,6 +78,11 @@ Classificacoes:
 Uma decisao reparavel recebe somente uma segunda tentativa. Se continuar invalida,
 o planner usa fallback deterministico. O executor Mineflayer ainda nao esta conectado
 ao planner. A integracao atual e somente observacional (`shadow-mode.js`).
+
+`catalogExecutable` significa apenas que a decisao satisfaz as regras abstratas do
+catalogo. Nao afirma que existe caminho, alcance, durabilidade, espaco ou receita
+executavel no mundo real. Cada habilidade futura devera implementar `canExecute()`
+antes de qualquer efeito no servidor.
 
 ## Modulos
 

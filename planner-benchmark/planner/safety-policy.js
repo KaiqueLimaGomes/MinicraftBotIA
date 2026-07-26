@@ -16,7 +16,7 @@ export function safetyOverride(state) {
       ? decision('store_items', 'base_chest', 0, 9, 'Inventory is full and storage is known')
       : decision('return_to_base', 'base_location', 0, 9, 'Inventory is full')
   }
-  if (!state.shelter && state.timeUntilNightSeconds !== null &&
+  if (state.shelterStatus === 'absent' && state.timeUntilNightSeconds !== null &&
       state.timeUntilNightSeconds <= 120 && buildingBlocks(state) >= 12) {
     return decision('build_temporary_shelter', 'near_current_position', 1, 9, 'Night is imminent')
   }

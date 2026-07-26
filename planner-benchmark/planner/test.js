@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict'
+import { admissibleActions, executableActions, normalizeState } from './action-catalog.js'
 import { createPlanner } from './planner.js'
+import { assessQuality } from './quality-policy.js'
 
 const json = value => JSON.stringify(value)
 const base = {
@@ -56,13 +58,41 @@ await test('critical hunger overrides with available food', async () => {
 })
 
 await test('marks executable but weaker decisions as suboptimal', async () => {
-  const planner = createPlanner({ generate: async () => json({
-    goal: 'survive', action: 'explore_area', target: 'nearby_area', quantity: 0, priority: 5, reason: 'Explore'
-  }) })
-  const output = await planner.decide(base)
-  assert.equal(output.validation.classification, 'VALID_SUBOPTIMAL')
-  assert.equal(output.validation.executable, true)
-  assert.equal(output.attempts, 1)
+  const quality = assessQuality({ action: 'explore_area' }, normalizeState(base))
+  assert.equal(quality.status, 'VALID_SUBOPTIMAL')
+})
+
+await test('does not offer exploration before basic progression', async () => {
+  const state = normalizeState(base)
+  assert.equal(executableActions(state).includes('explore_area'), true)
+  assert.equal(admissibleActions(state).includes('explore_area'), false)
+})
+
+await test('unknown shelter does not authorize building', async () => {
+  const state = normalizeState({
+    time: 'dusk', timeUntilNightSeconds: 60, shelterStatus: 'unknown',
+    inventory: { oak_log: 12 }, nearby: ['stone']
+  })
+  assert.equal(executableActions(state).includes('build_temporary_shelter'), false)
+})
+
+await test('known absent shelter is admissible only near night', async () => {
+  const morning = normalizeState({
+    time: 'morning', timeUntilNightSeconds: 500, shelterStatus: 'absent',
+    inventory: { oak_log: 12 }, nearby: ['stone']
+  })
+  const dusk = normalizeState({ ...morning, time: 'dusk', timeUntilNightSeconds: 60 })
+  assert.equal(admissibleActions(morning).includes('build_temporary_shelter'), false)
+  assert.equal(admissibleActions(dusk).includes('build_temporary_shelter'), true)
+})
+
+await test('known base enables return and storage', async () => {
+  const state = normalizeState({
+    baseStatus: 'known', base: { position: { x: 1, y: 64, z: 1 } },
+    hasChest: true, inventoryFull: true
+  })
+  assert.equal(executableActions(state).includes('return_to_base'), true)
+  assert.equal(executableActions(state).includes('store_items'), true)
 })
 
 console.log('All planner tests passed.')

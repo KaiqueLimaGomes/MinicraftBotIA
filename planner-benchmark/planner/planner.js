@@ -1,4 +1,4 @@
-import { allowedActions, executableActions, normalizeState } from './action-catalog.js'
+import { admissibleActions, normalizeState } from './action-catalog.js'
 import { parseStrictJson } from './decision-schema.js'
 import { failureRecord } from './failure-taxonomy.js'
 import { fallbackDecision } from './fallback-policy.js'
@@ -24,7 +24,7 @@ export function createPlanner({ generate }) {
       attempts++
 
       if (candidate.ok) {
-        const validation = validateDecision(candidate.decision, state)
+        const validation = validateCandidate(candidate.decision, state)
         if (validation.status === 'VALID') {
           return result(candidate.decision, 'llm', false, false,
             withQuality(validation, candidate.decision, state), attempts, failures, candidate.mechanicalRepairs)
@@ -39,7 +39,7 @@ export function createPlanner({ generate }) {
       attempts++
 
       if (candidate.ok) {
-        const validation = validateDecision(candidate.decision, state)
+        const validation = validateCandidate(candidate.decision, state)
         if (validation.status === 'VALID') {
           return result(candidate.decision, 'llm_repair', true, false,
             withQuality(validation, candidate.decision, state), attempts, failures, candidate.mechanicalRepairs)
@@ -58,6 +58,24 @@ export function createPlanner({ generate }) {
       const fallback = fallbackDecision(state)
       return result(fallback, 'fallback', true, true, validateDecision(fallback, state), attempts, failures, [])
     }
+  }
+}
+
+function validateCandidate(decision, state) {
+  const validation = validateDecision(decision, state)
+  if (validation.status !== 'VALID') return validation
+  const admissible = admissibleActions(state)
+  if (admissible.includes(decision.action) || (admissible.length === 0 && decision.action === 'wait')) {
+    return validation
+  }
+  return {
+    ...validation,
+    status: 'INVALID_REPAIRABLE',
+    error: {
+      code: 'STRATEGIC_OVERRIDE',
+      details: { action: decision.action, admissibleActions: admissible }
+    },
+    validActionsNow: admissible
   }
 }
 
@@ -88,7 +106,8 @@ function withQuality(validation, decision, state) {
 }
 
 function buildPrompt(state) {
-  const actions = executableActions(state)
+  const actions = admissibleActions(state)
+  if (!actions.length) actions.push('wait')
   return `You choose one high-level intention for a Minecraft survival bot.
 Return ONLY JSON:
 {"goal":"string","action":"allowed_action","priority":1,"reason":"string"}
@@ -121,6 +140,7 @@ function result(decision, source, repaired, fallbackUsed, validation, attempts, 
     validation: {
       classification: validation.status,
       structural: validation.structural,
+      catalogExecutable: validation.catalogExecutable,
       executable: validation.executable,
       safetyApproved: source === 'safety_override' || validation.executable
     }

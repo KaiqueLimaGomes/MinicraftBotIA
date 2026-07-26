@@ -4,7 +4,7 @@ const observedBlocks = [
 const observedEntities = ['cow', 'sheep', 'pig', 'chicken', 'zombie', 'skeleton', 'creeper', 'spider']
 const hostileEntities = new Set(['zombie', 'skeleton', 'creeper', 'spider'])
 
-export function createStateSnapshot(bot) {
+export function createStateSnapshot(bot, options = {}) {
   const inventory = inventoryCounts(bot)
   const nearbyBlocks = observedBlocks.filter(name => findBlock(bot, name, 24))
   const entities = nearbyEntities(bot, 24)
@@ -16,6 +16,8 @@ export function createStateSnapshot(bot) {
   const threat = entities.find(entity => hostileEntities.has(entity.name) && entity.distance <= 10)
   const timeOfDay = Number(bot.time?.timeOfDay ?? 0)
 
+  const registeredBase = options.base ?? null
+  const shelterStatus = options.shelterStatus ?? 'unknown'
   return {
     capturedAt: new Date().toISOString(),
     gameTick: Number(bot.time?.age ?? 0),
@@ -31,11 +33,14 @@ export function createStateSnapshot(bot) {
       blocks: nearbyBlocks,
       entities
     },
-    shelter: false,
+    shelterStatus,
+    shelter: shelterStatus === 'present',
     tools: Object.keys(inventory).filter(isTool),
     hasCraftingTable: inventory.crafting_table > 0 || nearbyBlocks.includes('crafting_table'),
-    baseKnown: false,
-    hasChest: nearbyBlocks.includes('chest'),
+    baseStatus: registeredBase ? 'known' : 'unknown',
+    baseKnown: Boolean(registeredBase),
+    base: registeredBase,
+    hasChest: Boolean(registeredBase?.hasChest),
     threatImmediate: Boolean(threat),
     threat: threat ?? null
   }
@@ -97,7 +102,7 @@ function plainPosition(pos) {
   }
 }
 
-function timeName(tick) {
+export function timeName(tick) {
   if (tick < 1000) return 'morning'
   if (tick < 9000) return 'day'
   if (tick < 13000) return 'dusk'
@@ -105,9 +110,10 @@ function timeName(tick) {
   return 'dawn'
 }
 
-function secondsUntilNight(tick) {
-  if (tick >= 13000) return 0
-  return Math.round((13000 - tick) / 20)
+export function secondsUntilNight(tick) {
+  if (tick >= 13000 && tick < 23000) return 0
+  const ticksUntilNight = tick < 13000 ? 13000 - tick : 24000 - tick + 13000
+  return Math.round(ticksUntilNight / 20)
 }
 
 function isTool(name) {

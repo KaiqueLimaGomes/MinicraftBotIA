@@ -1,0 +1,55 @@
+# Experimento 0006D - Matriz de estados reais
+
+## Objetivo
+
+Validar a fidelidade do snapshot e a decisao observacional em estados variados do
+servidor. O bot permanece em shadow mode e nao executa habilidades.
+
+## Preparacao
+
+Para cada fase:
+
+1. preparar manualmente o estado no Minecraft;
+2. conferir visualmente inventario, vida, fome, horario e recursos;
+3. configurar `SHELTER_STATUS` e base somente quando forem conhecidos;
+4. iniciar o shadow mode por pelo menos tres snapshots;
+5. encerrar e anotar o arquivo JSONL correspondente;
+6. comparar o snapshot registrado com o estado visivel.
+
+## Matriz
+
+| Fase | Estado |
+|---:|---|
+| 1 | Manha, inventario vazio e carvalho proximo |
+| 2 | Oito troncos no inventario |
+| 3 | Tabuas disponiveis, sem bancada |
+| 4 | Bancada disponivel, sem ferramenta |
+| 5 | Ferramenta pronta e animal proximo |
+| 6 | Fome critica com comida no inventario |
+| 7 | Dusk, 12 blocos, `SHELTER_STATUS=absent` |
+| 8 | Dentro de abrigo, `SHELTER_STATUS=present` |
+| 9 | Base e bau registrados por `BASE_X/Y/Z` |
+| 10 | Inventario cheio longe da base |
+| 11 | Carvao e ferro proximos |
+| 12 | Vida baixa com zumbi proximo |
+
+## Metricas
+
+- snapshot corresponde ao estado real;
+- decisao `catalogExecutable`;
+- decisao ainda valida depois da inferencia;
+- acerto dos casos criticos;
+- exploracao prematura;
+- abrigo antecipado;
+- `same_state_same_decision`;
+- `same_state_different_decision`;
+- `changed_state_same_decision`;
+- `changed_state_different_decision`;
+- timeout ou erro de conexao nao tratado;
+- latencia aquecida p95.
+
+## Criterio de liberacao
+
+A execucao limitada so pode ser criada depois da matriz ser preenchida e aprovada.
+Ela sera desenvolvida na branch `feat/limited-skill-executor`, sem commit direto na
+`main`.

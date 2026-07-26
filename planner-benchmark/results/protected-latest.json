@@ -5,7 +5,7 @@
     "scenarios": 12,
     "runsPerScenario": 1,
     "totalCases": 12,
-    "rawStructuralRate": 0.3333333333333333,
+    "rawStructuralRate": 0.25,
     "rawExecutableRate": 0.25,
     "protectedStructuralRate": 1,
     "protectedExecutableRate": 1,
@@ -13,11 +13,11 @@
     "fallbackRate": 0,
     "repairAttemptRate": 0,
     "repairSuccessRate": 1,
-    "rawStrategicRate": 0.25,
-    "protectedStrategicRate": 0.5,
-    "coldStartMs": 3821,
-    "rawWarmP95Ms": 1439,
-    "protectedWarmP95Ms": 939,
+    "rawStrategicRate": 0.3333333333333333,
+    "protectedStrategicRate": 0.8333333333333334,
+    "coldStartMs": 981,
+    "rawWarmP95Ms": 1397,
+    "protectedWarmP95Ms": 1014,
     "maxPlannerCalls": 1,
     "totalOllamaCalls": 19,
     "failureTaxonomy": {
@@ -36,21 +36,21 @@
       "critical": false,
       "run": 1,
       "raw": {
-        "latencyMs": 3821,
-        "structural": false,
-        "executable": false,
-        "strategicCorrect": false,
-        "action": "build_temporary_shelter"
+        "latencyMs": 981,
+        "structural": true,
+        "executable": true,
+        "strategicCorrect": true,
+        "action": "collect_wood"
       },
       "protected": {
-        "latencyMs": 855,
+        "latencyMs": 727,
         "decision": {
           "goal": "Survive the night",
-          "action": "explore_area",
-          "target": "nearby_area",
-          "quantity": 0,
+          "action": "collect_wood",
+          "target": "oak_tree",
+          "quantity": 8,
           "priority": 1,
-          "reason": "The state indicates no shelter, no crafting table, and unknown time, so exploring to find a safe shelter and resources is the highest priority to prevent immediate threats and hunger."
+          "reason": "I need to build a shelter to protect against the night, and wood is required to craft a crafting table and tools, which are essential for survival."
         },
         "source": "llm",
         "repaired": false,
@@ -60,24 +60,25 @@
         "mechanicalRepairs": [
           {
             "field": "target",
-            "value": "nearby_area",
+            "value": "oak_tree",
             "reason": "DETERMINISTIC_TARGET"
           },
           {
             "field": "quantity",
-            "value": 0,
+            "value": 8,
             "reason": "DEFAULT_QUANTITY"
           }
         ],
         "validation": {
-          "classification": "VALID_SUBOPTIMAL",
+          "classification": "VALID_PREFERRED",
           "structural": true,
+          "catalogExecutable": true,
           "executable": true,
           "safetyApproved": true
         },
         "finalStructural": true,
         "finalExecutable": true,
-        "strategicCorrect": false
+        "strategicCorrect": true
       }
     },
     {
@@ -85,21 +86,21 @@
       "critical": false,
       "run": 1,
       "raw": {
-        "latencyMs": 1192,
+        "latencyMs": 1118,
         "structural": false,
         "executable": false,
         "strategicCorrect": false,
         "action": "build_temporary_shelter"
       },
       "protected": {
-        "latencyMs": 939,
+        "latencyMs": 696,
         "decision": {
           "goal": "Survive the night",
-          "action": "explore_area",
-          "target": "nearby_area",
-          "quantity": 0,
+          "action": "collect_wood",
+          "target": "oak_tree",
+          "quantity": 8,
           "priority": 1,
-          "reason": "The current state has no shelter and no crafting table, and the night is unknown. Exploring the area is essential to find a shelter and resources to craft tools and a crafting table, which are necessary to survive the night."
+          "reason": "I need to gather wood to craft a crafting table to progress further, as hunger and threat are not immediate but survival depends on building shelter and tools."
         },
         "source": "llm",
         "repaired": false,
@@ -109,18 +110,19 @@
         "mechanicalRepairs": [
           {
             "field": "target",
-            "value": "nearby_area",
+            "value": "oak_tree",
             "reason": "DETERMINISTIC_TARGET"
           },
           {
             "field": "quantity",
-            "value": 0,
+            "value": 8,
             "reason": "DEFAULT_QUANTITY"
           }
         ],
         "validation": {
-          "classification": "VALID_SUBOPTIMAL",
+          "classification": "VALID_ACCEPTABLE",
           "structural": true,
+          "catalogExecutable": true,
           "executable": true,
           "safetyApproved": true
         },
@@ -134,21 +136,21 @@
       "critical": false,
       "run": 1,
       "raw": {
-        "latencyMs": 992,
+        "latencyMs": 825,
         "structural": false,
         "executable": false,
         "strategicCorrect": false,
         "action": "build_temporary_shelter"
       },
       "protected": {
-        "latencyMs": 915,
+        "latencyMs": 859,
         "decision": {
           "goal": "Survive the night",
-          "action": "build_temporary_shelter",
-          "target": "near_current_position",
+          "action": "craft_crafting_table",
+          "target": "crafting_table",
           "quantity": 1,
           "priority": 1,
-          "reason": "The state indicates no shelter is built, and night will arrive soon. Without shelter, the player is at risk of death due to threats and low health, making immediate shelter construction the highest priority."
+          "reason": "A crafting table is essential to craft tools and food, and without it, I cannot address hunger or threats effectively. Crafting a table is a prerequisite for long-term survival, especially given the unknown time and lack of shelter."
         },
         "source": "llm",
         "repaired": false,
@@ -158,7 +160,7 @@
         "mechanicalRepairs": [
           {
             "field": "target",
-            "value": "near_current_position",
+            "value": "crafting_table",
             "reason": "DETERMINISTIC_TARGET"
           },
           {
@@ -168,14 +170,15 @@
           }
         ],
         "validation": {
-          "classification": "VALID_SUBOPTIMAL",
+          "classification": "VALID_PREFERRED",
           "structural": true,
+          "catalogExecutable": true,
           "executable": true,
           "safetyApproved": true
         },
         "finalStructural": true,
         "finalExecutable": true,
-        "strategicCorrect": false
+        "strategicCorrect": true
       }
     },
     {
@@ -183,21 +186,21 @@
       "critical": false,
       "run": 1,
       "raw": {
-        "latencyMs": 963,
+        "latencyMs": 993,
         "structural": false,
         "executable": false,
         "strategicCorrect": false,
         "action": "build_temporary_shelter"
       },
       "protected": {
-        "latencyMs": 763,
+        "latencyMs": 634,
         "decision": {
           "goal": "Survive the night",
-          "action": "explore_area",
-          "target": "nearby_area",
-          "quantity": 0,
+          "action": "collect_food",
+          "target": "cow",
+          "quantity": 2,
           "priority": 1,
-          "reason": "The state indicates no shelter and no chest, and the threat of night is imminent. Exploring the area is necessary to find shelter or resources to survive the night."
+          "reason": "Hunger and threat are immediate concerns; collecting food ensures survival until night, when threats increase and hunger can rapidly deteriorate."
         },
         "source": "llm",
         "repaired": false,
@@ -207,18 +210,19 @@
         "mechanicalRepairs": [
           {
             "field": "target",
-            "value": "nearby_area",
+            "value": "cow",
             "reason": "DETERMINISTIC_TARGET"
           },
           {
             "field": "quantity",
-            "value": 0,
+            "value": 2,
             "reason": "DEFAULT_QUANTITY"
           }
         ],
         "validation": {
-          "classification": "VALID_SUBOPTIMAL",
+          "classification": "VALID_ACCEPTABLE",
           "structural": true,
+          "catalogExecutable": true,
           "executable": true,
           "safetyApproved": true
         },
@@ -232,21 +236,21 @@
       "critical": false,
       "run": 1,
       "raw": {
-        "latencyMs": 960,
+        "latencyMs": 1397,
         "structural": false,
         "executable": false,
         "strategicCorrect": false,
-        "action": "collect_wood"
+        "action": "mine_stone"
       },
       "protected": {
-        "latencyMs": 816,
+        "latencyMs": 716,
         "decision": {
           "goal": "Survive the night",
-          "action": "explore_area",
-          "target": "nearby_area",
-          "quantity": 0,
+          "action": "collect_food",
+          "target": "cow",
+          "quantity": 2,
           "priority": 1,
-          "reason": "The current hunger level is 12, and there is no shelter. Exploring the area is necessary to find resources and potential shelter to prevent hunger and health deterioration during the night."
+          "reason": "Hunger is at 12, which is above the threshold for survival, and food is needed to prevent starvation before night falls, which poses a threat to survival."
         },
         "source": "llm",
         "repaired": false,
@@ -256,24 +260,25 @@
         "mechanicalRepairs": [
           {
             "field": "target",
-            "value": "nearby_area",
+            "value": "cow",
             "reason": "DETERMINISTIC_TARGET"
           },
           {
             "field": "quantity",
-            "value": 0,
+            "value": 2,
             "reason": "DEFAULT_QUANTITY"
           }
         ],
         "validation": {
-          "classification": "VALID_SUBOPTIMAL",
+          "classification": "VALID_PREFERRED",
           "structural": true,
+          "catalogExecutable": true,
           "executable": true,
           "safetyApproved": true
         },
         "finalStructural": true,
         "finalExecutable": true,
-        "strategicCorrect": false
+        "strategicCorrect": true
       }
     },
     {
@@ -281,7 +286,7 @@
       "critical": true,
       "run": 1,
       "raw": {
-        "latencyMs": 873,
+        "latencyMs": 810,
         "structural": true,
         "executable": true,
         "strategicCorrect": false,
@@ -312,6 +317,7 @@
         "validation": {
           "classification": "VALID",
           "structural": true,
+          "catalogExecutable": true,
           "executable": true,
           "safetyApproved": true
         },
@@ -325,21 +331,21 @@
       "critical": false,
       "run": 1,
       "raw": {
-        "latencyMs": 849,
-        "structural": true,
-        "executable": true,
+        "latencyMs": 839,
+        "structural": false,
+        "executable": false,
         "strategicCorrect": true,
         "action": "mine_coal"
       },
       "protected": {
-        "latencyMs": 931,
+        "latencyMs": 1014,
         "decision": {
-          "goal": "Ensure survival during the night",
-          "action": "build_temporary_shelter",
-          "target": "near_current_position",
-          "quantity": 1,
+          "goal": "Mine coal to satisfy hunger and prepare for day",
+          "action": "mine_coal",
+          "target": "coal_ore",
+          "quantity": 8,
           "priority": 1,
-          "reason": "The current time is night, and while a shelter already exists, the state indicates no chest and no crafting table, making it critical to reinforce or establish a secure temporary shelter to protect against threats and ensure survival until dawn."
+          "reason": "Coal is essential for crafting a furnace to cook food, and hunger is currently at 20, which is high. Since the time is night and there is no shelter, immediate survival needs are critical. Mining coal is a high-priority action to ensure future food preparation and survival."
         },
         "source": "llm",
         "repaired": false,
@@ -349,24 +355,25 @@
         "mechanicalRepairs": [
           {
             "field": "target",
-            "value": "near_current_position",
+            "value": "coal_ore",
             "reason": "DETERMINISTIC_TARGET"
           },
           {
             "field": "quantity",
-            "value": 1,
+            "value": 8,
             "reason": "DEFAULT_QUANTITY"
           }
         ],
         "validation": {
-          "classification": "VALID_SUBOPTIMAL",
+          "classification": "VALID_PREFERRED",
           "structural": true,
+          "catalogExecutable": true,
           "executable": true,
           "safetyApproved": true
         },
         "finalStructural": true,
         "finalExecutable": true,
-        "strategicCorrect": false
+        "strategicCorrect": true
       }
     },
     {
@@ -374,7 +381,7 @@
       "critical": true,
       "run": 1,
       "raw": {
-        "latencyMs": 860,
+        "latencyMs": 927,
         "structural": false,
         "executable": false,
         "strategicCorrect": false,
@@ -405,6 +412,7 @@
         "validation": {
           "classification": "VALID",
           "structural": true,
+          "catalogExecutable": true,
           "executable": true,
           "safetyApproved": true
         },
@@ -418,8 +426,8 @@
       "critical": true,
       "run": 1,
       "raw": {
-        "latencyMs": 934,
-        "structural": true,
+        "latencyMs": 871,
+        "structural": false,
         "executable": false,
         "strategicCorrect": false,
         "action": "collect_wood"
@@ -449,6 +457,7 @@
         "validation": {
           "classification": "VALID",
           "structural": true,
+          "catalogExecutable": true,
           "executable": true,
           "safetyApproved": true
         },
@@ -462,7 +471,7 @@
       "critical": true,
       "run": 1,
       "raw": {
-        "latencyMs": 720,
+        "latencyMs": 661,
         "structural": true,
         "executable": true,
         "strategicCorrect": true,
@@ -493,6 +502,7 @@
         "validation": {
           "classification": "VALID",
           "structural": true,
+          "catalogExecutable": true,
           "executable": true,
           "safetyApproved": true
         },
@@ -506,7 +516,7 @@
       "critical": true,
       "run": 1,
       "raw": {
-        "latencyMs": 1439,
+        "latencyMs": 776,
         "structural": false,
         "executable": false,
         "strategicCorrect": false,
@@ -537,6 +547,7 @@
         "validation": {
           "classification": "VALID",
           "structural": true,
+          "catalogExecutable": true,
           "executable": true,
           "safetyApproved": true
         },
@@ -550,21 +561,21 @@
       "critical": false,
       "run": 1,
       "raw": {
-        "latencyMs": 775,
+        "latencyMs": 703,
         "structural": false,
         "executable": false,
         "strategicCorrect": true,
         "action": "mine_iron"
       },
       "protected": {
-        "latencyMs": 862,
+        "latencyMs": 842,
         "decision": {
-          "goal": "Ensure immediate survival by securing essential resources",
+          "goal": "Mine iron ore for tool progression",
           "action": "mine_iron",
           "target": "iron_ore",
           "quantity": 8,
           "priority": 1,
-          "reason": "Iron is critical for crafting tools and weapons, and the player has a stone pickaxe but no crafting table, making it essential to prioritize iron ore mining to enable future progress and defense."
+          "reason": "Iron ore is available nearby and essential for crafting tools; prioritizing iron mining supports long-term survival and tool maintenance, especially since the player has a stone pickaxe and no crafting table, making efficient resource gathering critical."
         },
         "source": "llm",
         "repaired": false,
@@ -584,8 +595,9 @@
           }
         ],
         "validation": {
-          "classification": "VALID_SUBOPTIMAL",
+          "classification": "VALID_ACCEPTABLE",
           "structural": true,
+          "catalogExecutable": true,
           "executable": true,
           "safetyApproved": true
         },

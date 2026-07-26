@@ -16,7 +16,7 @@ const scenarios = [
   s('planks_no_table', { inventory: { oak_planks: 12 }, nearby: ['cow', 'stone'] }, ['craft_crafting_table']),
   s('table_no_tools', { inventory: { oak_planks: 8, stick: 4 }, nearby: ['cow', 'stone'], hasCraftingTable: true }, ['craft_tool']),
   s('needs_food', { hunger: 12, inventory: { wooden_pickaxe: 1 }, tools: ['wooden_pickaxe'], nearby: ['cow', 'stone'], hasCraftingTable: true }, ['collect_food']),
-  s('night_soon', { time: 'dusk', timeUntilNightSeconds: 90, inventory: { oak_log: 12, raw_beef: 3 }, tools: ['wooden_pickaxe'], nearby: ['stone'] }, ['build_temporary_shelter'], true),
+  s('night_soon', { time: 'dusk', timeUntilNightSeconds: 90, shelterStatus: 'absent', inventory: { oak_log: 12, raw_beef: 3 }, tools: ['wooden_pickaxe'], nearby: ['stone'] }, ['build_temporary_shelter'], true),
   s('needs_coal', { time: 'night', inventory: { cobblestone: 16 }, tools: ['stone_pickaxe'], nearby: ['coal_ore', 'stone'], shelter: true, baseKnown: true }, ['mine_coal']),
   s('critical_hunger_food', { health: 13, hunger: 3, inventory: { raw_beef: 2 }, nearby: ['stone'], shelter: true, baseKnown: true }, ['eat_food'], true),
   s('critical_hunger_animal', { health: 14, hunger: 4, inventory: {}, nearby: ['cow'], tools: ['stone_sword'], shelter: true }, ['collect_food'], true),
@@ -51,7 +51,8 @@ for (const scenario of scenarios) {
         latencyMs: protectedLatencyMs,
         ...protectedResult,
         finalStructural: finalValidation.structural,
-        finalExecutable: finalValidation.executable,
+        finalCatalogExecutable: finalValidation.catalogExecutable,
+        finalExecutable: finalValidation.catalogExecutable,
         strategicCorrect
       }
     })
@@ -124,7 +125,8 @@ function summarize(items) {
     rawStructuralRate: rate(items, row => row.raw.structural),
     rawExecutableRate: rate(items, row => row.raw.executable),
     protectedStructuralRate: rate(items, row => row.protected.finalStructural),
-    protectedExecutableRate: rate(items, row => row.protected.finalExecutable),
+    protectedCatalogExecutableRate: rate(items, row => row.protected.finalCatalogExecutable),
+    protectedExecutableRate: rate(items, row => row.protected.finalCatalogExecutable),
     criticalCorrectRate: rate(critical, row => row.protected.strategicCorrect),
     fallbackRate: rate(items, row => row.protected.fallbackUsed),
     repairAttemptRate: rate(items, row => row.protected.repaired),
@@ -160,7 +162,7 @@ Modelo: ${MODEL}
 | Metrica | Qwen3 bruto | Planner protegido | Meta |
 |---|---:|---:|---:|
 | Estruturalmente valida | ${pct(x.rawStructuralRate)} | ${pct(x.protectedStructuralRate)} | 100% |
-| Executavel | ${pct(x.rawExecutableRate)} | ${pct(x.protectedExecutableRate)} | >= 99% |
+| Executavel no catalogo | ${pct(x.rawExecutableRate)} | ${pct(x.protectedCatalogExecutableRate)} | >= 99% |
 | Estrategicamente correta | ${pct(x.rawStrategicRate)} | ${pct(x.protectedStrategicRate)} | observacao |
 | Cenarios criticos corretos | - | ${pct(x.criticalCorrectRate)} | 100% |
 | Uso de fallback | - | ${pct(x.fallbackRate)} | <= 20% |

@@ -83,3 +83,30 @@ Teste real curto do shadow mode:
 
 Conclusao: a integracao observacional esta funcional. O proximo teste deve durar
 20 a 30 minutos antes de liberar qualquer habilidade.
+
+## Revisao de fidelidade do estado
+
+Depois da avaliacao do commit `333e065`, foram corrigidos:
+
+- abrigo e base desconhecidos deixaram de ser representados como `false`;
+- tempo ate a proxima noite passou a respeitar o ciclo de 24.000 ticks;
+- `explore_area`, abrigo e `wait` agora dependem de admissibilidade estrategica;
+- executabilidade foi renomeada para `catalogExecutable`;
+- qualidade passou a aceitar alternativas preferidas e aceitaveis;
+- chamada ao Ollama recebeu timeout de 10 segundos;
+- repeticao foi substituida pela matriz estado/decisao;
+- erros de conexao passaram a ser registrados e encerrados.
+
+Nova rodada sintetica de 12 casos:
+
+- `catalogExecutable`: 100%;
+- casos criticos corretos: 100%;
+- estrategia esperada: 83%;
+- fallback por falha da LLM: 0%;
+- p95 aquecido: 1.014 ms;
+- exploracao prematura: 0%;
+- abrigo antecipado: 0%.
+
+O shadow mode real atualizado depende do servidor estar aberto. A tentativa de
+validacao encontrou `ECONNREFUSED` e confirmou o caminho de tratamento de erro;
+a matriz controlada esta descrita no Experimento 0006D.

@@ -19,7 +19,7 @@ export function fallbackDecision(state) {
     const animal = ['cow', 'sheep', 'pig', 'chicken'].find(item => state.nearby.includes(item))
     if (animal) return d('collect_food', animal, 3)
   }
-  if (!state.shelter && state.timeUntilNightSeconds !== null && state.timeUntilNightSeconds <= 180 && buildingBlocks(state) >= 12) {
+  if (state.shelterStatus === 'absent' && state.timeUntilNightSeconds !== null && state.timeUntilNightSeconds <= 180 && buildingBlocks(state) >= 12) {
     return d('build_temporary_shelter', 'near_current_position', 1)
   }
   if (state.nearby.includes('coal_ore') && hasTool(state, 'pickaxe')) return d('mine_coal', 'coal_ore', 8)

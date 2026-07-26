@@ -1,4 +1,4 @@
-import { actionCatalog, normalizeTarget } from './action-catalog.js'
+import { actionCatalog, admissibleActions, normalizeTarget } from './action-catalog.js'
 
 export const defaultQuantities = {
   collect_wood: 8,
@@ -45,8 +45,9 @@ export function resolveIntent(intent, state) {
 }
 
 export function executableActionSpecs(state) {
+  const admissible = new Set(admissibleActions(state))
   return Object.entries(actionCatalog)
-    .filter(([, rule]) => rule.requires(state))
+    .filter(([action, rule]) => rule.requires(state) && admissible.has(action))
     .map(([action, rule]) => ({
       action,
       targets: candidateTargets(action, state, rule.validTargets),

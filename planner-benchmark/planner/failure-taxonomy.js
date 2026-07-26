@@ -19,6 +19,7 @@ export function categorizeError(error) {
   if (code === 'ACTION_QUANTITY_OUT_OF_RANGE' || code === 'QUANTITY_OUT_OF_RANGE') return 'INVALID_QUANTITY'
   if (code === 'PRECONDITION_NOT_MET') return 'PRECONDITION_NOT_MET'
   if (code === 'MODEL_UNAVAILABLE') return 'MODEL_UNAVAILABLE'
+  if (code === 'STRATEGIC_OVERRIDE') return 'STRATEGIC_OVERRIDE'
   return 'INVALID_SCHEMA'
 }
 

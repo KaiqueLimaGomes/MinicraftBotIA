@@ -23,5 +23,5 @@ export function validateDecision(decision, state) {
 }
 
 function classification(status, structural, executable, error, validActionsNow) {
-  return { status, structural, executable, error, validActionsNow }
+  return { status, structural, catalogExecutable: executable, executable, error, validActionsNow }
 }

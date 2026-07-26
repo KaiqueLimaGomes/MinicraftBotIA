@@ -22,7 +22,7 @@ export const actionCatalog = {
   collect_wood: rule(['oak_tree'], [1, 16], state => nearby(state, 'oak_tree')),
   craft_planks: rule(['oak_planks'], [1, 64], state => countItem(state, 'oak_log') >= 1),
   craft_crafting_table: rule(['crafting_table'], [1, 1], state =>
-    countItem(state, 'oak_planks') >= 4 || countItem(state, 'oak_log') >= 1),
+    !state.hasCraftingTable && (countItem(state, 'oak_planks') >= 4 || countItem(state, 'oak_log') >= 1)),
   craft_tool: rule(
     ['wooden_pickaxe', 'wooden_axe', 'stone_pickaxe', 'stone_axe'],
     [1, 2],
@@ -46,10 +46,10 @@ export const actionCatalog = {
   build_temporary_shelter: rule(
     ['near_current_position', 'base_location', 'temporary_shelter'],
     [1, 1],
-    state => buildingBlocks(state) >= 12
+    state => state.shelterStatus === 'absent' && buildingBlocks(state) >= 12
   ),
-  return_to_base: rule(['base_location'], [0, 0], state => state.baseKnown),
-  store_items: rule(['base_chest'], [0, 64], state => state.baseKnown && state.hasChest && state.inventoryFull),
+  return_to_base: rule(['base_location'], [0, 0], state => state.baseStatus === 'known'),
+  store_items: rule(['base_chest'], [0, 64], state => state.baseStatus === 'known' && state.hasChest && state.inventoryFull),
   flee_threat: rule(
     ['safe_location', 'base_location', 'zombie', 'skeleton', 'creeper', 'spider', 'hostile_mob'],
     [0, 0],
@@ -62,6 +62,10 @@ export const actionCatalog = {
 export const allowedActions = Object.keys(actionCatalog)
 
 export function normalizeState(input = {}) {
+  const shelterStatus = input.shelterStatus ??
+    (input.shelter === true ? 'present' : input.shelter === false ? 'absent' : 'unknown')
+  const baseStatus = input.baseStatus ??
+    (input.baseKnown === true ? 'known' : input.baseKnown === false ? 'unknown' : 'unknown')
   return {
     time: input.time ?? 'unknown',
     timeUntilNightSeconds: input.timeUntilNightSeconds ?? null,
@@ -70,10 +74,13 @@ export function normalizeState(input = {}) {
     inventory: input.inventory ?? {},
     inventoryFull: Boolean(input.inventoryFull),
     nearby: input.nearby ?? [],
-    shelter: Boolean(input.shelter),
+    shelterStatus,
+    shelter: shelterStatus === 'present',
     tools: input.tools ?? [],
     hasCraftingTable: Boolean(input.hasCraftingTable),
-    baseKnown: Boolean(input.baseKnown),
+    baseStatus,
+    baseKnown: baseStatus === 'known',
+    base: input.base ?? null,
     hasChest: Boolean(input.hasChest),
     threatImmediate: Boolean(input.threatImmediate)
   }
@@ -81,6 +88,31 @@ export function normalizeState(input = {}) {
 
 export function executableActions(state) {
   return allowedActions.filter(action => actionCatalog[action].requires(state))
+}
+
+export function admissibleActions(state) {
+  const actions = executableActions(state).filter(action => isStrategicallyAdmissible(action, state))
+  return actions.length > 1 ? actions.filter(action => action !== 'wait') : actions
+}
+
+export function isStrategicallyAdmissible(action, state) {
+  if (action === 'explore_area') return isExplorationAdmissible(state)
+  if (action === 'build_temporary_shelter') return isShelterAdmissible(state)
+  return true
+}
+
+export function isExplorationAdmissible(state) {
+  return !state.threatImmediate &&
+    state.hunger >= 14 &&
+    hasTool(state, 'pickaxe') &&
+    Number(state.timeUntilNightSeconds ?? 0) > 240 &&
+    !hasDirectProgressAction(state)
+}
+
+export function isShelterAdmissible(state) {
+  const urgent = state.time === 'dusk' || state.time === 'night' ||
+    Number(state.timeUntilNightSeconds ?? Infinity) <= 180
+  return state.shelterStatus === 'absent' && buildingBlocks(state) >= 12 && urgent
 }
 
 export function normalizeTarget(target) {
@@ -106,6 +138,17 @@ export function hasAnyFood(state) {
 export function buildingBlocks(state) {
   return ['oak_log', 'oak_planks', 'cobblestone', 'dirt', 'stone']
     .reduce((sum, item) => sum + countItem(state, item), 0)
+}
+
+function hasDirectProgressAction(state) {
+  if (Object.keys(state.inventory ?? {}).length === 0 && nearby(state, 'oak_tree')) return true
+  if (countItem(state, 'oak_log') > 0 && countItem(state, 'oak_planks') === 0) return true
+  if (!state.hasCraftingTable && (countItem(state, 'oak_planks') >= 4 || countItem(state, 'oak_log') >= 1)) return true
+  if (!hasTool(state, 'pickaxe') && state.hasCraftingTable) return true
+  if (state.hunger <= 14 && ['cow', 'sheep', 'pig', 'chicken'].some(item => nearby(state, item))) return true
+  if (nearby(state, 'coal_ore') && hasTool(state, 'pickaxe')) return true
+  if (nearby(state, 'iron_ore') && hasTool(state, 'stone_pickaxe')) return true
+  return false
 }
 
 function rule(validTargets, [min, max], requires) {

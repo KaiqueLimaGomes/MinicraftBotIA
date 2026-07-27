@@ -157,3 +157,15 @@ O filtro agora remove coleta redundante quando madeira ou tabuas suficientes ja
 desbloqueiam a progressao. A bancada exige quatro tabuas reais.
 
 Progresso atual: 2/12 fases e 6/36 decisoes.
+
+Fase 3 aprovada em 2026-07-26:
+
+- snapshot com 12 tabuas e sem bancada: 3/3;
+- `craft_crafting_table`: 3/3;
+- `catalogExecutable`: 3/3;
+- decisao ainda valida depois da inferencia: 3/3;
+- acoes executadas: 0;
+- cold start: 5.150 ms;
+- chamadas aquecidas: 998 a 1.016 ms.
+
+Progresso atual: 3/12 fases e 9/36 decisoes.

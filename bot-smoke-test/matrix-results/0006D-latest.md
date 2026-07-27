@@ -1,13 +1,13 @@
 # Experimento 0006D - Resultado agregado
 
-Data: 2026-07-27T00:38:57.164Z
+Data: 2026-07-27T00:44:42.080Z
 
 Status: INCOMPLETO
 
 | Metrica | Resultado | Meta |
 |---|---:|---:|
-| Fases concluidas | 2/12 | 12/12 |
-| Decisoes | 6/36 | >=36 |
+| Fases concluidas | 3/12 | 12/12 |
+| Decisoes | 9/36 | >=36 |
 | Snapshot correspondente | 100% | 100% |
 | Catalog executable | 100% | 100% |
 | Valida apos inferencia | 100% | 100% |
@@ -17,14 +17,14 @@ Status: INCOMPLETO
 | Exploracao prematura | 0 | 0 |
 | Abrigo antecipado | 0 | 0 |
 | Erros nao tratados | 0 | 0 |
-| Cold start maximo | 1237 ms | observacao |
+| Cold start maximo | 5150 ms | observacao |
 | Latencia aquecida p95 | 1178 ms | <=2000 ms |
 
 ## Amostras por fase
 
 - Fase 1: 3/3
 - Fase 2: 3/3
-- Fase 3: 0/3
+- Fase 3: 3/3
 - Fase 4: 0/3
 - Fase 5: 0/3
 - Fase 6: 0/3

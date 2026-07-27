@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-27T00:38:57.164Z",
+  "generatedAt": "2026-07-27T00:44:42.080Z",
   "summary": {
-    "phasesCompleted": 2,
-    "decisions": 6,
+    "phasesCompleted": 3,
+    "decisions": 9,
     "snapshotMatchRate": 1,
     "catalogExecutableRate": 1,
     "stillExecutableRate": 1,
@@ -12,14 +12,14 @@
     "prematureExploreCount": 0,
     "prematureShelterCount": 0,
     "unhandledErrors": 0,
-    "coldStartMaxMs": 1237,
+    "coldStartMaxMs": 5150,
     "warmP95LatencyMs": 1178,
     "p95LatencyMs": 1178
   },
   "phaseCounts": {
     "1": 3,
     "2": 3,
-    "3": 0,
+    "3": 3,
     "4": 0,
     "5": 0,
     "6": 0,
@@ -945,6 +945,465 @@
         "expectedActionMatched": true
       },
       "sourceFile": "shadow-2026-07-27T00-37-58.018Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T00:43:52.960Z",
+      "latencyMs": 5150,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "first_observation",
+      "snapshot": {
+        "capturedAt": "2026-07-27T00:43:47.765Z",
+        "gameTick": 49947,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 513,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {
+          "oak_planks": 12
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": []
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T00:43:52.959Z",
+        "gameTick": 50047,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 508,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {
+          "oak_planks": 12
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": []
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "Craft a crafting table to enable further progression",
+          "action": "craft_crafting_table",
+          "target": "crafting_table",
+          "quantity": 1,
+          "priority": 1,
+          "reason": "The crafting table is essential for crafting tools, materials, and other items; without it, the player cannot progress beyond basic survival actions, and the inventory and tool creation are currently blocked."
+        },
+        "source": "llm",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "crafting_table",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 1,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
+        "validation": {
+          "classification": "VALID_PREFERRED",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 3,
+        "description": "Planks available, no crafting table",
+        "expectedActions": [
+          "craft_crafting_table"
+        ],
+        "expectedSnapshot": {
+          "inventoryAtLeast": {
+            "oak_planks": 4
+          },
+          "hasCraftingTable": false
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T00-43-42.100Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T00:44:09.087Z",
+      "latencyMs": 1016,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "same_state_same_decision",
+      "snapshot": {
+        "capturedAt": "2026-07-27T00:44:08.008Z",
+        "gameTick": 50347,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 493,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {
+          "oak_planks": 12
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": []
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T00:44:09.087Z",
+        "gameTick": 50367,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 492,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {
+          "oak_planks": 12
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": []
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "Craft a crafting table to enable further progression",
+          "action": "craft_crafting_table",
+          "target": "crafting_table",
+          "quantity": 1,
+          "priority": 1,
+          "reason": "The crafting table is essential for crafting tools, materials, and other items; without it, progression is blocked, and threats, hunger, or inventory constraints cannot be effectively managed."
+        },
+        "source": "llm",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "crafting_table",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 1,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
+        "validation": {
+          "classification": "VALID_PREFERRED",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 3,
+        "description": "Planks available, no crafting table",
+        "expectedActions": [
+          "craft_crafting_table"
+        ],
+        "expectedSnapshot": {
+          "inventoryAtLeast": {
+            "oak_planks": 4
+          },
+          "hasCraftingTable": false
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T00-43-42.100Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T00:44:24.054Z",
+      "latencyMs": 998,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "same_state_same_decision",
+      "snapshot": {
+        "capturedAt": "2026-07-27T00:44:23.015Z",
+        "gameTick": 50647,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 478,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {
+          "oak_planks": 12
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": []
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T00:44:24.054Z",
+        "gameTick": 50667,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 477,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {
+          "oak_planks": 12
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": []
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "Craft a crafting table to enable further progression",
+          "action": "craft_crafting_table",
+          "target": "crafting_table",
+          "quantity": 1,
+          "priority": 1,
+          "reason": "The crafting table is essential for crafting tools, materials, and other items; without it, progression is blocked, and threats, hunger, or inventory issues cannot be resolved effectively."
+        },
+        "source": "llm",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "crafting_table",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 1,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
+        "validation": {
+          "classification": "VALID_PREFERRED",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 3,
+        "description": "Planks available, no crafting table",
+        "expectedActions": [
+          "craft_crafting_table"
+        ],
+        "expectedSnapshot": {
+          "inventoryAtLeast": {
+            "oak_planks": 4
+          },
+          "hasCraftingTable": false
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T00-43-42.100Z.jsonl"
     }
   ]
 }

@@ -62,10 +62,19 @@ const summary = reports.map((report) => {
 const complete = summary.every(
   (row) => row.status === 'COMPLETE' && row.attempts === 5
 )
+const passed = complete && summary.every((row) =>
+  row.digResolved === 5 &&
+  row.blockChanged === 5 &&
+  row.dropsCollected === 5 &&
+  row.skillSucceeded === 5 &&
+  row.collectionTimeouts === 0 &&
+  row.collectionAborts === 0
+)
 const aggregate = {
   experiment: experimentId,
   generatedAt: new Date().toISOString(),
   status: complete ? 'COMPLETE' : 'INCOMPLETE',
+  passed,
   summary
 }
 await fs.mkdir(directory, { recursive: true })
@@ -77,6 +86,7 @@ const markdown = [
   `# Experimento ${experimentId} - Matriz de compatibilidade fisica`,
   '',
   `Status: ${aggregate.status}`,
+  `Passed: ${aggregate.passed}`,
   '',
   '| Condicao | Tentativas | Dig resolveu | Bloco mudou | Drop visto | Drop coletado | Skill OK | Timeout | Abort | Dig p95 | Skill p95 |',
   '|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|',

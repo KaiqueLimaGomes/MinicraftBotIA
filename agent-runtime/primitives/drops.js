@@ -19,18 +19,35 @@ export function findNewDrops({
   bot,
   existingEntityIds,
   origin,
-  radius
+  radius,
+  expectedItemName
 }) {
+  const itemName = (entity) => {
+    try {
+      const dropped = entity.getDroppedItem?.()
+      if (dropped?.name) return dropped.name
+      const itemId = dropped?.type ?? dropped?.itemId ??
+        entity.metadata?.find?.((value) =>
+          value && typeof value === 'object' &&
+          Number.isInteger(value.itemId ?? value.type)
+        )?.itemId
+      return bot.registry?.items?.[itemId]?.name ?? null
+    } catch {
+      return null
+    }
+  }
   return Object.values(bot.entities ?? {})
     .filter((entity) =>
       entity.name === 'item' &&
       !existingEntityIds.has(entity.id) &&
       entity.position.distanceTo(origin) <= radius
     )
-    .sort((a, b) =>
-      a.position.distanceTo(origin) -
-      b.position.distanceTo(origin)
-    )
+    .sort((a, b) => {
+      const aExpected = itemName(a) === expectedItemName ? 0 : 1
+      const bExpected = itemName(b) === expectedItemName ? 0 : 1
+      return aExpected - bExpected ||
+        a.position.distanceTo(origin) - b.position.distanceTo(origin)
+    })
 }
 
 function plainPosition(position) {
@@ -75,22 +92,46 @@ export async function trackAndCollectDrop({
     dropDisappeared: false,
     inventoryDelta: 0
   }
+  const observedEntity = (entry) => entry.entity ?? entry
+  const observedAt = (entry) => entry.observedAtMs ?? startedAt
   let candidates = preObservedDrops
-    .filter((entity) =>
+    .filter((entry) => {
+      const entity = observedEntity(entry)
+      return (
       entity.name === 'item' &&
       !existingEntityIds.has(entity.id) &&
       entity.position.distanceTo(origin) <= searchRadius
-    )
-    .sort((a, b) =>
-      a.position.distanceTo(origin) -
-      b.position.distanceTo(origin)
-    )
+      )
+    })
+    .map((entry) => ({
+      entity: observedEntity(entry),
+      observedAtMs: observedAt(entry)
+    }))
+  const sortCandidates = (rows) => {
+    const ids = new Set(rows.map((row) => row.entity.id))
+    const sorted = findNewDrops({
+      bot: {
+        ...bot,
+        entities: Object.fromEntries(
+          rows.map((row) => [row.entity.id, row.entity])
+        )
+      },
+      existingEntityIds: new Set(),
+      origin,
+      radius: searchRadius,
+      expectedItemName: itemName
+    })
+    return sorted.map((entity) =>
+      rows.find((row) => row.entity.id === entity.id)
+    ).filter((row) => ids.has(row.entity.id))
+  }
+  candidates = sortCandidates(candidates)
   telemetry.dropsObserved = candidates.length
-  telemetry.candidateDropIds = candidates.map((entity) => entity.id)
+  telemetry.candidateDropIds = candidates.map((row) => row.entity.id)
   if (candidates[0]) {
-    telemetry.selectedDropId = candidates[0].id
-    telemetry.spawnDelayMs = 0
-    telemetry.initialDropPosition = plainPosition(candidates[0].position)
+    telemetry.selectedDropId = candidates[0].entity.id
+    telemetry.spawnDelayMs = candidates[0].observedAtMs - startedAt
+    telemetry.initialDropPosition = plainPosition(candidates[0].entity.position)
   }
 
   const finish = (code, extra = {}) => {
@@ -115,15 +156,17 @@ export async function trackAndCollectDrop({
         bot,
         existingEntityIds,
         origin,
-        radius: searchRadius
-      })
+        radius: searchRadius,
+        expectedItemName: itemName
+      }).map((entity) => ({ entity, observedAtMs: Date.now() }))
       if (candidates.length > 0) break
       await delay(50, undefined, { signal: context.signal })
     }
 
     telemetry.dropsObserved = candidates.length
-    telemetry.candidateDropIds = candidates.map((entity) => entity.id)
-    const selected = candidates[0]
+    telemetry.candidateDropIds = candidates.map((row) => row.entity.id)
+    let candidateIndex = 0
+    let selected = candidates[candidateIndex]?.entity
     if (!selected) return finish('DROP_NOT_OBSERVED')
 
     telemetry.selectedDropId ??= selected.id
@@ -148,7 +191,15 @@ export async function trackAndCollectDrop({
       if (!currentDrop) {
         telemetry.dropDisappeared = true
         await delay(250, undefined, { signal: context.signal })
-        return finish('DROP_DISAPPEARED')
+        if (inventoryDelta(bot, itemName, beforeCount) > 0) {
+          return finish('DROP_COLLECTED')
+        }
+        candidateIndex += 1
+        selected = candidates[candidateIndex]?.entity
+        if (!selected) return finish('DROP_DISAPPEARED')
+        telemetry.selectedDropId = selected.id
+        telemetry.initialDropPosition = plainPosition(selected.position)
+        continue
       }
 
       telemetry.pathAttempts += 1
@@ -163,6 +214,13 @@ export async function trackAndCollectDrop({
         context.assertActive()
         if (telemetry.pathAttempts >= maxPathAttempts) {
           return finish('DROP_UNREACHABLE', { reason: error.message })
+        }
+        const next = candidates[candidateIndex + 1]?.entity
+        if (next) {
+          candidateIndex += 1
+          selected = next
+          telemetry.selectedDropId = selected.id
+          telemetry.initialDropPosition = plainPosition(selected.position)
         }
       }
 

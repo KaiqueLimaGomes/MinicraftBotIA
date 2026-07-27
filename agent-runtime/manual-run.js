@@ -1,9 +1,10 @@
 import mineflayer from 'mineflayer'
 import pathfinderPackage from 'mineflayer-pathfinder'
+import { createSafeMovements } from './primitives/safe-movements.js'
 import { SkillRunner } from './runtime/skill-runner.js'
 import { createSkillRegistry } from './runtime/skill-registry.js'
 
-const { pathfinder, Movements } = pathfinderPackage
+const { pathfinder } = pathfinderPackage
 
 const action = process.env.MANUAL_ACTION
 if (!action) {
@@ -40,7 +41,7 @@ const runner = new SkillRunner({
 })
 
 bot.once('spawn', async () => {
-  bot.pathfinder.setMovements(new Movements(bot))
+  bot.pathfinder.setMovements(createSafeMovements(bot))
   const result = await runner.run({ bot, action })
   console.log(JSON.stringify(result, null, 2))
   bot.quit('Manual skill run completed')

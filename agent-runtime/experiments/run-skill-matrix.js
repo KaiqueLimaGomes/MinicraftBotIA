@@ -7,12 +7,14 @@ import { Rcon } from 'rcon-client'
 import { SkillRunner } from '../runtime/skill-runner.js'
 import { createSkillRegistry } from '../runtime/skill-registry.js'
 import { validateExperimentConfig } from './experiment-config.js'
+import { createSafeMovements } from '../primitives/safe-movements.js'
 
-const { pathfinder, Movements } = pathfinderPackage
+const { pathfinder } = pathfinderPackage
 const username = process.env.MC_USERNAME ?? 'AgenteExecutor'
 const rconHost = process.env.MC_RCON_HOST ?? '127.0.0.1'
 const rconPort = Number(process.env.MC_RCON_PORT ?? 25575)
 const repetitions = Number(process.env.SKILL_REPETITIONS ?? 10)
+const experimentId = '0007C'
 const localPropertiesPath = path.resolve('../server/server.properties')
 const localProperties = await fs.readFile(localPropertiesPath, 'utf8')
   .catch(() => '')
@@ -51,7 +53,9 @@ const rcon = await Rcon.connect({
   password: rconPassword
 })
 const results = []
+const chains = []
 let fatalError = null
+let activeChain = null
 
 function count(name) {
   return bot.inventory.items()
@@ -85,8 +89,8 @@ async function prepareCommon() {
 
 async function prepareArena() {
   const { x, y, z } = arena
-  await command(`fill ${x - 5} ${y - 1} ${z - 5} ${x + 5} ${y - 1} ${z + 5} minecraft:stone`)
-  await command(`fill ${x - 5} ${y} ${z - 5} ${x + 5} ${y + 5} ${z + 5} minecraft:air`)
+  await command(`fill ${x - 5} ${y - 1} ${z - 5} ${x + 20} ${y - 1} ${z + 5} minecraft:stone`)
+  await command(`fill ${x - 5} ${y} ${z - 5} ${x + 20} ${y + 5} ${z + 5} minecraft:air`)
   await command(`tp ${username} ${x + 0.5} ${y} ${z + 0.5}`)
   await waitUntil(
     () => Math.abs(bot.entity.position.x - (x + 0.5)) < 2 &&
@@ -125,10 +129,11 @@ async function runOne(runner, action, sample, params = {}) {
     `[experiment] ${action} ${sample}/${repetitions} ` +
     `${result.status} ${result.durationMs}ms`
   )
+  return result
 }
 
 async function runMatrix() {
-  bot.pathfinder.setMovements(new Movements(bot))
+  bot.pathfinder.setMovements(createSafeMovements(bot))
   const craftRunner = new SkillRunner({
     registry: createSkillRegistry(),
     mode: 'limited',
@@ -150,9 +155,7 @@ async function runMatrix() {
     await runOne(craftRunner, 'craft_crafting_table', sample)
   }
 
-  await prepareCommon()
-  await prepareArena()
-  const collectRunner = new SkillRunner({
+  const chainRunner = new SkillRunner({
     registry: createSkillRegistry(),
     mode: 'limited',
     defaultTimeoutMs: 90_000,
@@ -160,21 +163,64 @@ async function runMatrix() {
   })
   for (let sample = 1; sample <= repetitions; sample += 1) {
     await prepareCommon()
-    await command(`fill ${arena.x + 1} ${arena.y} ${arena.z} ${arena.x + 4} ${arena.y + 3} ${arena.z} minecraft:air`)
-    const target = { x: arena.x + 1, y: arena.y, z: arena.z }
+    await prepareArena()
+    const target = { x: arena.x + 10, y: arena.y, z: arena.z }
     await command(`setblock ${target.x} ${target.y} ${target.z} minecraft:oak_log`)
     await waitUntil(
-      () => bot.blockAt(bot.entity.position.offset(0.5, 0, -0.5))?.name === 'oak_log',
-      'exact oak log'
+      () => bot.blockAt(bot.entity.position.offset(9.5, 0, -0.5))?.name === 'oak_log',
+      'distant oak log'
     )
-    await runOne(collectRunner, 'collect_wood', sample, {
-      target,
-      postDigVerificationMs: 10_000
+    await delay(2_000)
+    activeChain = { target, extraBlockChanges: [] }
+    const collect = await runOne(chainRunner, 'collect_wood', sample, {
+      serverVersion: process.env.MC_VERSION ?? '1.21.11'
     })
-    await command(`tp ${username} ${arena.x + 0.5} ${arena.y} ${arena.z + 0.5}`)
-    await delay(500)
+    const planks = await runOne(chainRunner, 'craft_planks', sample)
+    const table = await runOne(chainRunner, 'craft_crafting_table', sample)
+    const chain = {
+      sample,
+      treeFoundAutomatically: collect.evidence?.target?.x === target.x,
+      logCollected: collect.success,
+      planksCrafted: planks.success,
+      tableCrafted: table.success,
+      success: collect.success && planks.success && table.success &&
+        count('crafting_table') === 1,
+      extraBlockChanges: activeChain.extraBlockChanges
+    }
+    chains.push(chain)
+    activeChain = null
+    console.log(
+      `[${experimentId}] chain ${sample}/${repetitions} ` +
+      `${chain.success ? 'succeeded' : 'failed'} ` +
+      `extraBlockChanges=${chain.extraBlockChanges.length}`
+    )
   }
 }
+
+bot.on('blockUpdate', (oldBlock, newBlock) => {
+  if (!activeChain || oldBlock.type === newBlock.type) return
+  const position = oldBlock.position
+  const insideArena =
+    position.x >= arena.x - 5 &&
+    position.x <= arena.x + 20 &&
+    position.y >= arena.y - 1 &&
+    position.y <= arena.y + 5 &&
+    position.z >= arena.z - 5 &&
+    position.z <= arena.z + 5
+  if (!insideArena) return
+  const isTarget = position.x === activeChain.target.x &&
+    position.y === activeChain.target.y &&
+    position.z === activeChain.target.z
+  if (!isTarget) {
+    activeChain.extraBlockChanges.push({
+      x: position.x,
+      y: position.y,
+      z: position.z,
+      before: oldBlock.name,
+      after: newBlock.name
+    })
+  }
+})
 
 function percentile95(values) {
   if (values.length === 0) return null
@@ -193,25 +239,53 @@ async function writeReports() {
     }]
   }))
   const report = {
+    experiment: experimentId,
     generatedAt: new Date().toISOString(),
-    status: results.length === repetitions * 3 && !fatalError
+    status: results.length === repetitions * 5 &&
+      chains.length === repetitions &&
+      !fatalError
       ? 'COMPLETE'
       : 'INCOMPLETE',
     repetitions,
     summary,
+    chainSummary: {
+      samples: chains.length,
+      successes: chains.filter((row) => row.success).length,
+      treesFoundAutomatically: chains.filter(
+        (row) => row.treeFoundAutomatically
+      ).length,
+      logsCollected: chains.filter((row) => row.logCollected).length,
+      planksCrafted: chains.filter((row) => row.planksCrafted).length,
+      tablesCrafted: chains.filter((row) => row.tableCrafted).length,
+      extraBlockChanges: chains.reduce(
+        (sum, row) => sum + row.extraBlockChanges.length,
+        0
+      )
+    },
+    passed: results.filter((row) => row.action === 'craft_planks').length ===
+      repetitions * 2 &&
+      summary.craft_planks.successes === repetitions * 2 &&
+      results.filter((row) =>
+        row.action === 'craft_crafting_table'
+      ).length === repetitions * 2 &&
+      summary.craft_crafting_table.successes === repetitions * 2 &&
+      chains.length === repetitions &&
+      chains.every((row) => row.success && row.extraBlockChanges.length === 0),
     fatalError,
-    results
+    results,
+    chains
   }
-  const outputDirectory = path.resolve('experiment-results')
+  const outputDirectory = path.resolve(`experiment-results/${experimentId}`)
   await fs.mkdir(outputDirectory, { recursive: true })
   await fs.writeFile(
-    path.join(outputDirectory, 'limited-skills-latest.json'),
+    path.join(outputDirectory, `${experimentId}-latest.json`),
     `${JSON.stringify(report, null, 2)}\n`
   )
   const lines = [
-    '# Limited skill executor - real results',
+    `# Experimento ${experimentId} - cadeia limitada end-to-end`,
     '',
     `Status: ${report.status}`,
+    `Passed: ${report.passed}`,
     '',
     '| Skill | Success | Samples | p95 |',
     '|---|---:|---:|---:|',
@@ -220,9 +294,15 @@ async function writeReports() {
       return `| ${action} | ${row.successes} | ${row.samples} | ${row.p95Ms ?? '-'} ms |`
     })
   ]
+  lines.push(
+    '',
+    `Cadeias: ${report.chainSummary.successes}/${report.chainSummary.samples}`,
+    `Arvores encontradas automaticamente: ${report.chainSummary.treesFoundAutomatically}/${report.chainSummary.samples}`,
+    `Alteracoes extras de blocos: ${report.chainSummary.extraBlockChanges}`
+  )
   if (fatalError) lines.push('', `Fatal error: ${fatalError}`)
   await fs.writeFile(
-    path.join(outputDirectory, 'limited-skills-latest.md'),
+    path.join(outputDirectory, `${experimentId}-latest.md`),
     `${lines.join('\n')}\n`
   )
 }

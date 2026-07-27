@@ -259,6 +259,25 @@ await test('collect_wood rejects execution without pathfinder', async () => {
   assert.equal(result.code, 'CAN_EXECUTE_REJECTED')
 })
 
+await test('collect_wood accepts an automatically found distant log', async () => {
+  const bot = fakeBot()
+  const target = {
+    type: 17,
+    name: 'oak_log',
+    diggable: true,
+    position: { x: 10, y: 64, z: 0 }
+  }
+  bot.pathfinder.goto = async () => {}
+  bot.registry.blocksByName = { oak_log: { id: 17 } }
+  bot.findBlocks = () => [target.position]
+  bot.blockAt = () => target
+  bot.entity.position.distanceTo = () => 10
+  bot.canDigBlock = () => false
+  const result = await collectWoodSkill.canExecute({ bot, params: {} })
+  assert.equal(result.ok, true)
+  assert.deepEqual(result.target, target.position)
+})
+
 await test('collect_wood succeeds only when the drop reaches inventory', async () => {
   const bot = fakeBot()
   const target = {

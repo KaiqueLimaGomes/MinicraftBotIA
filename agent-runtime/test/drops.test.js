@@ -11,8 +11,13 @@ import {
 const { Vec3 } = vec3Package
 const origin = new Vec3(0, 64, 0)
 
-function entity(id, x, y = 64, z = 0) {
-  return { id, name: 'item', position: new Vec3(x, y, z) }
+function entity(id, x, y = 64, z = 0, itemName = 'oak_log') {
+  return {
+    id,
+    name: 'item',
+    position: new Vec3(x, y, z),
+    getDroppedItem: () => ({ name: itemName })
+  }
 }
 
 function fixture({
@@ -131,6 +136,50 @@ await runTest('multiple new drops are sorted by broken block origin', async () =
     radius: 8
   })
   assert.deepEqual(found.map((drop) => drop.id), [4, 5, 3])
+})
+
+await runTest('expected item type wins over a closer unrelated drop', async () => {
+  const bot = fixture({
+    entities: {
+      30: entity(30, 0.5, 64, 0, 'stick'),
+      31: entity(31, 2, 64, 0, 'oak_log')
+    }
+  }).bot
+  const found = findNewDrops({
+    bot,
+    existingEntityIds: new Set(),
+    origin,
+    radius: 8,
+    expectedItemName: 'oak_log'
+  })
+  assert.deepEqual(found.map((drop) => drop.id), [31, 30])
+})
+
+await runTest('disappearing first candidate falls back to the second', async () => {
+  const first = entity(32, 1)
+  const second = entity(33, 2)
+  let calls = 0
+  const state = fixture({
+    entities: { 32: first, 33: second },
+    onGoto: async ({ bot, addLog }) => {
+      calls += 1
+      if (calls === 1) delete bot.entities[32]
+      else addLog()
+    }
+  })
+  const result = await trackAndCollectDrop({
+    bot: state.bot,
+    context: context().value,
+    itemName: 'oak_log',
+    origin,
+    beforeCount: 0,
+    existingEntityIds: new Set(),
+    spawnTimeoutMs: 10,
+    settleMs: 0
+  })
+  assert.equal(result.code, 'DROP_COLLECTED')
+  assert.equal(result.selectedDropId, 33)
+  assert.equal(result.pathAttempts, 2)
 })
 
 await runTest('new nearby drop is selected and collected', async () => {

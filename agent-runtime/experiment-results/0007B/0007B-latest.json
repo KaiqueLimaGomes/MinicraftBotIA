@@ -1,7 +1,8 @@
 {
   "experiment": "0007B",
-  "generatedAt": "2026-07-27T04:01:47.934Z",
+  "generatedAt": "2026-07-27T04:23:27.396Z",
   "status": "COMPLETE",
+  "passed": true,
   "summary": [
     {
       "condition": "1.21.11-none",

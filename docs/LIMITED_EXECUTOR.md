@@ -84,6 +84,13 @@ navegar ate sua posicao real. O resultado foi 20/20 drops observados, 20/20
 coletados e 20/20 skills completas, sem timeout ou abort, nas mesmas quatro
 condicoes. Consulte `experiments/0007B-coleta-deterministica-drops.md`.
 
+O Experimento 0007C validou movimentos seguros, busca automatica sem
+coordenada e a cadeia completa no Paper 1.21.11. Os crafts isolados passaram
+10/10 cada e as cadeias
+`collect_wood -> craft_planks -> craft_crafting_table` passaram 10/10, sem
+alteracoes extras na arena. Consulte
+`experiments/0007C-cadeia-limitada-end-to-end.md`.
+
 ## Dependencias
 
 O runtime fixa `mineflayer@4.37.1`, versao instalada pelo intervalo do modulo

@@ -7,8 +7,9 @@ import vec3Package from 'vec3'
 import { Rcon } from 'rcon-client'
 import { SkillRunner } from '../runtime/skill-runner.js'
 import { createSkillRegistry } from '../runtime/skill-registry.js'
+import { createSafeMovements } from '../primitives/safe-movements.js'
 
-const { pathfinder, Movements } = pathfinderPackage
+const { pathfinder } = pathfinderPackage
 const { Vec3 } = vec3Package
 const experimentId = process.env.PHYSICAL_EXPERIMENT ?? '0007A'
 const serverVersion = process.env.PHYSICAL_SERVER_VERSION
@@ -97,7 +98,7 @@ async function prepare(sample) {
 }
 
 async function executeCondition() {
-  bot.pathfinder.setMovements(new Movements(bot))
+  bot.pathfinder.setMovements(createSafeMovements(bot))
   const runner = new SkillRunner({
     registry: createSkillRegistry(),
     mode: 'limited',

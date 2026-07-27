@@ -1,6 +1,7 @@
 # Experimento 0007B - Matriz de compatibilidade fisica
 
 Status: COMPLETE
+Passed: true
 
 | Condicao | Tentativas | Dig resolveu | Bloco mudou | Drop visto | Drop coletado | Skill OK | Timeout | Abort | Dig p95 | Skill p95 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|

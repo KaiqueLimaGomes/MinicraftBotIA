@@ -70,7 +70,7 @@ export const collectWoodSkill = {
       return { ok: false, reason: 'No diggable supported log within 24 blocks' }
     }
     const distance = bot.entity.position.distanceTo(block.position)
-    const reachableAfterNavigation = params.target &&
+    const reachableAfterNavigation =
       distance > 4.5 &&
       block.diggable === true
     if (!bot.canDigBlock?.(block) && !reachableAfterNavigation) {
@@ -129,7 +129,10 @@ export const collectWoodSkill = {
         !existingEntityIds.has(entity.id) &&
         entity.position.distanceTo(block.position) <= 8
       ) {
-        observedDrops.push(entity)
+        observedDrops.push({
+          entity,
+          observedAtMs: Date.now()
+        })
       }
     }
     bot.on('entitySpawn', onEntitySpawn)

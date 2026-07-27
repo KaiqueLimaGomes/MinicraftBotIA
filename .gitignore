@@ -28,6 +28,7 @@ backups/
 # Node
 node_modules/
 package-lock.json
+!agent-runtime/package-lock.json
 .npm-cache/
 bot-smoke-test/shadow-results/
 

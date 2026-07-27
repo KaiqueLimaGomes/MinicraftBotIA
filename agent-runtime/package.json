@@ -1,0 +1,19 @@
+{
+  "name": "minicraft-agent-runtime",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Executor limitado e cancelavel para skills Mineflayer.",
+  "type": "module",
+  "scripts": {
+    "test": "node test/run-tests.js",
+    "check": "node --check index.js && node --check manual-run.js",
+    "manual": "node manual-run.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "mineflayer": "4.33.0",
+    "mineflayer-pathfinder": "2.4.5"
+  }
+}

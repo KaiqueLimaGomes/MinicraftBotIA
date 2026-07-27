@@ -29,8 +29,16 @@ jobs:
       - name: Matrix analysis tests
         run: node bot-smoke-test/matrix-analysis.test.js
 
+      - name: Install agent runtime
+        run: npm ci --prefix agent-runtime
+
+      - name: Agent runtime tests
+        run: npm test --prefix agent-runtime
+
       - name: Syntax checks
         run: |
           node --check planner-benchmark/protected-benchmark.js
           node --check bot-smoke-test/shadow-mode.js
           node --check bot-smoke-test/prepare-agent.js
+          node --check agent-runtime/index.js
+          node --check agent-runtime/manual-run.js

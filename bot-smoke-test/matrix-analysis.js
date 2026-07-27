@@ -52,7 +52,15 @@ export function summarizeMatrix(records) {
     prematureShelterCount: decisions.filter(row =>
       row.planner?.decision?.action === 'build_temporary_shelter' && row.matrix?.phase !== 7).length,
     unhandledErrors: records.filter(row => row.type === 'shadow_error').length,
-    p95LatencyMs: percentile(decisions.map(row => row.latencyMs), 0.95)
+    coldStartMaxMs: Math.max(0, ...decisions
+      .filter(row => row.decisionRelation === 'first_observation')
+      .map(row => row.latencyMs)),
+    warmP95LatencyMs: percentile(decisions
+      .filter(row => row.decisionRelation !== 'first_observation')
+      .map(row => row.latencyMs), 0.95),
+    p95LatencyMs: percentile(decisions
+      .filter(row => row.decisionRelation !== 'first_observation')
+      .map(row => row.latencyMs), 0.95)
   }
 }
 

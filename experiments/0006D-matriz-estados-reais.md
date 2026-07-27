@@ -139,3 +139,21 @@ carregamento dos blocos proximos. O JSONL foi movido para
 aguardar cinco segundos e a limpar o timer global ao atingir a amostra.
 
 Progresso atual: 1/12 fases e 3/36 decisoes.
+
+Fase 2 aprovada em 2026-07-26:
+
+- snapshot com oito troncos: 3/3;
+- `craft_planks`: 3/3;
+- `catalogExecutable`: 3/3;
+- decisao ainda valida depois da inferencia: 3/3;
+- acoes executadas: 0.
+
+Duas tentativas foram rejeitadas e arquivadas:
+
+1. `collect_wood` ainda era admissivel com oito troncos;
+2. `craft_crafting_table` aceitava troncos e escondia a fabricacao de tabuas.
+
+O filtro agora remove coleta redundante quando madeira ou tabuas suficientes ja
+desbloqueiam a progressao. A bancada exige quatro tabuas reais.
+
+Progresso atual: 2/12 fases e 6/36 decisoes.

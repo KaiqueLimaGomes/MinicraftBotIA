@@ -102,6 +102,32 @@ await test('repair specs preserve strategic admissibility', async () => {
   assert.equal(admissibleActionSpecs(state).some(spec => spec.action === 'explore_area'), false)
 })
 
+await test('does not offer redundant wood collection after eight logs', async () => {
+  const state = normalizeState({
+    inventory: { oak_log: 8 },
+    nearby: ['oak_tree']
+  })
+  assert.equal(admissibleActions(state).includes('collect_wood'), false)
+  assert.equal(admissibleActions(state).includes('craft_planks'), true)
+})
+
+await test('does not offer wood collection when planks unlock the table', async () => {
+  const state = normalizeState({
+    inventory: { oak_planks: 4 },
+    nearby: ['oak_tree']
+  })
+  assert.equal(admissibleActions(state).includes('collect_wood'), false)
+  assert.equal(admissibleActions(state).includes('craft_crafting_table'), true)
+})
+
+await test('does not hide plank crafting inside crafting table action', async () => {
+  const logsOnly = normalizeState({ inventory: { oak_log: 8 } })
+  const planksReady = normalizeState({ inventory: { oak_planks: 4 } })
+  assert.equal(executableActions(logsOnly).includes('craft_crafting_table'), false)
+  assert.equal(executableActions(logsOnly).includes('craft_planks'), true)
+  assert.equal(executableActions(planksReady).includes('craft_crafting_table'), true)
+})
+
 console.log('All planner tests passed.')
 
 async function test(name, fn) {

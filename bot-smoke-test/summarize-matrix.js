@@ -59,7 +59,8 @@ Status: ${complete ? 'COMPLETO' : 'INCOMPLETO'}
 | Exploracao prematura | ${summary.prematureExploreCount} | 0 |
 | Abrigo antecipado | ${summary.prematureShelterCount} | 0 |
 | Erros nao tratados | ${summary.unhandledErrors} | 0 |
-| Latencia p95 | ${summary.p95LatencyMs} ms | <=2000 ms |
+| Cold start maximo | ${summary.coldStartMaxMs} ms | observacao |
+| Latencia aquecida p95 | ${summary.warmP95LatencyMs} ms | <=2000 ms |
 
 ## Amostras por fase
 

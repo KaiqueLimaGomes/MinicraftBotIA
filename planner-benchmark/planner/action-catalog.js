@@ -22,7 +22,7 @@ export const actionCatalog = {
   collect_wood: rule(['oak_tree'], [1, 16], state => nearby(state, 'oak_tree')),
   craft_planks: rule(['oak_planks'], [1, 64], state => countItem(state, 'oak_log') >= 1),
   craft_crafting_table: rule(['crafting_table'], [1, 1], state =>
-    !state.hasCraftingTable && (countItem(state, 'oak_planks') >= 4 || countItem(state, 'oak_log') >= 1)),
+    !state.hasCraftingTable && countItem(state, 'oak_planks') >= 4),
   craft_tool: rule(
     ['wooden_pickaxe', 'wooden_axe', 'stone_pickaxe', 'stone_axe'],
     [1, 2],
@@ -96,9 +96,14 @@ export function admissibleActions(state) {
 }
 
 export function isStrategicallyAdmissible(action, state) {
+  if (action === 'collect_wood') return isWoodCollectionAdmissible(state)
   if (action === 'explore_area') return isExplorationAdmissible(state)
   if (action === 'build_temporary_shelter') return isShelterAdmissible(state)
   return true
+}
+
+export function isWoodCollectionAdmissible(state) {
+  return countItem(state, 'oak_log') < 8 && countItem(state, 'oak_planks') < 4
 }
 
 export function isExplorationAdmissible(state) {

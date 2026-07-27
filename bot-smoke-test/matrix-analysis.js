@@ -1,6 +1,7 @@
 const foods = new Set([
-  'raw_beef', 'cooked_beef', 'raw_mutton', 'cooked_mutton',
-  'raw_porkchop', 'cooked_porkchop', 'bread', 'apple'
+  'beef', 'raw_beef', 'cooked_beef', 'mutton', 'raw_mutton', 'cooked_mutton',
+  'porkchop', 'raw_porkchop', 'cooked_porkchop', 'chicken', 'raw_chicken',
+  'cooked_chicken', 'bread', 'apple'
 ])
 
 export function snapshotMatchesExpectation(snapshot, expected) {

@@ -147,6 +147,15 @@ await test('eating inventory food overrides collection at hunger fourteen', asyn
   assert.deepEqual(admissibleActions(state), ['eat_food'])
 })
 
+await test('recognizes real 1.21.11 beef item id as food', async () => {
+  const state = normalizeState({
+    hunger: 4,
+    inventory: { beef: 2 },
+    nearby: ['stone']
+  })
+  assert.deepEqual(admissibleActions(state), ['eat_food'])
+})
+
 console.log('All planner tests passed.')
 
 async function test(name, fn) {

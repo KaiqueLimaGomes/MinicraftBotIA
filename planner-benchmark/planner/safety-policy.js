@@ -28,10 +28,21 @@ function decision(action, target, quantity, priority, reason) {
 }
 
 function firstFood(state) {
-  return ['cooked_beef', 'raw_beef', 'cooked_mutton', 'raw_mutton', 'cooked_porkchop',
-    'raw_porkchop', 'bread', 'apple'].find(item => Number(state.inventory[item] ?? 0) > 0) ?? 'raw_beef'
+  const item = ['cooked_beef', 'beef', 'raw_beef', 'cooked_mutton', 'mutton', 'raw_mutton',
+    'cooked_porkchop', 'porkchop', 'raw_porkchop', 'cooked_chicken', 'chicken',
+    'raw_chicken', 'bread', 'apple'].find(item => Number(state.inventory[item] ?? 0) > 0) ?? 'beef'
+  return canonicalFoodTarget(item)
 }
 
 function threatTarget(state) {
   return ['zombie', 'skeleton', 'creeper', 'spider'].find(item => state.nearby.includes(item)) ?? 'hostile_mob'
+}
+
+function canonicalFoodTarget(item) {
+  return {
+    raw_beef: 'beef',
+    raw_mutton: 'mutton',
+    raw_porkchop: 'porkchop',
+    raw_chicken: 'chicken'
+  }[item] ?? item
 }

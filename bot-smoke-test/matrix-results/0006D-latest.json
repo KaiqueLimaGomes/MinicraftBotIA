@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-07-27T01:06:27.499Z",
+  "generatedAt": "2026-07-27T01:15:19.083Z",
   "summary": {
-    "phasesCompleted": 5,
-    "decisions": 15,
+    "phasesCompleted": 6,
+    "decisions": 18,
     "snapshotMatchRate": 1,
     "catalogExecutableRate": 1,
     "stillExecutableRate": 1,
     "expectedActionRate": 1,
-    "criticalCorrectRate": null,
+    "criticalCorrectRate": 1,
     "sameStateSameDecisionRate": 1,
     "prematureExploreCount": 0,
     "prematureShelterCount": 0,
@@ -22,7 +22,7 @@
     "3": 3,
     "4": 3,
     "5": 3,
-    "6": 0,
+    "6": 3,
     "7": 0,
     "8": 0,
     "9": 0,
@@ -2418,6 +2418,516 @@
         "expectedActionMatched": true
       },
       "sourceFile": "shadow-2026-07-27T01-05-25.582Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T01:13:35.092Z",
+      "latencyMs": 1,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "first_observation",
+      "snapshot": {
+        "capturedAt": "2026-07-27T01:13:35.051Z",
+        "gameTick": 85698,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 226,
+        "health": 20,
+        "hunger": 4,
+        "inventory": {
+          "beef": 2,
+          "cooked_beef": 2
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T01:13:35.092Z",
+        "gameTick": 85698,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 226,
+        "health": 20,
+        "hunger": 4,
+        "inventory": {
+          "beef": 2,
+          "cooked_beef": 2
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "survive",
+          "action": "eat_food",
+          "target": "cooked_beef",
+          "quantity": 1,
+          "priority": 10,
+          "reason": "Critical hunger and food is available"
+        },
+        "source": "safety_override",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 0,
+        "failures": [
+          {
+            "stage": "safety",
+            "category": "SAFETY_OVERRIDE",
+            "code": "SAFETY_OVERRIDE"
+          }
+        ],
+        "mechanicalRepairs": [],
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 6,
+        "description": "Critical hunger with food in inventory",
+        "expectedActions": [
+          "eat_food"
+        ],
+        "expectedSnapshot": {
+          "hungerMax": 6,
+          "hasFood": true
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T01-13-29.353Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T01:13:50.182Z",
+      "latencyMs": 0,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "same_state_same_decision",
+      "snapshot": {
+        "capturedAt": "2026-07-27T01:13:50.142Z",
+        "gameTick": 85998,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 211,
+        "health": 20,
+        "hunger": 4,
+        "inventory": {
+          "beef": 2,
+          "cooked_beef": 2
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T01:13:50.182Z",
+        "gameTick": 85998,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 211,
+        "health": 20,
+        "hunger": 4,
+        "inventory": {
+          "beef": 2,
+          "cooked_beef": 2
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "survive",
+          "action": "eat_food",
+          "target": "cooked_beef",
+          "quantity": 1,
+          "priority": 10,
+          "reason": "Critical hunger and food is available"
+        },
+        "source": "safety_override",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 0,
+        "failures": [
+          {
+            "stage": "safety",
+            "category": "SAFETY_OVERRIDE",
+            "code": "SAFETY_OVERRIDE"
+          }
+        ],
+        "mechanicalRepairs": [],
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 6,
+        "description": "Critical hunger with food in inventory",
+        "expectedActions": [
+          "eat_food"
+        ],
+        "expectedSnapshot": {
+          "hungerMax": 6,
+          "hasFood": true
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T01-13-29.353Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T01:14:05.185Z",
+      "latencyMs": 0,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "changed_state_same_decision",
+      "snapshot": {
+        "capturedAt": "2026-07-27T01:14:05.144Z",
+        "gameTick": 86298,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "dusk",
+        "timeUntilNightSeconds": 196,
+        "health": 20,
+        "hunger": 4,
+        "inventory": {
+          "beef": 2,
+          "cooked_beef": 2
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T01:14:05.185Z",
+        "gameTick": 86298,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "dusk",
+        "timeUntilNightSeconds": 196,
+        "health": 20,
+        "hunger": 4,
+        "inventory": {
+          "beef": 2,
+          "cooked_beef": 2
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "survive",
+          "action": "eat_food",
+          "target": "cooked_beef",
+          "quantity": 1,
+          "priority": 10,
+          "reason": "Critical hunger and food is available"
+        },
+        "source": "safety_override",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 0,
+        "failures": [
+          {
+            "stage": "safety",
+            "category": "SAFETY_OVERRIDE",
+            "code": "SAFETY_OVERRIDE"
+          }
+        ],
+        "mechanicalRepairs": [],
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 6,
+        "description": "Critical hunger with food in inventory",
+        "expectedActions": [
+          "eat_food"
+        ],
+        "expectedSnapshot": {
+          "hungerMax": 6,
+          "hasFood": true
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T01-13-29.353Z.jsonl"
     }
   ]
 }

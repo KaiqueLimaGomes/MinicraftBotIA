@@ -34,6 +34,13 @@ function d(action, target, quantity) {
 }
 
 function firstFood(state) {
-  return ['cooked_beef', 'raw_beef', 'cooked_mutton', 'raw_mutton', 'cooked_porkchop',
-    'raw_porkchop', 'bread', 'apple'].find(item => Number(state.inventory[item] ?? 0) > 0)
+  const item = ['cooked_beef', 'beef', 'raw_beef', 'cooked_mutton', 'mutton', 'raw_mutton',
+    'cooked_porkchop', 'porkchop', 'raw_porkchop', 'cooked_chicken', 'chicken',
+    'raw_chicken', 'bread', 'apple'].find(item => Number(state.inventory[item] ?? 0) > 0)
+  return {
+    raw_beef: 'beef',
+    raw_mutton: 'mutton',
+    raw_porkchop: 'porkchop',
+    raw_chicken: 'chicken'
+  }[item] ?? item
 }

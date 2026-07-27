@@ -3,9 +3,10 @@ export const targetAliases = {
   wood: 'oak_log',
   planks: 'oak_planks',
   food: 'food',
-  beef: 'raw_beef',
-  mutton: 'raw_mutton',
-  porkchop: 'raw_porkchop',
+  raw_beef: 'beef',
+  raw_mutton: 'mutton',
+  raw_porkchop: 'porkchop',
+  raw_chicken: 'chicken',
   tool: 'wooden_pickaxe',
   shelter: 'temporary_shelter',
   base: 'base_location',
@@ -36,7 +37,7 @@ export const actionCatalog = {
     state => ['cow', 'sheep', 'pig', 'chicken'].some(item => nearby(state, item))
   ),
   eat_food: rule(
-    ['raw_beef', 'cooked_beef', 'raw_mutton', 'cooked_mutton', 'raw_porkchop', 'cooked_porkchop', 'bread', 'apple'],
+    ['beef', 'cooked_beef', 'mutton', 'cooked_mutton', 'porkchop', 'cooked_porkchop', 'chicken', 'cooked_chicken', 'bread', 'apple'],
     [1, 1],
     hasAnyFood
   ),
@@ -144,8 +145,9 @@ export function hasTool(state, fragment) {
 }
 
 export function hasAnyFood(state) {
-  const foods = ['raw_beef', 'cooked_beef', 'raw_mutton', 'cooked_mutton', 'raw_porkchop',
-    'cooked_porkchop', 'raw_chicken', 'cooked_chicken', 'bread', 'apple']
+  const foods = ['beef', 'raw_beef', 'cooked_beef', 'mutton', 'raw_mutton', 'cooked_mutton',
+    'porkchop', 'raw_porkchop', 'cooked_porkchop', 'chicken', 'raw_chicken',
+    'cooked_chicken', 'bread', 'apple']
   return foods.some(item => countItem(state, item) > 0)
 }
 

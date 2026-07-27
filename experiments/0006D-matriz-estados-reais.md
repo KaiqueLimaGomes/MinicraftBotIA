@@ -204,3 +204,21 @@ O estado passou a exigir fome menor ou igual a 14. A admissibilidade agora prior
 animal proxima, antes da progressao de recursos.
 
 Progresso atual: 5/12 fases e 15/36 decisoes.
+
+Fase 6 aprovada em 2026-07-26:
+
+- snapshot com fome 4, `beef:2` e `cooked_beef:2`: 3/3;
+- `eat_food`: 3/3;
+- origem `safety_override`: 3/3;
+- `catalogExecutable`: 3/3;
+- decisao ainda valida depois da inferencia: 3/3;
+- latencia: 0 a 1 ms;
+- chamadas ao modelo: 0;
+- acoes executadas: 0.
+
+O servidor 1.21.11/Mineflayer reportou carne bovina crua como `beef`, nao
+`raw_beef`. O catalogo passou a usar os IDs reais `beef`, `mutton`, `porkchop` e
+`chicken`, mantendo aliases para os nomes sinteticos antigos. A suite detectou e
+corrigiu a canonicalizacao dos alvos legados antes da publicacao.
+
+Progresso atual: 6/12 fases e 18/36 decisoes.

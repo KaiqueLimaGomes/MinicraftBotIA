@@ -6,14 +6,16 @@
   "type": "module",
   "scripts": {
     "test": "node test/run-tests.js",
-    "check": "node --check index.js && node --check manual-run.js",
-    "manual": "node manual-run.js"
+    "check": "node --check index.js && node --check manual-run.js && node --check experiments/run-skill-matrix.js",
+    "manual": "node manual-run.js",
+    "experiment:skills": "node --env-file-if-exists=../.env.local experiments/run-skill-matrix.js"
   },
   "engines": {
     "node": ">=22"
   },
   "dependencies": {
     "mineflayer": "4.33.0",
-    "mineflayer-pathfinder": "2.4.5"
+    "mineflayer-pathfinder": "2.4.5",
+    "rcon-client": "4.2.5"
   }
 }

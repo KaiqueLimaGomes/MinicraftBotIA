@@ -48,6 +48,26 @@ precisa confirmar o aumento do item esperado.
 O executor ainda nao esta conectado ao planner. Essa integracao permanece
 bloqueada ate a conclusao dos 30 testes reais.
 
+## Automacao local com RCON
+
+O harness prepara e limpa cada amostra, cria uma arena dedicada para madeira e
+gera relatorios JSON e Markdown:
+
+```powershell
+cd C:\MinicraftBotIA\agent-runtime
+npm run experiment:skills
+```
+
+Credenciais podem ser fornecidas por `C:\MinicraftBotIA\.env.local`, que e
+ignorado pelo Git:
+
+```text
+MC_RCON_PASSWORD=senha-local
+```
+
+RCON remoto e bloqueado por padrao. O harness aceita no maximo dez repeticoes
+por skill e nao chama o planner.
+
 ## Dependencias
 
 O runtime fixa `mineflayer@4.33.0`, igual ao modulo de smoke test, e

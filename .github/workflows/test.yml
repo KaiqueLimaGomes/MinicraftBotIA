@@ -42,3 +42,4 @@ jobs:
           node --check bot-smoke-test/prepare-agent.js
           node --check agent-runtime/index.js
           node --check agent-runtime/manual-run.js
+          node --check agent-runtime/experiments/run-skill-matrix.js

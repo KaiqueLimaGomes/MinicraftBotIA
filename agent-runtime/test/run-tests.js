@@ -5,6 +5,7 @@ import { createSkillRegistry } from '../runtime/skill-registry.js'
 import { craftPlanksSkill } from '../skills/craft-planks.js'
 import { craftCraftingTableSkill } from '../skills/craft-crafting-table.js'
 import { collectWoodSkill } from '../skills/collect-wood.js'
+import { validateExperimentConfig } from '../experiments/experiment-config.js'
 
 function fakeBot(items = []) {
   let inventory = items.map((item) => ({ ...item }))
@@ -309,6 +310,30 @@ await test('an aborted skill cannot mutate inventory after timeout', async () =>
   await delay(50)
   assert.equal(result.code, 'EXECUTION_TIMEOUT')
   assert.deepEqual(bot.inventory.items(), [])
+})
+
+await test('experiment harness blocks remote RCON by default', async () => {
+  assert.deepEqual(validateExperimentConfig({
+    rconHost: '192.168.1.10',
+    password: 'secret',
+    repetitions: 10
+  }), {
+    ok: false,
+    reason: 'REMOTE_RCON_BLOCKED'
+  })
+})
+
+await test('experiment harness requires a password and bounded repetitions', async () => {
+  assert.equal(validateExperimentConfig({
+    rconHost: '127.0.0.1',
+    password: '',
+    repetitions: 10
+  }).reason, 'RCON_PASSWORD_REQUIRED')
+  assert.equal(validateExperimentConfig({
+    rconHost: '127.0.0.1',
+    password: 'secret',
+    repetitions: 11
+  }).reason, 'INVALID_REPETITIONS')
 })
 
 console.log('All agent runtime tests passed.')

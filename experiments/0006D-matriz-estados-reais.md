@@ -254,3 +254,16 @@ O modo de preparacao tambem passou a imprimir mudancas de slots do inventario, n
 apenas eventos de vida e fome.
 
 Progresso atual: 8/12 fases e 24/36 decisoes.
+
+Fase 9 aprovada em 2026-07-26:
+
+- base registrada em `31,117,16`: 3/3;
+- baú conhecido: 3/3;
+- bancada conhecida: 3/3;
+- inventario vazio: 3/3;
+- `collect_wood`: 3/3, acao aceitavel para o estado;
+- `catalogExecutable`: 3/3;
+- decisao ainda valida depois da inferencia: 3/3;
+- interacoes com base: 0.
+
+Progresso atual: 9/12 fases e 27/36 decisoes.

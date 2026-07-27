@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-27T01:30:41.353Z",
+  "generatedAt": "2026-07-27T01:37:31.987Z",
   "summary": {
-    "phasesCompleted": 8,
-    "decisions": 24,
+    "phasesCompleted": 9,
+    "decisions": 27,
     "snapshotMatchRate": 1,
     "catalogExecutableRate": 1,
     "stillExecutableRate": 1,
@@ -25,7 +25,7 @@
     "6": 3,
     "7": 3,
     "8": 3,
-    "9": 0,
+    "9": 3,
     "10": 0,
     "11": 0,
     "12": 0
@@ -3987,6 +3987,594 @@
         "expectedActionMatched": true
       },
       "sourceFile": "shadow-2026-07-27T01-29-21.015Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T01:36:23.337Z",
+      "latencyMs": 4303,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "first_observation",
+      "snapshot": {
+        "capturedAt": "2026-07-27T01:36:19.005Z",
+        "gameTick": 112965,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 513,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {},
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "crafting_table",
+          "chest",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore",
+            "crafting_table",
+            "chest"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": true,
+        "baseStatus": "known",
+        "baseKnown": true,
+        "base": {
+          "position": {
+            "x": 31,
+            "y": 117,
+            "z": 16
+          },
+          "hasChest": true,
+          "hasCraftingTable": true
+        },
+        "hasChest": true,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T01:36:23.336Z",
+        "gameTick": 113065,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 508,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {},
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "crafting_table",
+          "chest",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore",
+            "crafting_table",
+            "chest"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": true,
+        "baseStatus": "known",
+        "baseKnown": true,
+        "base": {
+          "position": {
+            "x": 31,
+            "y": 117,
+            "z": 16
+          },
+          "hasChest": true,
+          "hasCraftingTable": true
+        },
+        "hasChest": true,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "Collect wood to craft tools",
+          "action": "collect_wood",
+          "target": "oak_tree",
+          "quantity": 8,
+          "priority": 1,
+          "reason": "Wood is essential for crafting tools to improve survival capabilities, and it is available nearby. Collecting wood now ensures progress against hunger and threats before nightfall."
+        },
+        "source": "llm",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "oak_tree",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 8,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
+        "validation": {
+          "classification": "VALID_PREFERRED",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 9,
+        "description": "Registered base with chest",
+        "expectedActions": [
+          "wait",
+          "collect_wood",
+          "store_items",
+          "return_to_base"
+        ],
+        "expectedSnapshot": {
+          "baseStatus": "known",
+          "hasChest": true
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T01-36-13.303Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T01:36:39.453Z",
+      "latencyMs": 1062,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "same_state_same_decision",
+      "snapshot": {
+        "capturedAt": "2026-07-27T01:36:38.368Z",
+        "gameTick": 113365,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 493,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {},
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "crafting_table",
+          "chest",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore",
+            "crafting_table",
+            "chest"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": true,
+        "baseStatus": "known",
+        "baseKnown": true,
+        "base": {
+          "position": {
+            "x": 31,
+            "y": 117,
+            "z": 16
+          },
+          "hasChest": true,
+          "hasCraftingTable": true
+        },
+        "hasChest": true,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T01:36:39.452Z",
+        "gameTick": 113385,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 492,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {},
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "crafting_table",
+          "chest",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore",
+            "crafting_table",
+            "chest"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": true,
+        "baseStatus": "known",
+        "baseKnown": true,
+        "base": {
+          "position": {
+            "x": 31,
+            "y": 117,
+            "z": 16
+          },
+          "hasChest": true,
+          "hasCraftingTable": true
+        },
+        "hasChest": true,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "Collect wood to craft tools",
+          "action": "collect_wood",
+          "target": "oak_tree",
+          "quantity": 8,
+          "priority": 1,
+          "reason": "Wood is essential for crafting tools to improve survival capabilities, and it is available nearby. Collecting wood now ensures progress against hunger and threats, especially since the base is known and shelter status is unknown."
+        },
+        "source": "llm",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "oak_tree",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 8,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
+        "validation": {
+          "classification": "VALID_PREFERRED",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 9,
+        "description": "Registered base with chest",
+        "expectedActions": [
+          "wait",
+          "collect_wood",
+          "store_items",
+          "return_to_base"
+        ],
+        "expectedSnapshot": {
+          "baseStatus": "known",
+          "hasChest": true
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T01-36-13.303Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T01:36:54.389Z",
+      "latencyMs": 1009,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "same_state_same_decision",
+      "snapshot": {
+        "capturedAt": "2026-07-27T01:36:53.361Z",
+        "gameTick": 113665,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 478,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {},
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "crafting_table",
+          "chest",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore",
+            "crafting_table",
+            "chest"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": true,
+        "baseStatus": "known",
+        "baseKnown": true,
+        "base": {
+          "position": {
+            "x": 31,
+            "y": 117,
+            "z": 16
+          },
+          "hasChest": true,
+          "hasCraftingTable": true
+        },
+        "hasChest": true,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T01:36:54.389Z",
+        "gameTick": 113685,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 477,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {},
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "crafting_table",
+          "chest",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore",
+            "crafting_table",
+            "chest"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": true,
+        "baseStatus": "known",
+        "baseKnown": true,
+        "base": {
+          "position": {
+            "x": 31,
+            "y": 117,
+            "z": 16
+          },
+          "hasChest": true,
+          "hasCraftingTable": true
+        },
+        "hasChest": true,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "Collect wood to craft tools",
+          "action": "collect_wood",
+          "target": "oak_tree",
+          "quantity": 8,
+          "priority": 1,
+          "reason": "Wood is essential for crafting tools to improve survival capabilities, and it is available nearby. Collecting wood now ensures progress against hunger and threats, especially since the base is known and shelter status is unknown."
+        },
+        "source": "llm",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "oak_tree",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 8,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
+        "validation": {
+          "classification": "VALID_PREFERRED",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 9,
+        "description": "Registered base with chest",
+        "expectedActions": [
+          "wait",
+          "collect_wood",
+          "store_items",
+          "return_to_base"
+        ],
+        "expectedSnapshot": {
+          "baseStatus": "known",
+          "hasChest": true
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T01-36-13.303Z.jsonl"
     }
   ]
 }

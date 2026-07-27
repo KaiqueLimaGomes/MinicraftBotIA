@@ -12,6 +12,7 @@ export function snapshotMatchesExpectation(snapshot, expected) {
   compareEqual(failures, 'hasChest', snapshot.hasChest, expected.hasChest)
   compareEqual(failures, 'hasCraftingTable', snapshot.hasCraftingTable, expected.hasCraftingTable)
   compareEqual(failures, 'inventoryFull', snapshot.inventoryFull, expected.inventoryFull)
+  compareEqual(failures, 'atBase', snapshot.atBase, expected.atBase)
   compareEqual(failures, 'threatImmediate', snapshot.threatImmediate, expected.threatImmediate)
   if (expected.inventoryEmpty && Object.keys(snapshot.inventory).length !== 0) failures.push('inventory is not empty')
   if (expected.toolsEmpty && snapshot.tools.length !== 0) failures.push('tools are not empty')

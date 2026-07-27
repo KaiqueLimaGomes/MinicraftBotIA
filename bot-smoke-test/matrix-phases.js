@@ -24,10 +24,10 @@ export const matrixPhases = {
     shelterStatus: 'present', toolsInclude: ['stone_pickaxe']
   }),
   9: phase('Registered base with chest', ['wait', 'collect_wood', 'store_items', 'return_to_base'], {
-    baseStatus: 'known', hasChest: true
+    baseStatus: 'known', hasChest: true, atBase: true
   }),
   10: phase('Full inventory with registered base', ['store_items', 'return_to_base'], {
-    inventoryFull: true, baseStatus: 'known'
+    inventoryFull: true, baseStatus: 'known', atBase: false
   }),
   11: phase('Coal and iron nearby with stone pickaxe', ['mine_coal', 'mine_iron'], {
     nearbyIncludes: ['coal_ore', 'iron_ore'], toolsInclude: ['stone_pickaxe']

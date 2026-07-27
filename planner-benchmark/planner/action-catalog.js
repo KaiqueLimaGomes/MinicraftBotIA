@@ -49,8 +49,9 @@ export const actionCatalog = {
     [1, 1],
     state => state.shelterStatus === 'absent' && buildingBlocks(state) >= 12
   ),
-  return_to_base: rule(['base_location'], [0, 0], state => state.baseStatus === 'known'),
-  store_items: rule(['base_chest'], [0, 64], state => state.baseStatus === 'known' && state.hasChest && state.inventoryFull),
+  return_to_base: rule(['base_location'], [0, 0], state => state.baseStatus === 'known' && !state.atBase),
+  store_items: rule(['base_chest'], [0, 64], state =>
+    state.baseStatus === 'known' && state.atBase && state.hasChest && state.inventoryFull),
   flee_threat: rule(
     ['safe_location', 'base_location', 'zombie', 'skeleton', 'creeper', 'spider', 'hostile_mob'],
     [0, 0],
@@ -67,6 +68,8 @@ export function normalizeState(input = {}) {
     (input.shelter === true ? 'present' : input.shelter === false ? 'absent' : 'unknown')
   const baseStatus = input.baseStatus ??
     (input.baseKnown === true ? 'known' : input.baseKnown === false ? 'unknown' : 'unknown')
+  const distanceToBase = input.distanceToBase ?? calculateDistanceToBase(input.position, input.base?.position)
+  const atBase = input.atBase ?? (distanceToBase !== null && distanceToBase <= 4)
   return {
     time: input.time ?? 'unknown',
     timeUntilNightSeconds: input.timeUntilNightSeconds ?? null,
@@ -82,6 +85,8 @@ export function normalizeState(input = {}) {
     baseStatus,
     baseKnown: baseStatus === 'known',
     base: input.base ?? null,
+    distanceToBase,
+    atBase,
     hasChest: Boolean(input.hasChest),
     threatImmediate: Boolean(input.threatImmediate)
   }
@@ -182,4 +187,13 @@ function rule(validTargets, [min, max], requires) {
 
 function nearby(state, item) {
   return (state.nearby ?? []).includes(item)
+}
+
+function calculateDistanceToBase(position, basePosition) {
+  if (!position || !basePosition) return null
+  return Number(Math.hypot(
+    position.x - basePosition.x,
+    position.y - basePosition.y,
+    position.z - basePosition.z
+  ).toFixed(1))
 }

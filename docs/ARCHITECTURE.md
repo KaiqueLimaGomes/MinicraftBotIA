@@ -93,6 +93,10 @@ Base manual:
 - valores negativos e zero sao validos;
 - `BASE_HAS_CHEST` e `BASE_HAS_CRAFTING_TABLE` registram infraestrutura conhecida.
 
+O snapshot calcula `distanceToBase` pelas coordenadas reais e considera `atBase`
+quando a distancia e de ate quatro blocos. `store_items` so e catalogicamente
+executavel junto ao bau; inventario cheio longe da base produz `return_to_base`.
+
 O shadow mode usa dois fingerprints:
 
 - `snapshotWorldFingerprint`: mudancas fisicas observadas;

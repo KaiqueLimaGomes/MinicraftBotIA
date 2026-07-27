@@ -36,6 +36,13 @@ const withBase = createStateSnapshot(bot, {
 assert.equal(withBase.baseStatus, 'known')
 assert.equal(withBase.hasChest, true)
 assert.equal(withBase.hasCraftingTable, true)
+assert.equal(withBase.distanceToBase, 11.2)
+assert.equal(withBase.atBase, false)
+
+const atBase = createStateSnapshot(bot, {
+  base: { position: { x: 1, y: 64, z: 1 }, hasChest: true }
+})
+assert.equal(atBase.atBase, true)
 
 const day = { ...withBase, time: 'day', timeUntilNightSeconds: 250 }
 const dusk = { ...withBase, time: 'dusk', timeUntilNightSeconds: 120 }

@@ -18,10 +18,14 @@ export function createStateSnapshot(bot, options = {}) {
 
   const registeredBase = options.base ?? null
   const shelterStatus = options.shelterStatus ?? 'unknown'
+  const botPosition = position(bot)
+  const distanceToBase = registeredBase?.position && botPosition
+    ? distance(botPosition, registeredBase.position)
+    : null
   return {
     capturedAt: new Date().toISOString(),
     gameTick: Number(bot.time?.age ?? 0),
-    position: position(bot),
+    position: botPosition,
     time: timeName(timeOfDay),
     timeUntilNightSeconds: secondsUntilNight(timeOfDay),
     health: Number(bot.health ?? 20),
@@ -42,6 +46,8 @@ export function createStateSnapshot(bot, options = {}) {
     baseStatus: registeredBase ? 'known' : 'unknown',
     baseKnown: Boolean(registeredBase),
     base: registeredBase,
+    distanceToBase,
+    atBase: distanceToBase !== null ? distanceToBase <= 4 : false,
     hasChest: Boolean(registeredBase?.hasChest),
     threatImmediate: Boolean(threat),
     threat: threat ?? null
@@ -72,6 +78,7 @@ export function snapshotDecisionFingerprint(snapshot) {
     nearby: snapshot.nearby,
     shelterStatus: snapshot.shelterStatus,
     baseStatus: snapshot.baseStatus,
+    atBase: snapshot.atBase,
     hasCraftingTable: snapshot.hasCraftingTable,
     hasChest: snapshot.hasChest,
     threatImmediate: snapshot.threatImmediate
@@ -141,4 +148,8 @@ export function secondsUntilNight(tick) {
 
 function isTool(name) {
   return /_(pickaxe|axe|sword|shovel|hoe)$/.test(name)
+}
+
+function distance(a, b) {
+  return Number(Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z).toFixed(1))
 }

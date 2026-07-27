@@ -12,7 +12,7 @@ export function safetyOverride(state) {
     if (animal) return decision('collect_food', animal, 2, 10, 'Critical hunger and food source is nearby')
   }
   if (state.inventoryFull && state.baseKnown) {
-    return state.hasChest
+    return state.atBase && state.hasChest
       ? decision('store_items', 'base_chest', 0, 9, 'Inventory is full and storage is known')
       : decision('return_to_base', 'base_location', 0, 9, 'Inventory is full')
   }

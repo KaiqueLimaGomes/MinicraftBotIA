@@ -87,13 +87,21 @@ await test('known absent shelter is admissible only near night', async () => {
   assert.equal(admissibleActions(dusk).includes('build_temporary_shelter'), true)
 })
 
-await test('known base enables return and storage', async () => {
-  const state = normalizeState({
+await test('full inventory returns when far and stores only at base', async () => {
+  const far = normalizeState({
+    position: { x: 20, y: 64, z: 20 },
     baseStatus: 'known', base: { position: { x: 1, y: 64, z: 1 } },
     hasChest: true, inventoryFull: true
   })
-  assert.equal(executableActions(state).includes('return_to_base'), true)
-  assert.equal(executableActions(state).includes('store_items'), true)
+  const near = normalizeState({
+    position: { x: 2, y: 64, z: 2 },
+    baseStatus: 'known', base: { position: { x: 1, y: 64, z: 1 } },
+    hasChest: true, inventoryFull: true
+  })
+  assert.equal(executableActions(far).includes('return_to_base'), true)
+  assert.equal(executableActions(far).includes('store_items'), false)
+  assert.equal(executableActions(near).includes('return_to_base'), false)
+  assert.equal(executableActions(near).includes('store_items'), true)
 })
 
 await test('repair specs preserve strategic admissibility', async () => {

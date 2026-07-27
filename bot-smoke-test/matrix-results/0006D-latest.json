@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-27T02:04:48.217Z",
+  "generatedAt": "2026-07-27T02:20:28.790Z",
   "summary": {
-    "phasesCompleted": 11,
-    "decisions": 33,
+    "phasesCompleted": 12,
+    "decisions": 36,
     "snapshotMatchRate": 1,
     "catalogExecutableRate": 1,
     "stillExecutableRate": 1,
@@ -28,7 +28,7 @@
     "9": 3,
     "10": 3,
     "11": 3,
-    "12": 0
+    "12": 3
   },
   "records": [
     {
@@ -5684,6 +5684,627 @@
         "expectedActionMatched": true
       },
       "sourceFile": "shadow-2026-07-27T02-03-54.728Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T02:19:49.970Z",
+      "latencyMs": 1,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "first_observation",
+      "snapshot": {
+        "capturedAt": "2026-07-27T02:19:49.947Z",
+        "gameTick": 165193,
+        "position": {
+          "x": 6.5,
+          "y": 81,
+          "z": -1.5
+        },
+        "time": "night",
+        "timeUntilNightSeconds": 0,
+        "health": 8,
+        "hunger": 17,
+        "inventory": {},
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "zombie",
+          "creeper",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "zombie",
+              "distance": 2,
+              "position": {
+                "x": 8.5,
+                "y": 81,
+                "z": -1.5
+              }
+            },
+            {
+              "name": "creeper",
+              "distance": 21.9,
+              "position": {
+                "x": 3.2,
+                "y": 69,
+                "z": -19.5
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "distanceToBase": null,
+        "atBase": false,
+        "hasChest": false,
+        "threatImmediate": true,
+        "threat": {
+          "name": "zombie",
+          "distance": 2,
+          "position": {
+            "x": 8.5,
+            "y": 81,
+            "z": -1.5
+          }
+        }
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T02:19:49.969Z",
+        "gameTick": 165193,
+        "position": {
+          "x": 6.5,
+          "y": 81,
+          "z": -1.5
+        },
+        "time": "night",
+        "timeUntilNightSeconds": 0,
+        "health": 8,
+        "hunger": 17,
+        "inventory": {},
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "zombie",
+          "creeper",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "zombie",
+              "distance": 2,
+              "position": {
+                "x": 8.5,
+                "y": 81,
+                "z": -1.5
+              }
+            },
+            {
+              "name": "creeper",
+              "distance": 21.9,
+              "position": {
+                "x": 3.2,
+                "y": 69,
+                "z": -19.5
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "distanceToBase": null,
+        "atBase": false,
+        "hasChest": false,
+        "threatImmediate": true,
+        "threat": {
+          "name": "zombie",
+          "distance": 2,
+          "position": {
+            "x": 8.5,
+            "y": 81,
+            "z": -1.5
+          }
+        }
+      },
+      "planner": {
+        "decision": {
+          "goal": "survive",
+          "action": "flee_threat",
+          "target": "zombie",
+          "quantity": 0,
+          "priority": 10,
+          "reason": "Immediate threat with low health"
+        },
+        "source": "safety_override",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 0,
+        "failures": [
+          {
+            "stage": "safety",
+            "category": "SAFETY_OVERRIDE",
+            "code": "SAFETY_OVERRIDE"
+          }
+        ],
+        "mechanicalRepairs": [],
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 12,
+        "description": "Low health with immediate zombie threat",
+        "expectedActions": [
+          "flee_threat"
+        ],
+        "expectedSnapshot": {
+          "healthMax": 10,
+          "threatImmediate": true,
+          "nearbyIncludes": [
+            "zombie"
+          ]
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T02-19-44.323Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T02:20:05.029Z",
+      "latencyMs": 0,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "same_state_same_decision",
+      "snapshot": {
+        "capturedAt": "2026-07-27T02:20:05.003Z",
+        "gameTick": 165493,
+        "position": {
+          "x": 6.5,
+          "y": 81,
+          "z": -1.5
+        },
+        "time": "night",
+        "timeUntilNightSeconds": 0,
+        "health": 8,
+        "hunger": 17,
+        "inventory": {},
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "zombie",
+          "creeper",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "zombie",
+              "distance": 2,
+              "position": {
+                "x": 8.5,
+                "y": 81,
+                "z": -1.5
+              }
+            },
+            {
+              "name": "creeper",
+              "distance": 22.8,
+              "position": {
+                "x": 2.1,
+                "y": 69,
+                "z": -20.4
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "distanceToBase": null,
+        "atBase": false,
+        "hasChest": false,
+        "threatImmediate": true,
+        "threat": {
+          "name": "zombie",
+          "distance": 2,
+          "position": {
+            "x": 8.5,
+            "y": 81,
+            "z": -1.5
+          }
+        }
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T02:20:05.028Z",
+        "gameTick": 165493,
+        "position": {
+          "x": 6.5,
+          "y": 81,
+          "z": -1.5
+        },
+        "time": "night",
+        "timeUntilNightSeconds": 0,
+        "health": 8,
+        "hunger": 17,
+        "inventory": {},
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "zombie",
+          "creeper",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "zombie",
+              "distance": 2,
+              "position": {
+                "x": 8.5,
+                "y": 81,
+                "z": -1.5
+              }
+            },
+            {
+              "name": "creeper",
+              "distance": 22.8,
+              "position": {
+                "x": 2.1,
+                "y": 69,
+                "z": -20.4
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "distanceToBase": null,
+        "atBase": false,
+        "hasChest": false,
+        "threatImmediate": true,
+        "threat": {
+          "name": "zombie",
+          "distance": 2,
+          "position": {
+            "x": 8.5,
+            "y": 81,
+            "z": -1.5
+          }
+        }
+      },
+      "planner": {
+        "decision": {
+          "goal": "survive",
+          "action": "flee_threat",
+          "target": "zombie",
+          "quantity": 0,
+          "priority": 10,
+          "reason": "Immediate threat with low health"
+        },
+        "source": "safety_override",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 0,
+        "failures": [
+          {
+            "stage": "safety",
+            "category": "SAFETY_OVERRIDE",
+            "code": "SAFETY_OVERRIDE"
+          }
+        ],
+        "mechanicalRepairs": [],
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 12,
+        "description": "Low health with immediate zombie threat",
+        "expectedActions": [
+          "flee_threat"
+        ],
+        "expectedSnapshot": {
+          "healthMax": 10,
+          "threatImmediate": true,
+          "nearbyIncludes": [
+            "zombie"
+          ]
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T02-19-44.323Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T02:20:20.025Z",
+      "latencyMs": 0,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "same_state_same_decision",
+      "snapshot": {
+        "capturedAt": "2026-07-27T02:20:20.009Z",
+        "gameTick": 165793,
+        "position": {
+          "x": 6.5,
+          "y": 81,
+          "z": -1.5
+        },
+        "time": "night",
+        "timeUntilNightSeconds": 0,
+        "health": 8,
+        "hunger": 17,
+        "inventory": {},
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "zombie",
+          "creeper",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "zombie",
+              "distance": 2,
+              "position": {
+                "x": 8.5,
+                "y": 81,
+                "z": -1.5
+              }
+            },
+            {
+              "name": "creeper",
+              "distance": 23.7,
+              "position": {
+                "x": -1.6,
+                "y": 67,
+                "z": -18.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "distanceToBase": null,
+        "atBase": false,
+        "hasChest": false,
+        "threatImmediate": true,
+        "threat": {
+          "name": "zombie",
+          "distance": 2,
+          "position": {
+            "x": 8.5,
+            "y": 81,
+            "z": -1.5
+          }
+        }
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T02:20:20.025Z",
+        "gameTick": 165793,
+        "position": {
+          "x": 6.5,
+          "y": 81,
+          "z": -1.5
+        },
+        "time": "night",
+        "timeUntilNightSeconds": 0,
+        "health": 8,
+        "hunger": 17,
+        "inventory": {},
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "zombie",
+          "creeper",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "zombie",
+              "distance": 2,
+              "position": {
+                "x": 8.5,
+                "y": 81,
+                "z": -1.5
+              }
+            },
+            {
+              "name": "creeper",
+              "distance": 23.7,
+              "position": {
+                "x": -1.6,
+                "y": 67,
+                "z": -18.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "distanceToBase": null,
+        "atBase": false,
+        "hasChest": false,
+        "threatImmediate": true,
+        "threat": {
+          "name": "zombie",
+          "distance": 2,
+          "position": {
+            "x": 8.5,
+            "y": 81,
+            "z": -1.5
+          }
+        }
+      },
+      "planner": {
+        "decision": {
+          "goal": "survive",
+          "action": "flee_threat",
+          "target": "zombie",
+          "quantity": 0,
+          "priority": 10,
+          "reason": "Immediate threat with low health"
+        },
+        "source": "safety_override",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 0,
+        "failures": [
+          {
+            "stage": "safety",
+            "category": "SAFETY_OVERRIDE",
+            "code": "SAFETY_OVERRIDE"
+          }
+        ],
+        "mechanicalRepairs": [],
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 12,
+        "description": "Low health with immediate zombie threat",
+        "expectedActions": [
+          "flee_threat"
+        ],
+        "expectedSnapshot": {
+          "healthMax": 10,
+          "threatImmediate": true,
+          "nearbyIncludes": [
+            "zombie"
+          ]
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T02-19-44.323Z.jsonl"
     }
   ]
 }

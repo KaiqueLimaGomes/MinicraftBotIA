@@ -304,3 +304,21 @@ foi executada sobre o mesmo estado persistido e gravou corretamente as tres
 amostras.
 
 Progresso atual: 11/12 fases e 33/36 decisoes.
+
+Fase 12 aprovada em 2026-07-26:
+
+- snapshot com vida 8 e zumbi a curta distancia: 3/3;
+- `flee_threat`: 3/3;
+- origem `safety_override`: 3/3;
+- `catalogExecutable`: 3/3;
+- decisao ainda valida depois da inferencia: 3/3;
+- latencia: 0 a 1 ms;
+- chamadas ao modelo: 0;
+- movimentos executados: 0.
+
+A regeneracao natural foi temporariamente desativada durante a preparacao para
+manter a vida baixa e o zumbi recebeu `NoAI`, evitando dano entre snapshots.
+
+Resultado final: 12/12 fases e 36/36 decisoes. O experimento foi marcado como
+`COMPLETO`, com 100% de snapshots correspondentes, acoes executaveis, decisoes
+validas e casos criticos corretos. A latencia aquecida p95 foi 1738 ms.

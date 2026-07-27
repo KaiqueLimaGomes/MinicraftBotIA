@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-27T01:15:19.083Z",
+  "generatedAt": "2026-07-27T01:22:38.287Z",
   "summary": {
-    "phasesCompleted": 6,
-    "decisions": 18,
+    "phasesCompleted": 7,
+    "decisions": 21,
     "snapshotMatchRate": 1,
     "catalogExecutableRate": 1,
     "stillExecutableRate": 1,
@@ -23,7 +23,7 @@
     "4": 3,
     "5": 3,
     "6": 3,
-    "7": 0,
+    "7": 3,
     "8": 0,
     "9": 0,
     "10": 0,
@@ -2928,6 +2928,522 @@
         "expectedActionMatched": true
       },
       "sourceFile": "shadow-2026-07-27T01-13-29.353Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T01:21:32.449Z",
+      "latencyMs": 1,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "first_observation",
+      "snapshot": {
+        "capturedAt": "2026-07-27T01:21:32.405Z",
+        "gameTick": 95232,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "night",
+        "timeUntilNightSeconds": 0,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {
+          "oak_log": 12
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "absent",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T01:21:32.448Z",
+        "gameTick": 95232,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "night",
+        "timeUntilNightSeconds": 0,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {
+          "oak_log": 12
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "absent",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "survive",
+          "action": "build_temporary_shelter",
+          "target": "near_current_position",
+          "quantity": 1,
+          "priority": 9,
+          "reason": "Night is imminent"
+        },
+        "source": "safety_override",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 0,
+        "failures": [
+          {
+            "stage": "safety",
+            "category": "SAFETY_OVERRIDE",
+            "code": "SAFETY_OVERRIDE"
+          }
+        ],
+        "mechanicalRepairs": [],
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 7,
+        "description": "Dusk, twelve blocks, shelter absent",
+        "expectedActions": [
+          "build_temporary_shelter"
+        ],
+        "expectedSnapshot": {
+          "time": [
+            "dusk",
+            "night"
+          ],
+          "shelterStatus": "absent",
+          "buildingBlocksAtLeast": 12
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T01-21-26.783Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T01:21:47.536Z",
+      "latencyMs": 0,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "same_state_same_decision",
+      "snapshot": {
+        "capturedAt": "2026-07-27T01:21:47.497Z",
+        "gameTick": 95532,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "night",
+        "timeUntilNightSeconds": 0,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {
+          "oak_log": 12
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "absent",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T01:21:47.536Z",
+        "gameTick": 95532,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "night",
+        "timeUntilNightSeconds": 0,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {
+          "oak_log": 12
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "absent",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "survive",
+          "action": "build_temporary_shelter",
+          "target": "near_current_position",
+          "quantity": 1,
+          "priority": 9,
+          "reason": "Night is imminent"
+        },
+        "source": "safety_override",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 0,
+        "failures": [
+          {
+            "stage": "safety",
+            "category": "SAFETY_OVERRIDE",
+            "code": "SAFETY_OVERRIDE"
+          }
+        ],
+        "mechanicalRepairs": [],
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 7,
+        "description": "Dusk, twelve blocks, shelter absent",
+        "expectedActions": [
+          "build_temporary_shelter"
+        ],
+        "expectedSnapshot": {
+          "time": [
+            "dusk",
+            "night"
+          ],
+          "shelterStatus": "absent",
+          "buildingBlocksAtLeast": 12
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T01-21-26.783Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T01:22:02.533Z",
+      "latencyMs": 0,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "same_state_same_decision",
+      "snapshot": {
+        "capturedAt": "2026-07-27T01:22:02.493Z",
+        "gameTick": 95852,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "night",
+        "timeUntilNightSeconds": 0,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {
+          "oak_log": 12
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "absent",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T01:22:02.533Z",
+        "gameTick": 95852,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "night",
+        "timeUntilNightSeconds": 0,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {
+          "oak_log": 12
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "absent",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "survive",
+          "action": "build_temporary_shelter",
+          "target": "near_current_position",
+          "quantity": 1,
+          "priority": 9,
+          "reason": "Night is imminent"
+        },
+        "source": "safety_override",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 0,
+        "failures": [
+          {
+            "stage": "safety",
+            "category": "SAFETY_OVERRIDE",
+            "code": "SAFETY_OVERRIDE"
+          }
+        ],
+        "mechanicalRepairs": [],
+        "validation": {
+          "classification": "VALID",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 7,
+        "description": "Dusk, twelve blocks, shelter absent",
+        "expectedActions": [
+          "build_temporary_shelter"
+        ],
+        "expectedSnapshot": {
+          "time": [
+            "dusk",
+            "night"
+          ],
+          "shelterStatus": "absent",
+          "buildingBlocksAtLeast": 12
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T01-21-26.783Z.jsonl"
     }
   ]
 }

@@ -1,13 +1,13 @@
 # Experimento 0006D - Resultado agregado
 
-Data: 2026-07-27T01:15:19.083Z
+Data: 2026-07-27T01:22:38.287Z
 
 Status: INCOMPLETO
 
 | Metrica | Resultado | Meta |
 |---|---:|---:|
-| Fases concluidas | 6/12 | 12/12 |
-| Decisoes | 18/36 | >=36 |
+| Fases concluidas | 7/12 | 12/12 |
+| Decisoes | 21/36 | >=36 |
 | Snapshot correspondente | 100% | 100% |
 | Catalog executable | 100% | 100% |
 | Valida apos inferencia | 100% | 100% |
@@ -28,7 +28,7 @@ Status: INCOMPLETO
 - Fase 4: 3/3
 - Fase 5: 3/3
 - Fase 6: 3/3
-- Fase 7: 0/3
+- Fase 7: 3/3
 - Fase 8: 0/3
 - Fase 9: 0/3
 - Fase 10: 0/3

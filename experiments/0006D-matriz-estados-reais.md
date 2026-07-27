@@ -222,3 +222,16 @@ O servidor 1.21.11/Mineflayer reportou carne bovina crua como `beef`, nao
 corrigiu a canonicalizacao dos alvos legados antes da publicacao.
 
 Progresso atual: 6/12 fases e 18/36 decisoes.
+
+Fase 7 aprovada em 2026-07-26:
+
+- snapshot em dusk, 12 troncos e abrigo ausente: 3/3;
+- `build_temporary_shelter`: 3/3;
+- origem `safety_override`: 3/3;
+- `catalogExecutable`: 3/3;
+- decisao ainda valida depois da inferencia: 3/3;
+- latencia: 0 a 1 ms;
+- chamadas ao modelo: 0;
+- blocos colocados: 0.
+
+Progresso atual: 7/12 fases e 21/36 decisoes.

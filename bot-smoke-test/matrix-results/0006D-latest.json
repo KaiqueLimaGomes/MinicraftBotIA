@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-27T00:48:51.099Z",
+  "generatedAt": "2026-07-27T01:06:27.499Z",
   "summary": {
-    "phasesCompleted": 4,
-    "decisions": 12,
+    "phasesCompleted": 5,
+    "decisions": 15,
     "snapshotMatchRate": 1,
     "catalogExecutableRate": 1,
     "stillExecutableRate": 1,
@@ -21,7 +21,7 @@
     "2": 3,
     "3": 3,
     "4": 3,
-    "5": 0,
+    "5": 3,
     "6": 0,
     "7": 0,
     "8": 0,
@@ -1869,6 +1869,555 @@
         "expectedActionMatched": true
       },
       "sourceFile": "shadow-2026-07-27T00-47-27.396Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T01:05:32.357Z",
+      "latencyMs": 918,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "first_observation",
+      "snapshot": {
+        "capturedAt": "2026-07-27T01:05:31.393Z",
+        "gameTick": 76019,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "night",
+        "timeUntilNightSeconds": 0,
+        "health": 20,
+        "hunger": 14,
+        "inventory": {
+          "wooden_pickaxe": 1
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [
+          "wooden_pickaxe"
+        ],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T01:05:32.356Z",
+        "gameTick": 76039,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "night",
+        "timeUntilNightSeconds": 0,
+        "health": 20,
+        "hunger": 14,
+        "inventory": {
+          "wooden_pickaxe": 1
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [
+          "wooden_pickaxe"
+        ],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "Collect food to reduce hunger",
+          "action": "collect_food",
+          "target": "cow",
+          "quantity": 2,
+          "priority": 1,
+          "reason": "Hunger is currently at 14, which is high and threatens survival; food collection is the highest priority action to address this immediate threat."
+        },
+        "source": "llm",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "cow",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 2,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
+        "validation": {
+          "classification": "VALID_PREFERRED",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 5,
+        "description": "Basic tool ready and animal nearby",
+        "expectedActions": [
+          "collect_food"
+        ],
+        "expectedSnapshot": {
+          "hasBasicTool": true,
+          "hungerMax": 14,
+          "nearbyAny": [
+            "cow",
+            "sheep",
+            "pig",
+            "chicken"
+          ]
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T01-05-25.582Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T01:05:48.317Z",
+      "latencyMs": 866,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "same_state_same_decision",
+      "snapshot": {
+        "capturedAt": "2026-07-27T01:05:47.413Z",
+        "gameTick": 76339,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "night",
+        "timeUntilNightSeconds": 0,
+        "health": 20,
+        "hunger": 14,
+        "inventory": {
+          "wooden_pickaxe": 1
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [
+          "wooden_pickaxe"
+        ],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T01:05:48.317Z",
+        "gameTick": 76359,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "night",
+        "timeUntilNightSeconds": 0,
+        "health": 20,
+        "hunger": 14,
+        "inventory": {
+          "wooden_pickaxe": 1
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [
+          "wooden_pickaxe"
+        ],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "Collect food to reduce hunger",
+          "action": "collect_food",
+          "target": "cow",
+          "quantity": 2,
+          "priority": 1,
+          "reason": "Hunger is currently at 14, which is high and threatens survival; food collection is the immediate priority to prevent health decline during the night."
+        },
+        "source": "llm",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "cow",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 2,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
+        "validation": {
+          "classification": "VALID_PREFERRED",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 5,
+        "description": "Basic tool ready and animal nearby",
+        "expectedActions": [
+          "collect_food"
+        ],
+        "expectedSnapshot": {
+          "hasBasicTool": true,
+          "hungerMax": 14,
+          "nearbyAny": [
+            "cow",
+            "sheep",
+            "pig",
+            "chicken"
+          ]
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T01-05-25.582Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T01:06:03.404Z",
+      "latencyMs": 952,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "same_state_same_decision",
+      "snapshot": {
+        "capturedAt": "2026-07-27T01:06:02.413Z",
+        "gameTick": 76639,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "night",
+        "timeUntilNightSeconds": 0,
+        "health": 20,
+        "hunger": 14,
+        "inventory": {
+          "wooden_pickaxe": 1
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [
+          "wooden_pickaxe"
+        ],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T01:06:03.403Z",
+        "gameTick": 76659,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "night",
+        "timeUntilNightSeconds": 0,
+        "health": 20,
+        "hunger": 14,
+        "inventory": {
+          "wooden_pickaxe": 1
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "cow",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "cow",
+              "distance": 2,
+              "position": {
+                "x": 32.8,
+                "y": 117,
+                "z": 15.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [
+          "wooden_pickaxe"
+        ],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "Collect food to reduce hunger",
+          "action": "collect_food",
+          "target": "cow",
+          "quantity": 2,
+          "priority": 1,
+          "reason": "Hunger is currently at 14, which is high and threatens survival; food collection is the immediate action to address this, especially as it is night and threats are not immediate."
+        },
+        "source": "llm",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "cow",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 2,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
+        "validation": {
+          "classification": "VALID_PREFERRED",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 5,
+        "description": "Basic tool ready and animal nearby",
+        "expectedActions": [
+          "collect_food"
+        ],
+        "expectedSnapshot": {
+          "hasBasicTool": true,
+          "hungerMax": 14,
+          "nearbyAny": [
+            "cow",
+            "sheep",
+            "pig",
+            "chicken"
+          ]
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T01-05-25.582Z.jsonl"
     }
   ]
 }

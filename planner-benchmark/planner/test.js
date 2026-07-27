@@ -128,6 +128,25 @@ await test('does not hide plank crafting inside crafting table action', async ()
   assert.equal(executableActions(planksReady).includes('craft_crafting_table'), true)
 })
 
+await test('food collection overrides resource progression at hunger fourteen', async () => {
+  const state = normalizeState({
+    hunger: 14,
+    inventory: { wooden_pickaxe: 1 },
+    tools: ['wooden_pickaxe'],
+    nearby: ['cow', 'oak_tree', 'stone']
+  })
+  assert.deepEqual(admissibleActions(state), ['collect_food'])
+})
+
+await test('eating inventory food overrides collection at hunger fourteen', async () => {
+  const state = normalizeState({
+    hunger: 14,
+    inventory: { raw_beef: 1 },
+    nearby: ['cow', 'oak_tree']
+  })
+  assert.deepEqual(admissibleActions(state), ['eat_food'])
+})
+
 console.log('All planner tests passed.')
 
 async function test(name, fn) {

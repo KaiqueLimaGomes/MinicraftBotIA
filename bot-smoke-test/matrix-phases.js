@@ -12,7 +12,7 @@ export const matrixPhases = {
     hasCraftingTable: true, toolsEmpty: true
   }),
   5: phase('Basic tool ready and animal nearby', ['collect_food'], {
-    hasBasicTool: true, nearbyAny: ['cow', 'sheep', 'pig', 'chicken']
+    hasBasicTool: true, hungerMax: 14, nearbyAny: ['cow', 'sheep', 'pig', 'chicken']
   }),
   6: phase('Critical hunger with food in inventory', ['eat_food'], {
     hungerMax: 6, hasFood: true

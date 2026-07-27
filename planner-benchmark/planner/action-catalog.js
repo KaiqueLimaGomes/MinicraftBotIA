@@ -96,10 +96,19 @@ export function admissibleActions(state) {
 }
 
 export function isStrategicallyAdmissible(action, state) {
+  const foodPriority = prioritizedFoodAction(state)
+  if (foodPriority) return action === foodPriority
   if (action === 'collect_wood') return isWoodCollectionAdmissible(state)
   if (action === 'explore_area') return isExplorationAdmissible(state)
   if (action === 'build_temporary_shelter') return isShelterAdmissible(state)
   return true
+}
+
+export function prioritizedFoodAction(state) {
+  if (state.hunger > 14) return null
+  if (hasAnyFood(state)) return 'eat_food'
+  const animalNearby = ['cow', 'sheep', 'pig', 'chicken'].some(item => nearby(state, item))
+  return animalNearby ? 'collect_food' : null
 }
 
 export function isWoodCollectionAdmissible(state) {

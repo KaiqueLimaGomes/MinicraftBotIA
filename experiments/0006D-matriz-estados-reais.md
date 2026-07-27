@@ -184,3 +184,23 @@ registrada como criterio global pendente; a fase nao foi repetida para remover a
 amostra desfavoravel.
 
 Progresso atual: 4/12 fases e 12/36 decisoes.
+
+Fase 5 aprovada em 2026-07-26:
+
+- snapshot com `wooden_pickaxe`, fome 14 e vaca proxima: 3/3;
+- `collect_food`: 3/3;
+- `catalogExecutable`: 3/3;
+- decisao ainda valida depois da inferencia: 3/3;
+- latencias: 866 a 952 ms;
+- acoes executadas: 0.
+
+Duas tentativas foram rejeitadas:
+
+1. a vaca comum saiu do raio de observacao;
+2. com a vaca persistente detectada, coleta de madeira ainda competia com comida.
+
+O estado passou a exigir fome menor ou igual a 14. A admissibilidade agora prioriza
+`eat_food` quando existe comida no inventario e `collect_food` quando existe fonte
+animal proxima, antes da progressao de recursos.
+
+Progresso atual: 5/12 fases e 15/36 decisoes.

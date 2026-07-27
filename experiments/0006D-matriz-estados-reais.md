@@ -267,3 +267,24 @@ Fase 9 aprovada em 2026-07-26:
 - interacoes com base: 0.
 
 Progresso atual: 9/12 fases e 27/36 decisoes.
+
+Fase 10 aprovada em 2026-07-26:
+
+- inventario com 36 pilhas de `cobblestone:64`: 3/3;
+- base registrada em `31,117,16`: 3/3;
+- posicao distante em `6.5,81,-1.5`: 3/3;
+- `atBase=false`: 3/3;
+- `return_to_base`: 3/3;
+- origem `safety_override`: 3/3;
+- latencia: 0 a 1 ms;
+- movimentos executados: 0.
+
+A primeira preparacao causou sufocamento ao teleportar para uma coordenada sem
+espaco livre. O evento nao entrou nas amostras. Foi criada uma area de staging com
+piso em Y=80 e ar livre entre Y=81 e Y=84 antes da nova preparacao.
+
+Antes da fase, o snapshot e o catalogo passaram a calcular `distanceToBase` e
+`atBase` (raio de quatro blocos). `store_items` so e permitido junto ao bau;
+inventario cheio longe da base produz `return_to_base`.
+
+Progresso atual: 10/12 fases e 30/36 decisoes.

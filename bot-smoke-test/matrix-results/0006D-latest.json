@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-27T01:57:45.818Z",
+  "generatedAt": "2026-07-27T02:04:48.217Z",
   "summary": {
-    "phasesCompleted": 10,
-    "decisions": 30,
+    "phasesCompleted": 11,
+    "decisions": 33,
     "snapshotMatchRate": 1,
     "catalogExecutableRate": 1,
     "stillExecutableRate": 1,
@@ -27,7 +27,7 @@
     "8": 3,
     "9": 3,
     "10": 3,
-    "11": 0,
+    "11": 3,
     "12": 0
   },
   "records": [
@@ -5145,6 +5145,545 @@
         "expectedActionMatched": true
       },
       "sourceFile": "shadow-2026-07-27T01-56-43.827Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T02:04:01.211Z",
+      "latencyMs": 817,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "first_observation",
+      "snapshot": {
+        "capturedAt": "2026-07-27T02:04:00.360Z",
+        "gameTick": 146199,
+        "position": {
+          "x": 6.5,
+          "y": 81,
+          "z": -1.5
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 312,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {
+          "stone_pickaxe": 1
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": []
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [
+          "stone_pickaxe"
+        ],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "distanceToBase": null,
+        "atBase": false,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T02:04:01.210Z",
+        "gameTick": 146219,
+        "position": {
+          "x": 6.5,
+          "y": 81,
+          "z": -1.5
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 311,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {
+          "stone_pickaxe": 1
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": []
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [
+          "stone_pickaxe"
+        ],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "distanceToBase": null,
+        "atBase": false,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "Mine coal to satisfy hunger and prepare for night",
+          "action": "mine_coal",
+          "target": "coal_ore",
+          "quantity": 8,
+          "priority": 1,
+          "reason": "Coal is essential for crafting a furnace to cook food, and mining it now ensures progress before nightfall when threats increase and hunger becomes critical."
+        },
+        "source": "llm",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "coal_ore",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 8,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
+        "validation": {
+          "classification": "VALID_PREFERRED",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 11,
+        "description": "Coal and iron nearby with stone pickaxe",
+        "expectedActions": [
+          "mine_coal",
+          "mine_iron"
+        ],
+        "expectedSnapshot": {
+          "nearbyIncludes": [
+            "coal_ore",
+            "iron_ore"
+          ],
+          "toolsInclude": [
+            "stone_pickaxe"
+          ]
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T02-03-54.728Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T02:04:17.151Z",
+      "latencyMs": 887,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "changed_state_same_decision",
+      "snapshot": {
+        "capturedAt": "2026-07-27T02:04:16.242Z",
+        "gameTick": 146519,
+        "position": {
+          "x": 6.5,
+          "y": 81,
+          "z": -1.5
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 296,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {
+          "stone_pickaxe": 1
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "zombie",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "zombie",
+              "distance": 22,
+              "position": {
+                "x": -2.5,
+                "y": 68,
+                "z": -16.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [
+          "stone_pickaxe"
+        ],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "distanceToBase": null,
+        "atBase": false,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T02:04:17.151Z",
+        "gameTick": 146539,
+        "position": {
+          "x": 6.5,
+          "y": 81,
+          "z": -1.5
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 295,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {
+          "stone_pickaxe": 1
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "zombie",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "zombie",
+              "distance": 22,
+              "position": {
+                "x": -2.5,
+                "y": 68,
+                "z": -16.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [
+          "stone_pickaxe"
+        ],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "distanceToBase": null,
+        "atBase": false,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "Mine coal to satisfy hunger and prepare for night",
+          "action": "mine_coal",
+          "target": "coal_ore",
+          "quantity": 8,
+          "priority": 1,
+          "reason": "Coal is essential for crafting a furnace, which is needed to smelt items like food and tools. Since hunger and survival are immediate threats, prioritizing coal mining ensures long-term survival and reduces vulnerability during night."
+        },
+        "source": "llm",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "coal_ore",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 8,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
+        "validation": {
+          "classification": "VALID_PREFERRED",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 11,
+        "description": "Coal and iron nearby with stone pickaxe",
+        "expectedActions": [
+          "mine_coal",
+          "mine_iron"
+        ],
+        "expectedSnapshot": {
+          "nearbyIncludes": [
+            "coal_ore",
+            "iron_ore"
+          ],
+          "toolsInclude": [
+            "stone_pickaxe"
+          ]
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T02-03-54.728Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T02:04:32.208Z",
+      "latencyMs": 944,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "same_state_same_decision",
+      "snapshot": {
+        "capturedAt": "2026-07-27T02:04:31.241Z",
+        "gameTick": 146819,
+        "position": {
+          "x": 6.5,
+          "y": 81,
+          "z": -1.5
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 281,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {
+          "stone_pickaxe": 1
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "zombie",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "zombie",
+              "distance": 23.6,
+              "position": {
+                "x": 5.5,
+                "y": 69,
+                "z": -21.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [
+          "stone_pickaxe"
+        ],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "distanceToBase": null,
+        "atBase": false,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T02:04:32.208Z",
+        "gameTick": 146839,
+        "position": {
+          "x": 6.5,
+          "y": 81,
+          "z": -1.5
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 280,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {
+          "stone_pickaxe": 1
+        },
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "zombie",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": [
+            {
+              "name": "zombie",
+              "distance": 23.6,
+              "position": {
+                "x": 5.5,
+                "y": 69,
+                "z": -21.8
+              }
+            }
+          ]
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [
+          "stone_pickaxe"
+        ],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "distanceToBase": null,
+        "atBase": false,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "Mine coal to satisfy hunger and prepare for night",
+          "action": "mine_coal",
+          "target": "coal_ore",
+          "quantity": 8,
+          "priority": 1,
+          "reason": "Coal is essential for crafting a furnace, which is needed to smelt items like food and tools. Since hunger and survival are immediate threats, prioritizing coal mining ensures long-term survival and reduces vulnerability during night."
+        },
+        "source": "llm",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "coal_ore",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 8,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
+        "validation": {
+          "classification": "VALID_PREFERRED",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 11,
+        "description": "Coal and iron nearby with stone pickaxe",
+        "expectedActions": [
+          "mine_coal",
+          "mine_iron"
+        ],
+        "expectedSnapshot": {
+          "nearbyIncludes": [
+            "coal_ore",
+            "iron_ore"
+          ],
+          "toolsInclude": [
+            "stone_pickaxe"
+          ]
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T02-03-54.728Z.jsonl"
     }
   ]
 }

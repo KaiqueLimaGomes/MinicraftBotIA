@@ -288,3 +288,19 @@ Antes da fase, o snapshot e o catalogo passaram a calcular `distanceToBase` e
 inventario cheio longe da base produz `return_to_base`.
 
 Progresso atual: 10/12 fases e 30/36 decisoes.
+
+Fase 11 aprovada em 2026-07-26:
+
+- snapshot com `stone_pickaxe`, `coal_ore` e `iron_ore` proximos: 3/3;
+- `mine_coal`: 3/3;
+- `catalogExecutable`: 3/3;
+- decisao ainda valida depois da inferencia: 3/3;
+- latencias registradas: 817 a 944 ms;
+- blocos minerados: 0.
+
+Uma primeira passagem tambem escolheu `mine_coal` em 3/3, mas foi descartada
+porque a restricao de escrita do ambiente impediu a criacao do JSONL. A repeticao
+foi executada sobre o mesmo estado persistido e gravou corretamente as tres
+amostras.
+
+Progresso atual: 11/12 fases e 33/36 decisoes.

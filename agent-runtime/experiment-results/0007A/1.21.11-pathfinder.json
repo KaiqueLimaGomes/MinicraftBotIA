@@ -1,0 +1,288 @@
+{
+  "experiment": "0007A",
+  "condition": "1.21.11-pathfinder",
+  "serverVersion": "1.21.11",
+  "movement": "pathfinder",
+  "repetitions": 5,
+  "status": "COMPLETE",
+  "fatalError": null,
+  "results": [
+    {
+      "sample": 1,
+      "executionId": "9e2df934-425a-4e1c-88c3-d5dece3db49e",
+      "action": "collect_wood",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T03:30:48.100Z",
+      "status": "failed",
+      "success": false,
+      "code": "VERIFY_PROGRESS_FAILED",
+      "reason": "Log was not confirmed in inventory after digging",
+      "evidence": {
+        "logName": "oak_log",
+        "logsBefore": 0,
+        "logsAfter": 0,
+        "target": {
+          "x": 142,
+          "y": 120,
+          "z": 140
+        }
+      },
+      "durationMs": 11551
+    },
+    {
+      "sample": 2,
+      "executionId": "b22531e5-db86-4032-97e9-2e34046c0e12",
+      "action": "collect_wood",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T03:31:00.726Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "logName": "oak_log",
+        "logsBefore": 0,
+        "logsAfter": 1,
+        "target": {
+          "x": 142,
+          "y": 120,
+          "z": 140
+        }
+      },
+      "durationMs": 6080
+    },
+    {
+      "sample": 3,
+      "executionId": "365e50ea-cfac-4aab-be72-962185c0421b",
+      "action": "collect_wood",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T03:31:07.882Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "logName": "oak_log",
+        "logsBefore": 0,
+        "logsAfter": 1,
+        "target": {
+          "x": 142,
+          "y": 120,
+          "z": 140
+        }
+      },
+      "durationMs": 6073
+    },
+    {
+      "sample": 4,
+      "executionId": "ba97b491-5237-4ebe-aff4-710652d5004e",
+      "action": "collect_wood",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T03:31:15.030Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "logName": "oak_log",
+        "logsBefore": 0,
+        "logsAfter": 1,
+        "target": {
+          "x": 142,
+          "y": 120,
+          "z": 140
+        }
+      },
+      "durationMs": 6036
+    },
+    {
+      "sample": 5,
+      "executionId": "f973a7bc-71d0-47e9-9d52-0e396e056293",
+      "action": "collect_wood",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T03:31:22.140Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "logName": "oak_log",
+        "logsBefore": 0,
+        "logsAfter": 1,
+        "target": {
+          "x": 142,
+          "y": 120,
+          "z": 140
+        }
+      },
+      "durationMs": 6099
+    }
+  ],
+  "digAttempts": [
+    {
+      "serverVersion": "1.21.11",
+      "botVersion": "1.21.11",
+      "block": "oak_log",
+      "position": {
+        "x": 142,
+        "y": 120,
+        "z": 140
+      },
+      "distance": 0.8599015883273305,
+      "canDigBlock": true,
+      "onGroundBeforeLook": true,
+      "onGroundBeforeDig": true,
+      "estimatedDigTimeMs": 3000,
+      "heldItem": null,
+      "attemptNumber": 1,
+      "startedAt": "2026-07-27T03:30:50.089Z",
+      "startedAtMs": 1785123050089,
+      "status": "resolved",
+      "diggingCompletedEvents": 1,
+      "diggingAbortedEvents": 0,
+      "airBlockUpdates": 1,
+      "blockChanged": true,
+      "inventoryDelta": {
+        "oak_log": 0
+      },
+      "digResolved": true,
+      "timedOut": false,
+      "abortReason": null,
+      "finishedAt": "2026-07-27T03:30:53.096Z",
+      "elapsedMs": 3007,
+      "inventoryVerifiedAt": "2026-07-27T03:30:59.651Z"
+    },
+    {
+      "serverVersion": "1.21.11",
+      "botVersion": "1.21.11",
+      "block": "oak_log",
+      "position": {
+        "x": 142,
+        "y": 120,
+        "z": 140
+      },
+      "distance": 0.859901588326372,
+      "canDigBlock": true,
+      "onGroundBeforeLook": true,
+      "onGroundBeforeDig": true,
+      "estimatedDigTimeMs": 3000,
+      "heldItem": null,
+      "attemptNumber": 2,
+      "startedAt": "2026-07-27T03:31:02.798Z",
+      "startedAtMs": 1785123062798,
+      "status": "resolved",
+      "diggingCompletedEvents": 1,
+      "diggingAbortedEvents": 0,
+      "airBlockUpdates": 1,
+      "blockChanged": true,
+      "inventoryDelta": {
+        "oak_log": 1
+      },
+      "digResolved": true,
+      "timedOut": false,
+      "abortReason": null,
+      "finishedAt": "2026-07-27T03:31:05.805Z",
+      "elapsedMs": 3007,
+      "inventoryVerifiedAt": "2026-07-27T03:31:06.806Z"
+    },
+    {
+      "serverVersion": "1.21.11",
+      "botVersion": "1.21.11",
+      "block": "oak_log",
+      "position": {
+        "x": 142,
+        "y": 120,
+        "z": 140
+      },
+      "distance": 0.8599015883258927,
+      "canDigBlock": true,
+      "onGroundBeforeLook": true,
+      "onGroundBeforeDig": true,
+      "estimatedDigTimeMs": 3000,
+      "heldItem": null,
+      "attemptNumber": 3,
+      "startedAt": "2026-07-27T03:31:09.938Z",
+      "startedAtMs": 1785123069938,
+      "status": "resolved",
+      "diggingCompletedEvents": 1,
+      "diggingAbortedEvents": 0,
+      "airBlockUpdates": 1,
+      "blockChanged": true,
+      "inventoryDelta": {
+        "oak_log": 1
+      },
+      "digResolved": true,
+      "timedOut": false,
+      "abortReason": null,
+      "finishedAt": "2026-07-27T03:31:12.945Z",
+      "elapsedMs": 3007,
+      "inventoryVerifiedAt": "2026-07-27T03:31:13.954Z"
+    },
+    {
+      "serverVersion": "1.21.11",
+      "botVersion": "1.21.11",
+      "block": "oak_log",
+      "position": {
+        "x": 142,
+        "y": 120,
+        "z": 140
+      },
+      "distance": 0.8599015883249342,
+      "canDigBlock": true,
+      "onGroundBeforeLook": true,
+      "onGroundBeforeDig": true,
+      "estimatedDigTimeMs": 3000,
+      "heldItem": null,
+      "attemptNumber": 4,
+      "startedAt": "2026-07-27T03:31:17.049Z",
+      "startedAtMs": 1785123077049,
+      "status": "resolved",
+      "diggingCompletedEvents": 1,
+      "diggingAbortedEvents": 0,
+      "airBlockUpdates": 1,
+      "blockChanged": true,
+      "inventoryDelta": {
+        "oak_log": 1
+      },
+      "digResolved": true,
+      "timedOut": false,
+      "abortReason": null,
+      "finishedAt": "2026-07-27T03:31:20.054Z",
+      "elapsedMs": 3005,
+      "inventoryVerifiedAt": "2026-07-27T03:31:21.066Z"
+    },
+    {
+      "serverVersion": "1.21.11",
+      "botVersion": "1.21.11",
+      "block": "oak_log",
+      "position": {
+        "x": 142,
+        "y": 120,
+        "z": 140
+      },
+      "distance": 0.8599015883239757,
+      "canDigBlock": true,
+      "onGroundBeforeLook": true,
+      "onGroundBeforeDig": true,
+      "estimatedDigTimeMs": 3000,
+      "heldItem": null,
+      "attemptNumber": 5,
+      "startedAt": "2026-07-27T03:31:24.216Z",
+      "startedAtMs": 1785123084216,
+      "status": "resolved",
+      "diggingCompletedEvents": 1,
+      "diggingAbortedEvents": 0,
+      "airBlockUpdates": 1,
+      "blockChanged": true,
+      "inventoryDelta": {
+        "oak_log": 1
+      },
+      "digResolved": true,
+      "timedOut": false,
+      "abortReason": null,
+      "finishedAt": "2026-07-27T03:31:27.224Z",
+      "elapsedMs": 3008,
+      "inventoryVerifiedAt": "2026-07-27T03:31:28.239Z"
+    }
+  ]
+}

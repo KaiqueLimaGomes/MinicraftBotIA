@@ -1,0 +1,103 @@
+# Executor limitado
+
+Branch inicial: `feat/limited-skill-executor`
+
+## Limites
+
+O modo padrao e `EXECUTION_MODE=shadow`. Alteracoes no mundo exigem
+`EXECUTION_MODE=limited` e uma acao na allowlist:
+
+- `craft_planks`;
+- `craft_crafting_table`;
+- `collect_wood`.
+
+O runtime nao chama o planner. O executavel manual recebe uma unica acao por
+`MANUAL_ACTION`, captura um estado fresco e revalida `canExecute()` antes de
+iniciar.
+
+## Contrato
+
+Cada skill implementa:
+
+- `canExecute()`;
+- `execute()` com `AbortSignal`;
+- `verifyProgress()`.
+
+O runner oferece:
+
+- `executionId` unico;
+- exclusao mutua por bot;
+- timeout;
+- abort externo;
+- parada de pathfinder, controles e escavacao;
+- protecao contra conclusao antiga;
+- resultado estruturado;
+- verificacao de efeito real.
+
+Resolver a Promise de `craft()` ou `dig()` nao significa sucesso. O inventario
+precisa confirmar o aumento do item esperado.
+
+## Metas manuais
+
+| Skill | Sucesso minimo | p95 |
+|---|---:|---:|
+| `craft_planks` | 10/10 | 5 s |
+| `craft_crafting_table` | 10/10 | 5 s |
+| `collect_wood` | 8/10 | 90 s |
+
+O executor ainda nao esta conectado ao planner. Essa integracao permanece
+bloqueada ate a conclusao dos 30 testes reais.
+
+## Automacao local com RCON
+
+O harness prepara e limpa cada amostra, cria uma arena dedicada para madeira e
+gera relatorios JSON e Markdown:
+
+```powershell
+cd C:\MinicraftBotIA\agent-runtime
+npm run experiment:skills
+```
+
+Credenciais podem ser fornecidas por `C:\MinicraftBotIA\.env.local`, que e
+ignorado pelo Git:
+
+```text
+MC_RCON_PASSWORD=senha-local
+```
+
+Quando a variavel nao existe, o harness le `rcon.password` diretamente do
+`server/server.properties` local e ignorado, sem registrar o valor.
+
+RCON remoto e bloqueado por padrao. O harness aceita no maximo dez repeticoes
+por skill e nao chama o planner.
+
+No Minecraft 1.21.11, o harness usa o novo identificador
+`minecraft:block_drops` para garantir que blocos quebrados gerem drops.
+
+O Experimento 0007A demonstrou quebra fisica 20/20 nas versoes 1.21.11 e
+1.21.8. A taxa de skill completa foi 4/10 e 9/10, respectivamente, por
+diferencas na coleta do drop. Consulte
+`experiments/0007A-matriz-compatibilidade-fisica.md`.
+
+O Experimento 0007B passou a rastrear a entidade-item criada pela quebra e
+navegar ate sua posicao real. O resultado foi 20/20 drops observados, 20/20
+coletados e 20/20 skills completas, sem timeout ou abort, nas mesmas quatro
+condicoes. Consulte `experiments/0007B-coleta-deterministica-drops.md`.
+
+O Experimento 0007C validou movimentos seguros, busca automatica sem
+coordenada e a cadeia completa no Paper 1.21.11. Os crafts isolados passaram
+10/10 cada e as cadeias
+`collect_wood -> craft_planks -> craft_crafting_table` passaram 10/10, sem
+alteracoes extras na arena. Consulte
+`experiments/0007C-cadeia-limitada-end-to-end.md`.
+
+## Dependencias
+
+O runtime fixa `mineflayer@4.37.1`, versao instalada pelo intervalo do modulo
+de smoke test e compativel com o servidor 1.21.11, e
+`mineflayer-pathfinder@2.4.5`.
+
+Em 2026-07-26, `npm audit` reportou seis avisos moderados transitivos no caminho
+de autenticacao do Mineflayer, principalmente por `uuid <11.1.1`. A correcao
+sugerida pelo npm e um downgrade incorreto para `mineflayer@1.4.0`, incompativel
+com Minecraft 1.21.11. Nenhum `npm audit fix --force` foi aplicado.

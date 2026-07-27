@@ -1,0 +1,47 @@
+{
+  "experiment": "0007A",
+  "generatedAt": "2026-07-27T03:25:55.906Z",
+  "status": "INCOMPLETE",
+  "summary": [
+    {
+      "condition": "1.21.11-none",
+      "status": "MISSING",
+      "attempts": 0,
+      "digResolved": 0,
+      "blockChanged": 0,
+      "inventoryIncreased": 0,
+      "grounded": 0,
+      "p95Ms": null
+    },
+    {
+      "condition": "1.21.11-pathfinder",
+      "status": "MISSING",
+      "attempts": 0,
+      "digResolved": 0,
+      "blockChanged": 0,
+      "inventoryIncreased": 0,
+      "grounded": 0,
+      "p95Ms": null
+    },
+    {
+      "condition": "1.21.8-none",
+      "status": "MISSING",
+      "attempts": 0,
+      "digResolved": 0,
+      "blockChanged": 0,
+      "inventoryIncreased": 0,
+      "grounded": 0,
+      "p95Ms": null
+    },
+    {
+      "condition": "1.21.8-pathfinder",
+      "status": "MISSING",
+      "attempts": 0,
+      "digResolved": 0,
+      "blockChanged": 0,
+      "inventoryIncreased": 0,
+      "grounded": 0,
+      "p95Ms": null
+    }
+  ]
+}

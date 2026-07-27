@@ -1,0 +1,72 @@
+{
+  "experiment": "0007B",
+  "generatedAt": "2026-07-27T04:23:27.396Z",
+  "status": "COMPLETE",
+  "passed": true,
+  "summary": [
+    {
+      "condition": "1.21.11-none",
+      "status": "COMPLETE",
+      "attempts": 5,
+      "digResolved": 5,
+      "blockChanged": 5,
+      "inventoryIncreased": 5,
+      "skillSucceeded": 5,
+      "dropsObserved": 5,
+      "dropsCollected": 5,
+      "collectionTimeouts": 0,
+      "collectionAborts": 0,
+      "grounded": 5,
+      "digP95Ms": 3011,
+      "skillP95Ms": 6271
+    },
+    {
+      "condition": "1.21.11-pathfinder",
+      "status": "COMPLETE",
+      "attempts": 5,
+      "digResolved": 5,
+      "blockChanged": 5,
+      "inventoryIncreased": 5,
+      "skillSucceeded": 5,
+      "dropsObserved": 5,
+      "dropsCollected": 5,
+      "collectionTimeouts": 0,
+      "collectionAborts": 0,
+      "grounded": 5,
+      "digP95Ms": 3016,
+      "skillP95Ms": 7636
+    },
+    {
+      "condition": "1.21.8-none",
+      "status": "COMPLETE",
+      "attempts": 5,
+      "digResolved": 5,
+      "blockChanged": 5,
+      "inventoryIncreased": 5,
+      "skillSucceeded": 5,
+      "dropsObserved": 5,
+      "dropsCollected": 5,
+      "collectionTimeouts": 0,
+      "collectionAborts": 0,
+      "grounded": 5,
+      "digP95Ms": 3013,
+      "skillP95Ms": 6154
+    },
+    {
+      "condition": "1.21.8-pathfinder",
+      "status": "COMPLETE",
+      "attempts": 5,
+      "digResolved": 5,
+      "blockChanged": 5,
+      "inventoryIncreased": 5,
+      "skillSucceeded": 5,
+      "dropsObserved": 5,
+      "dropsCollected": 5,
+      "collectionTimeouts": 0,
+      "collectionAborts": 0,
+      "grounded": 5,
+      "digP95Ms": 3012,
+      "skillP95Ms": 7612
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "experiment": "0007A",
+  "generatedAt": "2026-07-27T03:32:35.685Z",
+  "status": "COMPLETE",
+  "summary": [
+    {
+      "condition": "1.21.11-none",
+      "status": "COMPLETE",
+      "attempts": 5,
+      "digResolved": 5,
+      "blockChanged": 5,
+      "inventoryIncreased": 0,
+      "skillSucceeded": 0,
+      "grounded": 5,
+      "digP95Ms": 3014,
+      "skillP95Ms": 10429
+    },
+    {
+      "condition": "1.21.11-pathfinder",
+      "status": "COMPLETE",
+      "attempts": 5,
+      "digResolved": 5,
+      "blockChanged": 5,
+      "inventoryIncreased": 4,
+      "skillSucceeded": 4,
+      "grounded": 5,
+      "digP95Ms": 3008,
+      "skillP95Ms": 11551
+    },
+    {
+      "condition": "1.21.8-none",
+      "status": "COMPLETE",
+      "attempts": 5,
+      "digResolved": 5,
+      "blockChanged": 5,
+      "inventoryIncreased": 4,
+      "skillSucceeded": 4,
+      "grounded": 5,
+      "digP95Ms": 3008,
+      "skillP95Ms": 10343
+    },
+    {
+      "condition": "1.21.8-pathfinder",
+      "status": "COMPLETE",
+      "attempts": 5,
+      "digResolved": 5,
+      "blockChanged": 5,
+      "inventoryIncreased": 5,
+      "skillSucceeded": 5,
+      "grounded": 5,
+      "digP95Ms": 3016,
+      "skillP95Ms": 6053
+    }
+  ]
+}

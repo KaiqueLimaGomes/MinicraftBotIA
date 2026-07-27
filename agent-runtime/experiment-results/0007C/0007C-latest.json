@@ -1,0 +1,1296 @@
+{
+  "experiment": "0007C",
+  "generatedAt": "2026-07-27T04:22:31.805Z",
+  "status": "COMPLETE",
+  "repetitions": 10,
+  "summary": {
+    "craft_planks": {
+      "samples": 20,
+      "successes": 20,
+      "p95Ms": 4
+    },
+    "craft_crafting_table": {
+      "samples": 20,
+      "successes": 20,
+      "p95Ms": 10
+    },
+    "collect_wood": {
+      "samples": 10,
+      "successes": 10,
+      "p95Ms": 7224
+    }
+  },
+  "chainSummary": {
+    "samples": 10,
+    "successes": 10,
+    "treesFoundAutomatically": 10,
+    "logsCollected": 10,
+    "planksCrafted": 10,
+    "tablesCrafted": 10,
+    "extraBlockChanges": 0
+  },
+  "passed": true,
+  "fatalError": null,
+  "results": [
+    {
+      "action": "craft_planks",
+      "sample": 1,
+      "executionId": "c2939a8b-ed32-47a7-ade4-aa12ab7ba582",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.191Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 13,
+      "finishedAt": "2026-07-27T04:20:55.205Z"
+    },
+    {
+      "action": "craft_planks",
+      "sample": 2,
+      "executionId": "aad1902f-c0eb-4a9b-a9b2-3518f649c8fb",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.213Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 3,
+      "finishedAt": "2026-07-27T04:20:55.216Z"
+    },
+    {
+      "action": "craft_planks",
+      "sample": 3,
+      "executionId": "52105950-e190-458d-9541-17e552fbe1a4",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.221Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 2,
+      "finishedAt": "2026-07-27T04:20:55.223Z"
+    },
+    {
+      "action": "craft_planks",
+      "sample": 4,
+      "executionId": "03863aa7-bf2c-473c-9df1-308a7f58ccb5",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.229Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 2,
+      "finishedAt": "2026-07-27T04:20:55.231Z"
+    },
+    {
+      "action": "craft_planks",
+      "sample": 5,
+      "executionId": "f0e1724b-5ab1-4ef0-a2e4-4cdd03150ce2",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.237Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 3,
+      "finishedAt": "2026-07-27T04:20:55.240Z"
+    },
+    {
+      "action": "craft_planks",
+      "sample": 6,
+      "executionId": "bdc73e9a-5d34-467a-854a-a793041b38b8",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.250Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 2,
+      "finishedAt": "2026-07-27T04:20:55.252Z"
+    },
+    {
+      "action": "craft_planks",
+      "sample": 7,
+      "executionId": "e4165d60-abb8-48ab-8e5a-ee6c8f3f3c05",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.258Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 3,
+      "finishedAt": "2026-07-27T04:20:55.261Z"
+    },
+    {
+      "action": "craft_planks",
+      "sample": 8,
+      "executionId": "1a4ffffa-7934-48df-a688-a1297cc40024",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.267Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 3,
+      "finishedAt": "2026-07-27T04:20:55.270Z"
+    },
+    {
+      "action": "craft_planks",
+      "sample": 9,
+      "executionId": "5e6f3573-af1f-4f16-8cf9-33f424d9596c",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.337Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 4,
+      "finishedAt": "2026-07-27T04:20:55.342Z"
+    },
+    {
+      "action": "craft_planks",
+      "sample": 10,
+      "executionId": "4aacc145-b396-40aa-8705-492d764dee10",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.357Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 3,
+      "finishedAt": "2026-07-27T04:20:55.360Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 1,
+      "executionId": "2f7cdc24-807e-467a-af2a-09521770ccf7",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.366Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 8,
+      "finishedAt": "2026-07-27T04:20:55.375Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 2,
+      "executionId": "14e59b29-a6a1-4908-ba9d-0e8f64539b31",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.380Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 7,
+      "finishedAt": "2026-07-27T04:20:55.388Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 3,
+      "executionId": "b4fd5d14-28dc-458b-b1a1-ae490f17b732",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.465Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 7,
+      "finishedAt": "2026-07-27T04:20:55.473Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 4,
+      "executionId": "2cc190d8-0c7e-4c7a-80b4-4635f1d4e2ae",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.478Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 8,
+      "finishedAt": "2026-07-27T04:20:55.486Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 5,
+      "executionId": "0070d866-193e-41c3-939a-cbd6d94ff4aa",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.492Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 11,
+      "finishedAt": "2026-07-27T04:20:55.503Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 6,
+      "executionId": "11f9bdf2-11f2-42a1-a30a-5ff2bb409d5b",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.513Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 7,
+      "finishedAt": "2026-07-27T04:20:55.520Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 7,
+      "executionId": "a59d468a-c7df-4c26-b978-5145849ecb74",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.526Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 5,
+      "finishedAt": "2026-07-27T04:20:55.531Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 8,
+      "executionId": "9e63d1a9-50b2-4c86-a5ea-2fa4453927a2",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.538Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 10,
+      "finishedAt": "2026-07-27T04:20:55.548Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 9,
+      "executionId": "6b2e9714-b1b3-4ede-9b9c-ed36832108ca",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.554Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 5,
+      "finishedAt": "2026-07-27T04:20:55.559Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 10,
+      "executionId": "dc96a221-3504-49b6-90c5-a218e7898d71",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:55.565Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 8,
+      "finishedAt": "2026-07-27T04:20:55.573Z"
+    },
+    {
+      "action": "collect_wood",
+      "sample": 1,
+      "executionId": "5ac010f4-921c-4e7b-b0bd-e99338d926ac",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:20:59.202Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "logName": "oak_log",
+        "logsBefore": 0,
+        "logsAfter": 1,
+        "target": {
+          "x": 110,
+          "y": 120,
+          "z": 100
+        },
+        "collection": {
+          "collected": true,
+          "code": "DROP_COLLECTED",
+          "dropsObserved": 1,
+          "candidateDropIds": [
+            9974
+          ],
+          "selectedDropId": 9974,
+          "spawnDelayMs": -515,
+          "pathAttempts": 1,
+          "initialDropPosition": {
+            "x": 110.62,
+            "y": 120.17,
+            "z": 100.64
+          },
+          "finalDropPosition": {
+            "x": 111.57,
+            "y": 120,
+            "z": 100.49
+          },
+          "dropDisappeared": false,
+          "inventoryDelta": 1
+        }
+      },
+      "durationMs": 7224,
+      "finishedAt": "2026-07-27T04:21:06.426Z"
+    },
+    {
+      "action": "craft_planks",
+      "sample": 1,
+      "executionId": "de90f6bb-7bc6-4527-af1b-ee0fae97618b",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:21:06.426Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 2,
+      "finishedAt": "2026-07-27T04:21:06.428Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 1,
+      "executionId": "428b0c5b-e839-4e49-a8a5-3931cb13d07d",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:21:06.428Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 2,
+      "finishedAt": "2026-07-27T04:21:06.430Z"
+    },
+    {
+      "action": "collect_wood",
+      "sample": 2,
+      "executionId": "f7c0c152-5d12-43d7-b140-97fc3cb694aa",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:21:10.007Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "logName": "oak_log",
+        "logsBefore": 0,
+        "logsAfter": 1,
+        "target": {
+          "x": 110,
+          "y": 120,
+          "z": 100
+        },
+        "collection": {
+          "collected": true,
+          "code": "DROP_COLLECTED",
+          "dropsObserved": 1,
+          "candidateDropIds": [
+            10008
+          ],
+          "selectedDropId": 10008,
+          "spawnDelayMs": -514,
+          "pathAttempts": 1,
+          "initialDropPosition": {
+            "x": 110.68,
+            "y": 120.26,
+            "z": 100.58
+          },
+          "finalDropPosition": {
+            "x": 111.24,
+            "y": 120,
+            "z": 100.61
+          },
+          "dropDisappeared": false,
+          "inventoryDelta": 1
+        }
+      },
+      "durationMs": 7217,
+      "finishedAt": "2026-07-27T04:21:17.224Z"
+    },
+    {
+      "action": "craft_planks",
+      "sample": 2,
+      "executionId": "69fca3b6-e360-4af0-9f96-b98db237bb4f",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:21:17.224Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 3,
+      "finishedAt": "2026-07-27T04:21:17.227Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 2,
+      "executionId": "b50bb18e-12fa-4cff-a751-2088692824df",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:21:17.227Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 3,
+      "finishedAt": "2026-07-27T04:21:17.230Z"
+    },
+    {
+      "action": "collect_wood",
+      "sample": 3,
+      "executionId": "684af863-b678-4d08-81d9-8ab9c7bfaad0",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:21:20.870Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "logName": "oak_log",
+        "logsBefore": 0,
+        "logsAfter": 1,
+        "target": {
+          "x": 110,
+          "y": 120,
+          "z": 100
+        },
+        "collection": {
+          "collected": true,
+          "code": "DROP_COLLECTED",
+          "dropsObserved": 1,
+          "candidateDropIds": [
+            10042
+          ],
+          "selectedDropId": 10042,
+          "spawnDelayMs": -512,
+          "pathAttempts": 0,
+          "initialDropPosition": {
+            "x": 110.57,
+            "y": 120.61,
+            "z": 100.41
+          },
+          "finalDropPosition": null,
+          "dropDisappeared": false,
+          "inventoryDelta": 1
+        }
+      },
+      "durationMs": 5768,
+      "finishedAt": "2026-07-27T04:21:26.638Z"
+    },
+    {
+      "action": "craft_planks",
+      "sample": 3,
+      "executionId": "4cdb0569-6be7-443a-8e82-08197029252a",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:21:26.638Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 2,
+      "finishedAt": "2026-07-27T04:21:26.640Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 3,
+      "executionId": "bc61a53c-0a2a-4f30-993e-f9e1b7f31b27",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:21:26.640Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 5,
+      "finishedAt": "2026-07-27T04:21:26.645Z"
+    },
+    {
+      "action": "collect_wood",
+      "sample": 4,
+      "executionId": "70da0207-9189-43a8-91cc-3776ea42e91d",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:21:30.209Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "logName": "oak_log",
+        "logsBefore": 0,
+        "logsAfter": 1,
+        "target": {
+          "x": 110,
+          "y": 120,
+          "z": 100
+        },
+        "collection": {
+          "collected": true,
+          "code": "DROP_COLLECTED",
+          "dropsObserved": 1,
+          "candidateDropIds": [
+            10066
+          ],
+          "selectedDropId": 10066,
+          "spawnDelayMs": -509,
+          "pathAttempts": 0,
+          "initialDropPosition": {
+            "x": 110.58,
+            "y": 120.29,
+            "z": 100.74
+          },
+          "finalDropPosition": null,
+          "dropDisappeared": false,
+          "inventoryDelta": 1
+        }
+      },
+      "durationMs": 5706,
+      "finishedAt": "2026-07-27T04:21:35.915Z"
+    },
+    {
+      "action": "craft_planks",
+      "sample": 4,
+      "executionId": "b24ceb8e-155c-4d22-a17a-f4a851df6773",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:21:35.915Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 2,
+      "finishedAt": "2026-07-27T04:21:35.917Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 4,
+      "executionId": "7df0a5d8-7bf6-4b7f-a2ef-96b3448ed3c1",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:21:35.917Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 3,
+      "finishedAt": "2026-07-27T04:21:35.920Z"
+    },
+    {
+      "action": "collect_wood",
+      "sample": 5,
+      "executionId": "2b610ca6-32d0-438f-9a3d-66328953f251",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:21:39.499Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "logName": "oak_log",
+        "logsBefore": 0,
+        "logsAfter": 1,
+        "target": {
+          "x": 110,
+          "y": 120,
+          "z": 100
+        },
+        "collection": {
+          "collected": true,
+          "code": "DROP_COLLECTED",
+          "dropsObserved": 1,
+          "candidateDropIds": [
+            10101
+          ],
+          "selectedDropId": 10101,
+          "spawnDelayMs": -508,
+          "pathAttempts": 0,
+          "initialDropPosition": {
+            "x": 110.53,
+            "y": 120.47,
+            "z": 100.69
+          },
+          "finalDropPosition": null,
+          "dropDisappeared": false,
+          "inventoryDelta": 1
+        }
+      },
+      "durationMs": 5719,
+      "finishedAt": "2026-07-27T04:21:45.219Z"
+    },
+    {
+      "action": "craft_planks",
+      "sample": 5,
+      "executionId": "ea1758c0-b38e-42e6-b7c0-114139ff10a1",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:21:45.219Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 1,
+      "finishedAt": "2026-07-27T04:21:45.220Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 5,
+      "executionId": "1bf5ad3f-8cdd-43e6-8600-1b446a09feb1",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:21:45.220Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 3,
+      "finishedAt": "2026-07-27T04:21:45.223Z"
+    },
+    {
+      "action": "collect_wood",
+      "sample": 6,
+      "executionId": "945b3dc4-9da8-41e8-84d8-39edb636fb8e",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:21:48.800Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "logName": "oak_log",
+        "logsBefore": 0,
+        "logsAfter": 1,
+        "target": {
+          "x": 110,
+          "y": 120,
+          "z": 100
+        },
+        "collection": {
+          "collected": true,
+          "code": "DROP_COLLECTED",
+          "dropsObserved": 1,
+          "candidateDropIds": [
+            10131
+          ],
+          "selectedDropId": 10131,
+          "spawnDelayMs": -508,
+          "pathAttempts": 0,
+          "initialDropPosition": {
+            "x": 110.51,
+            "y": 120.5,
+            "z": 100.44
+          },
+          "finalDropPosition": null,
+          "dropDisappeared": false,
+          "inventoryDelta": 1
+        }
+      },
+      "durationMs": 5767,
+      "finishedAt": "2026-07-27T04:21:54.567Z"
+    },
+    {
+      "action": "craft_planks",
+      "sample": 6,
+      "executionId": "048bb55d-933c-44f0-ae5d-ec26dab051d2",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:21:54.567Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 2,
+      "finishedAt": "2026-07-27T04:21:54.569Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 6,
+      "executionId": "94b00f28-af27-41ca-a134-612d07b7b2b8",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:21:54.569Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 2,
+      "finishedAt": "2026-07-27T04:21:54.571Z"
+    },
+    {
+      "action": "collect_wood",
+      "sample": 7,
+      "executionId": "79448f0a-65f1-433d-a077-d7cb01fc3f26",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:21:58.147Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "logName": "oak_log",
+        "logsBefore": 0,
+        "logsAfter": 1,
+        "target": {
+          "x": 110,
+          "y": 120,
+          "z": 100
+        },
+        "collection": {
+          "collected": true,
+          "code": "DROP_COLLECTED",
+          "dropsObserved": 1,
+          "candidateDropIds": [
+            10161
+          ],
+          "selectedDropId": 10161,
+          "spawnDelayMs": -496,
+          "pathAttempts": 0,
+          "initialDropPosition": {
+            "x": 110.64,
+            "y": 120.3,
+            "z": 100.48
+          },
+          "finalDropPosition": null,
+          "dropDisappeared": false,
+          "inventoryDelta": 1
+        }
+      },
+      "durationMs": 5699,
+      "finishedAt": "2026-07-27T04:22:03.846Z"
+    },
+    {
+      "action": "craft_planks",
+      "sample": 7,
+      "executionId": "01de0f0f-22b1-4dca-a951-34ef77cf0c57",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:22:03.847Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 1,
+      "finishedAt": "2026-07-27T04:22:03.848Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 7,
+      "executionId": "ee5882aa-fe9a-4bd2-bf26-db8fc44bda51",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:22:03.848Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 3,
+      "finishedAt": "2026-07-27T04:22:03.851Z"
+    },
+    {
+      "action": "collect_wood",
+      "sample": 8,
+      "executionId": "574eafa2-1c7f-49c6-803a-d81f7e7caf6c",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:22:07.488Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "logName": "oak_log",
+        "logsBefore": 0,
+        "logsAfter": 1,
+        "target": {
+          "x": 110,
+          "y": 120,
+          "z": 100
+        },
+        "collection": {
+          "collected": true,
+          "code": "DROP_COLLECTED",
+          "dropsObserved": 1,
+          "candidateDropIds": [
+            10196
+          ],
+          "selectedDropId": 10196,
+          "spawnDelayMs": -513,
+          "pathAttempts": 0,
+          "initialDropPosition": {
+            "x": 110.7,
+            "y": 120.62,
+            "z": 100.73
+          },
+          "finalDropPosition": null,
+          "dropDisappeared": false,
+          "inventoryDelta": 1
+        }
+      },
+      "durationMs": 5734,
+      "finishedAt": "2026-07-27T04:22:13.222Z"
+    },
+    {
+      "action": "craft_planks",
+      "sample": 8,
+      "executionId": "d2901874-da80-4ce3-8e3d-e0623881a5f9",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:22:13.222Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 1,
+      "finishedAt": "2026-07-27T04:22:13.223Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 8,
+      "executionId": "44512792-37df-4131-9d3b-1206738cb26c",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:22:13.224Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 2,
+      "finishedAt": "2026-07-27T04:22:13.227Z"
+    },
+    {
+      "action": "collect_wood",
+      "sample": 9,
+      "executionId": "95f497d3-e2e7-4fc4-a49c-fe0396588862",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:22:16.804Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "logName": "oak_log",
+        "logsBefore": 0,
+        "logsAfter": 1,
+        "target": {
+          "x": 110,
+          "y": 120,
+          "z": 100
+        },
+        "collection": {
+          "collected": true,
+          "code": "DROP_COLLECTED",
+          "dropsObserved": 1,
+          "candidateDropIds": [
+            10213
+          ],
+          "selectedDropId": 10213,
+          "spawnDelayMs": -509,
+          "pathAttempts": 0,
+          "initialDropPosition": {
+            "x": 110.34,
+            "y": 120.14,
+            "z": 100.45
+          },
+          "finalDropPosition": null,
+          "dropDisappeared": false,
+          "inventoryDelta": 1
+        }
+      },
+      "durationMs": 5707,
+      "finishedAt": "2026-07-27T04:22:22.511Z"
+    },
+    {
+      "action": "craft_planks",
+      "sample": 9,
+      "executionId": "f9ff8f84-07bb-42d5-9e41-ef4db73e148a",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:22:22.511Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 2,
+      "finishedAt": "2026-07-27T04:22:22.513Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 9,
+      "executionId": "4268eff7-c4bc-47a4-bc1c-d1b484948f06",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:22:22.513Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 2,
+      "finishedAt": "2026-07-27T04:22:22.515Z"
+    },
+    {
+      "action": "collect_wood",
+      "sample": 10,
+      "executionId": "52d008c4-b740-413a-b829-36ef9228ac2d",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:22:26.089Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "logName": "oak_log",
+        "logsBefore": 0,
+        "logsAfter": 1,
+        "target": {
+          "x": 110,
+          "y": 120,
+          "z": 100
+        },
+        "collection": {
+          "collected": true,
+          "code": "DROP_COLLECTED",
+          "dropsObserved": 1,
+          "candidateDropIds": [
+            10242
+          ],
+          "selectedDropId": 10242,
+          "spawnDelayMs": -511,
+          "pathAttempts": 0,
+          "initialDropPosition": {
+            "x": 110.6,
+            "y": 120.25,
+            "z": 100.31
+          },
+          "finalDropPosition": null,
+          "dropDisappeared": false,
+          "inventoryDelta": 1
+        }
+      },
+      "durationMs": 5712,
+      "finishedAt": "2026-07-27T04:22:31.801Z"
+    },
+    {
+      "action": "craft_planks",
+      "sample": 10,
+      "executionId": "69e8b130-39e9-43a0-bd09-ee14d79d1df9",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:22:31.801Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 2,
+      "finishedAt": "2026-07-27T04:22:31.803Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 10,
+      "executionId": "fc7a5c39-b00e-4e12-a9f2-87d4d32bb00a",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T04:22:31.803Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 2,
+      "finishedAt": "2026-07-27T04:22:31.805Z"
+    }
+  ],
+  "chains": [
+    {
+      "sample": 1,
+      "treeFoundAutomatically": true,
+      "logCollected": true,
+      "planksCrafted": true,
+      "tableCrafted": true,
+      "success": true,
+      "extraBlockChanges": []
+    },
+    {
+      "sample": 2,
+      "treeFoundAutomatically": true,
+      "logCollected": true,
+      "planksCrafted": true,
+      "tableCrafted": true,
+      "success": true,
+      "extraBlockChanges": []
+    },
+    {
+      "sample": 3,
+      "treeFoundAutomatically": true,
+      "logCollected": true,
+      "planksCrafted": true,
+      "tableCrafted": true,
+      "success": true,
+      "extraBlockChanges": []
+    },
+    {
+      "sample": 4,
+      "treeFoundAutomatically": true,
+      "logCollected": true,
+      "planksCrafted": true,
+      "tableCrafted": true,
+      "success": true,
+      "extraBlockChanges": []
+    },
+    {
+      "sample": 5,
+      "treeFoundAutomatically": true,
+      "logCollected": true,
+      "planksCrafted": true,
+      "tableCrafted": true,
+      "success": true,
+      "extraBlockChanges": []
+    },
+    {
+      "sample": 6,
+      "treeFoundAutomatically": true,
+      "logCollected": true,
+      "planksCrafted": true,
+      "tableCrafted": true,
+      "success": true,
+      "extraBlockChanges": []
+    },
+    {
+      "sample": 7,
+      "treeFoundAutomatically": true,
+      "logCollected": true,
+      "planksCrafted": true,
+      "tableCrafted": true,
+      "success": true,
+      "extraBlockChanges": []
+    },
+    {
+      "sample": 8,
+      "treeFoundAutomatically": true,
+      "logCollected": true,
+      "planksCrafted": true,
+      "tableCrafted": true,
+      "success": true,
+      "extraBlockChanges": []
+    },
+    {
+      "sample": 9,
+      "treeFoundAutomatically": true,
+      "logCollected": true,
+      "planksCrafted": true,
+      "tableCrafted": true,
+      "success": true,
+      "extraBlockChanges": []
+    },
+    {
+      "sample": 10,
+      "treeFoundAutomatically": true,
+      "logCollected": true,
+      "planksCrafted": true,
+      "tableCrafted": true,
+      "success": true,
+      "extraBlockChanges": []
+    }
+  ]
+}

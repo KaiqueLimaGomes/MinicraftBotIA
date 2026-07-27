@@ -29,7 +29,7 @@ acopladas ao mundo upstream.
 ## Ordem obrigatoria
 
 1. concluir o Experimento 0006D;
-2. criar a branch `spike/swarm-executor`;
+2. criar a branch `feat/limited-skill-executor`;
 3. adicionar `LICENSE` e `THIRD_PARTY_NOTICES.md`;
 4. analisar o codigo upstream exato antes de qualquer adaptacao;
 5. criar `agent-runtime` separado de `bot-smoke-test`;
@@ -40,6 +40,17 @@ acopladas ao mundo upstream.
 
 Nenhum codigo do upstream foi adaptado nesta etapa. O licenciamento e os cabecalhos
 serao adicionados antes do primeiro reuso efetivo.
+
+## Inicio do executor limitado
+
+O Experimento 0006D foi aprovado no commit `d49c8fa`. A branch
+`feat/limited-skill-executor` iniciou a implementacao independente do runtime.
+O commit upstream fixado foi lido antes da implementacao e sua licenca MIT foi
+registrada em `THIRD_PARTY_NOTICES.md`.
+
+O primeiro incremento inclui o runner protegido e implementacoes isoladas de
+`craft_planks`, `craft_crafting_table` e `collect_wood`. Elas ainda nao estao
+conectadas ao planner e dependem dos testes reais antes dessa integracao.
 
 ## Contrato futuro
 

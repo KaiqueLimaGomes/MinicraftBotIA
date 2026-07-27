@@ -235,3 +235,22 @@ Fase 7 aprovada em 2026-07-26:
 - blocos colocados: 0.
 
 Progresso atual: 7/12 fases e 21/36 decisoes.
+
+Fase 8 aprovada em 2026-07-26:
+
+- snapshot com abrigo presente e `stone_pickaxe`: 3/3;
+- `mine_coal`: 3/3;
+- `catalogExecutable`: 3/3;
+- decisao ainda valida depois da inferencia: 3/3;
+- nova construcao de abrigo: 0;
+- acoes executadas: 0.
+
+A primeira tentativa foi rejeitada: embora a picareta, o carvao e o ferro fossem
+observados, `collect_wood` ainda competia. Mineração de carvao e ferro visiveis
+passou a ter prioridade admissivel quando a ferramenta correta existe. As duas
+acoes continuam alternativas aceitaveis quando ambas sao possiveis.
+
+O modo de preparacao tambem passou a imprimir mudancas de slots do inventario, nao
+apenas eventos de vida e fome.
+
+Progresso atual: 8/12 fases e 24/36 decisoes.

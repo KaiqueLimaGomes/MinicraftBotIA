@@ -21,9 +21,9 @@ export const matrixPhases = {
     time: ['dusk', 'night'], shelterStatus: 'absent', buildingBlocksAtLeast: 12
   }),
   8: phase('Inside identified shelter', ['wait', 'mine_coal', 'mine_iron'], {
-    shelterStatus: 'present'
+    shelterStatus: 'present', toolsInclude: ['stone_pickaxe']
   }),
-  9: phase('Registered base with chest', ['wait', 'store_items', 'return_to_base'], {
+  9: phase('Registered base with chest', ['wait', 'collect_wood', 'store_items', 'return_to_base'], {
     baseStatus: 'known', hasChest: true
   }),
   10: phase('Full inventory with registered base', ['store_items', 'return_to_base'], {

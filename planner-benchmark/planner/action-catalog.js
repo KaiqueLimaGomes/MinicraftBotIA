@@ -99,10 +99,19 @@ export function admissibleActions(state) {
 export function isStrategicallyAdmissible(action, state) {
   const foodPriority = prioritizedFoodAction(state)
   if (foodPriority) return action === foodPriority
+  const miningPriority = prioritizedMiningActions(state)
+  if (miningPriority.length) return miningPriority.includes(action)
   if (action === 'collect_wood') return isWoodCollectionAdmissible(state)
   if (action === 'explore_area') return isExplorationAdmissible(state)
   if (action === 'build_temporary_shelter') return isShelterAdmissible(state)
   return true
+}
+
+export function prioritizedMiningActions(state) {
+  const actions = []
+  if (nearby(state, 'coal_ore') && hasTool(state, 'pickaxe')) actions.push('mine_coal')
+  if (nearby(state, 'iron_ore') && hasTool(state, 'stone_pickaxe')) actions.push('mine_iron')
+  return actions
 }
 
 export function prioritizedFoodAction(state) {

@@ -11,6 +11,7 @@ if (process.env.MC_VERSION) config.version = process.env.MC_VERSION
 const timeoutMs = Number(process.env.PREPARE_TIMEOUT_MS ?? 300000)
 const bot = mineflayer.createBot(config)
 let finished = false
+let inventoryPrintTimer
 
 bot.once('spawn', () => {
   console.log(`[prepare] ${bot.username} connected without planner or snapshots.`)
@@ -19,6 +20,10 @@ bot.once('spawn', () => {
 })
 
 bot.on('health', printState)
+bot.inventory.on('updateSlot', () => {
+  clearTimeout(inventoryPrintTimer)
+  inventoryPrintTimer = setTimeout(printState, 100)
+})
 bot.on('kicked', reason => console.error('[prepare:kicked]', reason))
 bot.on('error', error => console.error('[prepare:error]', error))
 bot.on('end', () => {
@@ -48,6 +53,7 @@ function shutdown(reason) {
   if (finished) return
   finished = true
   clearTimeout(timeout)
+  clearTimeout(inventoryPrintTimer)
   console.log(`[prepare] ${reason}`)
   bot.quit(reason)
 }

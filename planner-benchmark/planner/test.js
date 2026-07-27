@@ -156,6 +156,17 @@ await test('recognizes real 1.21.11 beef item id as food', async () => {
   assert.deepEqual(admissibleActions(state), ['eat_food'])
 })
 
+await test('visible ores with stone pickaxe override generic wood collection', async () => {
+  const state = normalizeState({
+    hunger: 20,
+    inventory: { stone_pickaxe: 1 },
+    tools: ['stone_pickaxe'],
+    nearby: ['coal_ore', 'iron_ore', 'oak_tree', 'stone'],
+    shelterStatus: 'present'
+  })
+  assert.deepEqual(admissibleActions(state), ['mine_coal', 'mine_iron'])
+})
+
 console.log('All planner tests passed.')
 
 async function test(name, fn) {

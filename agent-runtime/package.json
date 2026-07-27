@@ -8,14 +8,17 @@
     "test": "node test/run-tests.js",
     "check": "node --check index.js && node --check manual-run.js && node --check experiments/run-skill-matrix.js",
     "manual": "node manual-run.js",
-    "experiment:skills": "node --env-file-if-exists=../.env.local experiments/run-skill-matrix.js"
+    "experiment:skills": "node --env-file-if-exists=../.env.local experiments/run-skill-matrix.js",
+    "experiment:physical": "node experiments/run-physical-condition.js",
+    "experiment:physical:summary": "node experiments/summarize-physical-matrix.js"
   },
   "engines": {
     "node": ">=22"
   },
   "dependencies": {
-    "mineflayer": "4.33.0",
+    "mineflayer": "4.37.1",
     "mineflayer-pathfinder": "2.4.5",
-    "rcon-client": "4.2.5"
+    "rcon-client": "4.2.5",
+    "vec3": "0.1.10"
   }
 }

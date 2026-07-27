@@ -13,9 +13,17 @@ const username = process.env.MC_USERNAME ?? 'AgenteExecutor'
 const rconHost = process.env.MC_RCON_HOST ?? '127.0.0.1'
 const rconPort = Number(process.env.MC_RCON_PORT ?? 25575)
 const repetitions = Number(process.env.SKILL_REPETITIONS ?? 10)
+const localPropertiesPath = path.resolve('../server/server.properties')
+const localProperties = await fs.readFile(localPropertiesPath, 'utf8')
+  .catch(() => '')
+const localPassword = localProperties
+  .split(/\r?\n/)
+  .find((line) => line.startsWith('rcon.password='))
+  ?.slice('rcon.password='.length)
+const rconPassword = process.env.MC_RCON_PASSWORD ?? localPassword
 const configValidation = validateExperimentConfig({
   rconHost,
-  password: process.env.MC_RCON_PASSWORD,
+  password: rconPassword,
   repetitions,
   allowRemote: process.env.ALLOW_REMOTE_RCON === 'true'
 })
@@ -40,7 +48,7 @@ bot.loadPlugin(pathfinder)
 const rcon = await Rcon.connect({
   host: rconHost,
   port: rconPort,
-  password: process.env.MC_RCON_PASSWORD
+  password: rconPassword
 })
 const results = []
 let fatalError = null
@@ -68,9 +76,10 @@ async function command(value) {
 }
 
 async function prepareCommon() {
+  await command(`gamemode survival ${username}`)
   await command(`clear ${username}`)
   await command(`effect clear ${username}`)
-  await command('gamerule naturalRegeneration true')
+  await command('gamerule minecraft:block_drops true')
   await waitUntil(() => bot.inventory.items().length === 0, 'empty inventory')
 }
 
@@ -85,6 +94,7 @@ async function prepareArena() {
       Math.abs(bot.entity.position.z - (z + 0.5)) < 2,
     'arena teleport'
   )
+  await delay(1_500)
 }
 
 function snapshot() {
@@ -103,8 +113,8 @@ function snapshot() {
   }
 }
 
-async function runOne(runner, action, sample) {
-  const result = await runner.run({ bot, action })
+async function runOne(runner, action, sample, params = {}) {
+  const result = await runner.run({ bot, action, params })
   results.push({
     action,
     sample,
@@ -150,10 +160,19 @@ async function runMatrix() {
   })
   for (let sample = 1; sample <= repetitions; sample += 1) {
     await prepareCommon()
-    await command(`setblock ${arena.x + 3} ${arena.y} ${arena.z} minecraft:oak_log`)
-    await delay(150)
-    await runOne(collectRunner, 'collect_wood', sample)
+    await command(`fill ${arena.x + 1} ${arena.y} ${arena.z} ${arena.x + 4} ${arena.y + 3} ${arena.z} minecraft:air`)
+    const target = { x: arena.x + 1, y: arena.y, z: arena.z }
+    await command(`setblock ${target.x} ${target.y} ${target.z} minecraft:oak_log`)
+    await waitUntil(
+      () => bot.blockAt(bot.entity.position.offset(0.5, 0, -0.5))?.name === 'oak_log',
+      'exact oak log'
+    )
+    await runOne(collectRunner, 'collect_wood', sample, {
+      target,
+      postDigVerificationMs: 10_000
+    })
     await command(`tp ${username} ${arena.x + 0.5} ${arena.y} ${arena.z + 0.5}`)
+    await delay(500)
   }
 }
 

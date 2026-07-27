@@ -1,0 +1,85 @@
+{
+  "generatedAt": "2026-07-27T03:10:46.633Z",
+  "status": "COMPLETE",
+  "repetitions": 1,
+  "summary": {
+    "craft_planks": {
+      "samples": 1,
+      "successes": 1,
+      "p95Ms": 6
+    },
+    "craft_crafting_table": {
+      "samples": 1,
+      "successes": 1,
+      "p95Ms": 9
+    },
+    "collect_wood": {
+      "samples": 1,
+      "successes": 0,
+      "p95Ms": 18562
+    }
+  },
+  "fatalError": null,
+  "results": [
+    {
+      "action": "craft_planks",
+      "sample": 1,
+      "executionId": "048e9c6d-c141-4cae-a0a4-40ba2b88f127",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T03:10:25.964Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "plankName": "oak_planks",
+        "planksBefore": 0,
+        "planksAfter": 4
+      },
+      "durationMs": 6,
+      "finishedAt": "2026-07-27T03:10:25.971Z"
+    },
+    {
+      "action": "craft_crafting_table",
+      "sample": 1,
+      "executionId": "895c1839-8119-4cb7-8003-73c9ccc86a96",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T03:10:25.976Z",
+      "status": "succeeded",
+      "success": true,
+      "code": "SKILL_SUCCEEDED",
+      "reason": null,
+      "evidence": {
+        "tablesBefore": 0,
+        "tablesAfter": 1,
+        "planksBefore": 4,
+        "planksAfter": 0
+      },
+      "durationMs": 9,
+      "finishedAt": "2026-07-27T03:10:25.985Z"
+    },
+    {
+      "action": "collect_wood",
+      "sample": 1,
+      "executionId": "82a72200-0569-4f4f-8d08-ea2998dc794d",
+      "source": "skill_runner",
+      "startedAt": "2026-07-27T03:10:27.560Z",
+      "status": "failed",
+      "success": false,
+      "code": "VERIFY_PROGRESS_FAILED",
+      "reason": "Log was not confirmed in inventory after digging",
+      "evidence": {
+        "logName": "oak_log",
+        "logsBefore": 0,
+        "logsAfter": 0,
+        "target": {
+          "x": 101,
+          "y": 120,
+          "z": 100
+        }
+      },
+      "durationMs": 18562,
+      "finishedAt": "2026-07-27T03:10:46.122Z"
+    }
+  ]
+}

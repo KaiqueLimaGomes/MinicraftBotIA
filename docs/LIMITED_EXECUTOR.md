@@ -65,12 +65,24 @@ ignorado pelo Git:
 MC_RCON_PASSWORD=senha-local
 ```
 
+Quando a variavel nao existe, o harness le `rcon.password` diretamente do
+`server/server.properties` local e ignorado, sem registrar o valor.
+
 RCON remoto e bloqueado por padrao. O harness aceita no maximo dez repeticoes
 por skill e nao chama o planner.
 
+No Minecraft 1.21.11, o harness usa o novo identificador
+`minecraft:block_drops` para garantir que blocos quebrados gerem drops.
+
+O Experimento 0007A demonstrou quebra fisica 20/20 nas versoes 1.21.11 e
+1.21.8. A taxa de skill completa foi 4/10 e 9/10, respectivamente, por
+diferencas na coleta do drop. Consulte
+`experiments/0007A-matriz-compatibilidade-fisica.md`.
+
 ## Dependencias
 
-O runtime fixa `mineflayer@4.33.0`, igual ao modulo de smoke test, e
+O runtime fixa `mineflayer@4.37.1`, versao instalada pelo intervalo do modulo
+de smoke test e compativel com o servidor 1.21.11, e
 `mineflayer-pathfinder@2.4.5`.
 
 Em 2026-07-26, `npm audit` reportou seis avisos moderados transitivos no caminho

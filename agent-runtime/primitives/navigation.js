@@ -1,6 +1,8 @@
 export function stopNavigation(bot) {
   try {
-    bot.pathfinder?.stop?.()
+    if (bot.pathfinder?.isMoving?.()) {
+      bot.pathfinder.stop()
+    }
   } catch {
     // Best effort during timeout cleanup.
   }

@@ -18,6 +18,12 @@ server/version_history.json
 server/config/
 server/.console_history
 
+# Isolated executor compatibility server runtime
+server-executor-1.21.8/*
+!server-executor-1.21.8/README.md
+!server-executor-1.21.8/start-server.bat
+!server-executor-1.21.8/server.properties.template
+
 # Local AI / generated data
 logs/
 backups/

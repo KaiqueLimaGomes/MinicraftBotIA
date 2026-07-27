@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import { setTimeout as delay } from 'node:timers/promises'
+import { EventEmitter } from 'node:events'
 import { SkillRunner } from '../runtime/skill-runner.js'
 import { createSkillRegistry } from '../runtime/skill-registry.js'
 import { craftPlanksSkill } from '../skills/craft-planks.js'
@@ -16,8 +17,17 @@ function fakeBot(items = []) {
     clearControlStates: 0
   }
 
-  return {
+  return Object.assign(new EventEmitter(), {
     calls,
+    entity: {
+      onGround: true,
+      position: {
+        distanceTo: () => 3
+      }
+    },
+    version: '1.21.11',
+    lookAt: async () => {},
+    digTime: () => 3_000,
     registry: {
       itemsByName: {
         oak_planks: { id: 5 }
@@ -37,11 +47,12 @@ function fakeBot(items = []) {
       else inventory.push({ name: 'oak_planks', count: 4 })
     },
     pathfinder: {
+      isMoving: () => true,
       stop: () => { calls.pathfinderStop += 1 }
     },
     stopDigging: () => { calls.stopDigging += 1 },
     clearControlStates: () => { calls.clearControlStates += 1 }
-  }
+  })
 }
 
 function runner({
@@ -202,7 +213,7 @@ await test('craft_planks requires a real log and does not hide prerequisites', a
 await test('craft_planks succeeds only after plank inventory increases', async () => {
   const bot = fakeBot([{ name: 'oak_log', count: 1 }])
   const result = await runner().run({ bot, action: 'craft_planks' })
-  assert.equal(result.code, 'SKILL_SUCCEEDED')
+  assert.equal(result.code, 'SKILL_SUCCEEDED', result.reason)
   assert.equal(result.success, true)
   assert.deepEqual(result.evidence, {
     plankName: 'oak_planks',
@@ -251,23 +262,32 @@ await test('collect_wood rejects execution without pathfinder', async () => {
 await test('collect_wood succeeds only when the drop reaches inventory', async () => {
   const bot = fakeBot()
   const target = {
+    type: 17,
     name: 'oak_log',
-    position: { x: 2, y: 64, z: 2 }
+    position: {
+      x: 2,
+      y: 64,
+      z: 2,
+      offset: () => ({}),
+      equals: () => true
+    }
   }
+  let dug = false
   bot.registry.blocksByName = { oak_log: { id: 17 } }
   bot.findBlocks = () => [target.position]
-  bot.blockAt = () => target
+  bot.blockAt = () => dug ? { type: 0, name: 'air' } : target
   bot.canDigBlock = () => true
   bot.pathfinder.goto = async () => {}
   bot.dig = async () => {
+    dug = true
     const items = bot.inventory.items()
     items.push({ name: 'oak_log', count: 1 })
     bot.inventory.items = () => items.map((item) => ({ ...item }))
   }
 
-  const result = await runner({ skills: [collectWoodSkill], timeoutMs: 500 })
+  const result = await runner({ skills: [collectWoodSkill], timeoutMs: 2_000 })
     .run({ bot, action: 'collect_wood' })
-  assert.equal(result.code, 'SKILL_SUCCEEDED')
+  assert.equal(result.code, 'SKILL_SUCCEEDED', result.reason)
   assert.equal(result.evidence.logsAfter, 1)
 })
 

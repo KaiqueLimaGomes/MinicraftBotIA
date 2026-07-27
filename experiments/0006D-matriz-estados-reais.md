@@ -49,6 +49,32 @@ O agregador gera `matrix-results/0006D-latest.md` e
 `matrix-results/0006D-latest.json`, contendo apenas resultados agregados e
 amostras relevantes para auditoria. Os JSONL brutos continuam ignorados pelo Git.
 
+### Preparacao de jogador persistido
+
+Como comandos `clear`, `tp` e `effect clear` exigem normalmente um jogador online,
+usar primeiro:
+
+```powershell
+cd C:\MinicraftBotIA\bot-smoke-test
+$env:MC_USERNAME='AgenteShadow'
+npm run prepare
+```
+
+Esse processo conecta o jogador sem planner, snapshots, chat ou movimento. Enquanto
+ele estiver conectado, aplicar no console do servidor:
+
+```text
+gamemode survival AgenteShadow
+clear AgenteShadow
+effect clear AgenteShadow
+tp AgenteShadow X Y Z
+```
+
+Depois pressionar `Ctrl+C` no PowerShell de preparação. O servidor persiste posição
+e inventário. Ajustar `time set 0` imediatamente antes de iniciar a fase 1.
+
+O modo de preparação nunca conta como amostra do experimento.
+
 ## Matriz
 
 | Fase | Estado |

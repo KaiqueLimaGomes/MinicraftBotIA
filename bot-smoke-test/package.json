@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
+    "prepare": "node prepare-agent.js",
     "shadow": "node shadow-mode.js",
     "shadow:matrix:summary": "node summarize-matrix.js",
     "test:snapshot": "node state-snapshot.test.js && node shadow-config.test.js && node matrix-analysis.test.js"

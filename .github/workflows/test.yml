@@ -33,3 +33,4 @@ jobs:
         run: |
           node --check planner-benchmark/protected-benchmark.js
           node --check bot-smoke-test/shadow-mode.js
+          node --check bot-smoke-test/prepare-agent.js

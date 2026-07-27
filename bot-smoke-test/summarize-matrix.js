@@ -68,5 +68,6 @@ ${Object.entries(phaseCounts).map(([phase, count]) => `- Fase ${phase}: ${count}
 }
 
 function pct(value) {
+  if (value === null || value === undefined) return 'N/A'
   return `${Math.round(value * 100)}%`
 }

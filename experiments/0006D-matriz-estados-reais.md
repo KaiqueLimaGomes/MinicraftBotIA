@@ -75,6 +75,13 @@ e inventário. Ajustar `time set 0` imediatamente antes de iniciar a fase 1.
 
 O modo de preparação nunca conta como amostra do experimento.
 
+### Aquecimento observacional
+
+Em fases da matriz, o shadow mode aguarda cinco segundos depois do evento `spawn`
+antes do primeiro snapshot. Isso permite o carregamento de chunks, blocos e
+entidades proximas. O timer global e cancelado quando a quantidade de amostras e
+atingida, evitando processo orfao depois do terceiro snapshot.
+
 ## Matriz
 
 | Fase | Estado |
@@ -115,5 +122,20 @@ Ela sera desenvolvida na branch `feat/limited-skill-executor`, sem commit direto
 
 ## Estado
 
-Pronto para iniciar as 12 fases. Ainda nao executado, pois cada estado deve ser
-preparado e conferido visualmente no servidor.
+Fase 1 aprovada em 2026-07-26:
+
+- snapshot correspondente: 3/3;
+- `collect_wood`: 3/3;
+- `catalogExecutable`: 3/3;
+- decisao ainda valida depois da inferencia: 3/3;
+- mesma entrada, mesma decisao: 100%;
+- latencia p95: 1.237 ms;
+- acoes executadas: 0;
+- erros nao tratados: 0.
+
+A primeira tentativa foi rejeitada porque o snapshot imediato ocorreu antes do
+carregamento dos blocos proximos. O JSONL foi movido para
+`shadow-results/rejected/` e nao participa do agregado. A instrumentacao passou a
+aguardar cinco segundos e a limpar o timer global ao atingir a amostra.
+
+Progresso atual: 1/12 fases e 3/36 decisoes.

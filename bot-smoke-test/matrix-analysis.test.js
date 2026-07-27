@@ -42,5 +42,6 @@ assert.equal(summary.phasesCompleted, 1)
 assert.equal(summary.snapshotMatchRate, 1)
 assert.equal(summary.catalogExecutableRate, 1)
 assert.equal(summary.p95LatencyMs, 800)
+assert.equal(summary.criticalCorrectRate, null)
 
 console.log('All matrix analysis tests passed.')

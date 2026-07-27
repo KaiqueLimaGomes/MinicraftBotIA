@@ -22,6 +22,7 @@ if (process.env.MC_VERSION) config.version = process.env.MC_VERSION
 
 const intervalMs = Number(process.env.SHADOW_INTERVAL_MS ?? 15000)
 const durationMs = Number(process.env.SHADOW_DURATION_MS ?? 1200000)
+const warmupMs = Number(process.env.SHADOW_WARMUP_MS ?? (process.env.SHADOW_PHASE ? 5000 : 0))
 const model = process.env.OLLAMA_MODEL ?? 'qwen3:4b-instruct-2507-q4_K_M'
 const ollamaUrl = process.env.OLLAMA_URL ?? 'http://127.0.0.1:11434/api/generate'
 const ollamaTimeoutMs = Number(process.env.OLLAMA_TIMEOUT_MS ?? 10000)
@@ -35,6 +36,7 @@ const snapshotOptions = {
 const bot = mineflayer.createBot(config)
 const planner = createPlanner({ generate })
 let timer
+let durationTimer
 let deciding = false
 let previousObservation = null
 let spawned = false
@@ -46,9 +48,13 @@ bot.once('spawn', async () => {
   spawned = true
   console.log(`[shadow] ${bot.username} connected. No actions will be executed.`)
   await fs.mkdir(path.dirname(logPath), { recursive: true })
+  if (warmupMs > 0) {
+    console.log(`[shadow] Waiting ${warmupMs}ms for chunks and entities to load.`)
+    await wait(warmupMs)
+  }
   await observe()
   if (!stopping) timer = setInterval(observe, intervalMs)
-  if (!stopping) setTimeout(stop, durationMs)
+  if (!stopping) durationTimer = setTimeout(stop, durationMs)
 })
 
 bot.on('kicked', reason => console.error('[shadow:kicked]', reason))
@@ -63,6 +69,7 @@ bot.on('error', error => {
       message: error.message
     }).finally(() => {
       if (timer) clearInterval(timer)
+      if (durationTimer) clearTimeout(durationTimer)
       bot._client?.end('Connection failed')
       bot._client?.socket?.destroy()
       setTimeout(() => process.exit(1), 250)
@@ -178,7 +185,12 @@ function stop() {
   if (stopping) return
   stopping = true
   if (timer) clearInterval(timer)
+  if (durationTimer) clearTimeout(durationTimer)
   bot.quit('Shadow mode completed')
+}
+
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 function decisionRelation(previous, fingerprint, action) {

@@ -39,7 +39,7 @@ export function summarizeMatrix(records) {
     catalogExecutableRate: rate(decisions, row => row.planner?.validation?.catalogExecutable),
     stillExecutableRate: rate(decisions, row => row.decisionStillExecutable),
     expectedActionRate: rate(decisions, row => row.matrix?.expectedActionMatched),
-    criticalCorrectRate: rate(
+    criticalCorrectRate: rateNullable(
       decisions.filter(row => [6, 7, 10, 12].includes(row.matrix?.phase)),
       row => row.matrix?.expectedActionMatched
     ),
@@ -58,6 +58,10 @@ export function summarizeMatrix(records) {
 
 function rate(items, predicate) {
   return items.length ? items.filter(predicate).length / items.length : 0
+}
+
+function rateNullable(items, predicate) {
+  return items.length ? items.filter(predicate).length / items.length : null
 }
 
 function percentile(values, quantile) {

@@ -1,0 +1,492 @@
+{
+  "generatedAt": "2026-07-27T00:19:13.974Z",
+  "summary": {
+    "phasesCompleted": 1,
+    "decisions": 3,
+    "snapshotMatchRate": 1,
+    "catalogExecutableRate": 1,
+    "stillExecutableRate": 1,
+    "expectedActionRate": 1,
+    "criticalCorrectRate": null,
+    "sameStateSameDecisionRate": 1,
+    "prematureExploreCount": 0,
+    "prematureShelterCount": 0,
+    "unhandledErrors": 0,
+    "p95LatencyMs": 1237
+  },
+  "phaseCounts": {
+    "1": 3,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+    "9": 0,
+    "10": 0,
+    "11": 0,
+    "12": 0
+  },
+  "records": [
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T00:17:59.068Z",
+      "latencyMs": 1237,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "first_observation",
+      "snapshot": {
+        "capturedAt": "2026-07-27T00:17:57.788Z",
+        "gameTick": 19356,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 436,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {},
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": []
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T00:17:59.068Z",
+        "gameTick": 19376,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 435,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {},
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": []
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "Collect wood to craft a crafting table",
+          "action": "collect_wood",
+          "target": "oak_tree",
+          "quantity": 8,
+          "priority": 1,
+          "reason": "The bot needs a crafting table to craft tools and items, and wood is the first resource required to build it. Since the bot is in day time and has nearby oak logs, collecting wood is the highest priority action to progress toward building a shelter and ensuring survival."
+        },
+        "source": "llm",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "oak_tree",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 8,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
+        "validation": {
+          "classification": "VALID_PREFERRED",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 1,
+        "description": "Morning, empty inventory, oak nearby",
+        "expectedActions": [
+          "collect_wood"
+        ],
+        "expectedSnapshot": {
+          "time": [
+            "morning",
+            "day"
+          ],
+          "inventoryEmpty": true,
+          "nearbyIncludes": [
+            "oak_tree"
+          ]
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T00-17-52.108Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T00:18:15.180Z",
+      "latencyMs": 1020,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "same_state_same_decision",
+      "snapshot": {
+        "capturedAt": "2026-07-27T00:18:14.116Z",
+        "gameTick": 19676,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 420,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {},
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": []
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T00:18:15.180Z",
+        "gameTick": 19696,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 419,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {},
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": []
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "Collect wood to craft a crafting table",
+          "action": "collect_wood",
+          "target": "oak_tree",
+          "quantity": 8,
+          "priority": 1,
+          "reason": "The bot needs a crafting table to progress, and wood is available nearby, making it the highest priority action to begin building a base and ensuring survival."
+        },
+        "source": "llm",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "oak_tree",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 8,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
+        "validation": {
+          "classification": "VALID_PREFERRED",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 1,
+        "description": "Morning, empty inventory, oak nearby",
+        "expectedActions": [
+          "collect_wood"
+        ],
+        "expectedSnapshot": {
+          "time": [
+            "morning",
+            "day"
+          ],
+          "inventoryEmpty": true,
+          "nearbyIncludes": [
+            "oak_tree"
+          ]
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T00-17-52.108Z.jsonl"
+    },
+    {
+      "type": "shadow_decision",
+      "timestamp": "2026-07-27T00:18:30.258Z",
+      "latencyMs": 1084,
+      "worldChangedDuringInference": false,
+      "decisionStateChangedDuringInference": false,
+      "stateChangedDuringInference": false,
+      "decisionStillExecutable": true,
+      "decisionRelation": "same_state_same_decision",
+      "snapshot": {
+        "capturedAt": "2026-07-27T00:18:29.132Z",
+        "gameTick": 19976,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 405,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {},
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": []
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "stateAfterInference": {
+        "capturedAt": "2026-07-27T00:18:30.258Z",
+        "gameTick": 19996,
+        "position": {
+          "x": 30.8,
+          "y": 117,
+          "z": 15.8
+        },
+        "time": "day",
+        "timeUntilNightSeconds": 404,
+        "health": 20,
+        "hunger": 20,
+        "inventory": {},
+        "inventoryFull": false,
+        "nearby": [
+          "oak_log",
+          "oak_leaves",
+          "stone",
+          "coal_ore",
+          "iron_ore",
+          "oak_tree"
+        ],
+        "observations": {
+          "blocks": [
+            "oak_log",
+            "oak_leaves",
+            "stone",
+            "coal_ore",
+            "iron_ore"
+          ],
+          "entities": []
+        },
+        "shelterStatus": "unknown",
+        "shelter": false,
+        "tools": [],
+        "hasCraftingTable": false,
+        "baseStatus": "unknown",
+        "baseKnown": false,
+        "base": null,
+        "hasChest": false,
+        "threatImmediate": false,
+        "threat": null
+      },
+      "planner": {
+        "decision": {
+          "goal": "Collect wood to craft a crafting table",
+          "action": "collect_wood",
+          "target": "oak_tree",
+          "quantity": 8,
+          "priority": 1,
+          "reason": "The bot needs a crafting table to progress, and wood is the first required resource to craft it. Collecting wood is the highest priority action given the current state and available resources."
+        },
+        "source": "llm",
+        "repaired": false,
+        "fallbackUsed": false,
+        "attempts": 1,
+        "failures": [],
+        "mechanicalRepairs": [
+          {
+            "field": "target",
+            "value": "oak_tree",
+            "reason": "DETERMINISTIC_TARGET"
+          },
+          {
+            "field": "quantity",
+            "value": 8,
+            "reason": "DEFAULT_QUANTITY"
+          }
+        ],
+        "validation": {
+          "classification": "VALID_PREFERRED",
+          "structural": true,
+          "catalogExecutable": true,
+          "executable": true,
+          "safetyApproved": true
+        }
+      },
+      "matrix": {
+        "phase": 1,
+        "description": "Morning, empty inventory, oak nearby",
+        "expectedActions": [
+          "collect_wood"
+        ],
+        "expectedSnapshot": {
+          "time": [
+            "morning",
+            "day"
+          ],
+          "inventoryEmpty": true,
+          "nearbyIncludes": [
+            "oak_tree"
+          ]
+        },
+        "snapshotValidation": {
+          "matches": true,
+          "failures": []
+        },
+        "expectedActionMatched": true
+      },
+      "sourceFile": "shadow-2026-07-27T00-17-52.108Z.jsonl"
+    }
+  ]
+}

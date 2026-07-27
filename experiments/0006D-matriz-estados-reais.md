@@ -169,3 +169,18 @@ Fase 3 aprovada em 2026-07-26:
 - chamadas aquecidas: 998 a 1.016 ms.
 
 Progresso atual: 3/12 fases e 9/36 decisoes.
+
+Fase 4 aprovada funcionalmente em 2026-07-26:
+
+- snapshot com bancada, oito tabuas, quatro gravetos e sem ferramentas: 3/3;
+- `craft_tool`: 3/3;
+- `catalogExecutable`: 3/3;
+- decisao ainda valida depois da inferencia: 3/3;
+- acoes executadas: 0.
+
+Latencias: 2.301 ms no primeiro snapshot, 2.227 ms e 1.326 ms nos snapshots
+seguintes. A amostra aquecida de 2.227 ms excede a meta de 2.000 ms e permanece
+registrada como criterio global pendente; a fase nao foi repetida para remover a
+amostra desfavoravel.
+
+Progresso atual: 4/12 fases e 12/36 decisoes.

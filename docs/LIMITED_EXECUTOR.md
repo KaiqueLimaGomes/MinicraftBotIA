@@ -79,6 +79,11 @@ O Experimento 0007A demonstrou quebra fisica 20/20 nas versoes 1.21.11 e
 diferencas na coleta do drop. Consulte
 `experiments/0007A-matriz-compatibilidade-fisica.md`.
 
+O Experimento 0007B passou a rastrear a entidade-item criada pela quebra e
+navegar ate sua posicao real. O resultado foi 20/20 drops observados, 20/20
+coletados e 20/20 skills completas, sem timeout ou abort, nas mesmas quatro
+condicoes. Consulte `experiments/0007B-coleta-deterministica-drops.md`.
+
 ## Dependencias
 
 O runtime fixa `mineflayer@4.37.1`, versao instalada pelo intervalo do modulo

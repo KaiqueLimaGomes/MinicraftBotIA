@@ -6,7 +6,10 @@ import {
   digCancelable,
   waitUntilGrounded
 } from '../primitives/digging.js'
-import { waitForInventoryIncrease } from '../primitives/drops.js'
+import {
+  snapshotItemEntityIds,
+  trackAndCollectDrop
+} from '../primitives/drops.js'
 
 const { GoalNear } = pathfinderPackage.goals
 const { Vec3 } = vec3Package
@@ -49,7 +52,7 @@ function findReachableLog(bot, requestedTarget) {
 
   for (const position of positions) {
     const block = bot.blockAt(position)
-    if (block && bot.canDigBlock?.(block)) return block
+    if (block?.diggable && SUPPORTED_LOGS.includes(block.name)) return block
   }
   return null
 }
@@ -118,40 +121,57 @@ export const collectWoodSkill = {
       throw new Error('Target log changed before digging')
     }
 
-    const digAttempt = await digCancelable(bot, block, context, {
-      serverVersion: params.serverVersion,
-      attemptNumber: params.attemptNumber,
-      recordAttempt: params.recordDigAttempt
-    })
-    const postDigVerificationMs = Number(params.postDigVerificationMs ?? 500)
-    await new Promise((resolve) => setTimeout(resolve, postDigVerificationMs))
-    context.assertActive()
-    const blockAfterDig = bot.blockAt(new Vec3(x, y, z))
-    if (blockAfterDig?.type !== 0) {
-      throw new Error('Server still reports the target block after digging')
-    }
-
-    let collected = await waitForInventoryIncrease({
-      bot,
-      itemName: precondition.logName,
-      beforeCount: precondition.logsBefore,
-      context,
-      timeoutMs: 500
-    })
-    if (!collected) {
-      const dropDistance = bot.entity.position.distanceTo(precondition.target)
-      if (dropDistance > 1) {
-        await gotoCancelable(bot, new GoalNear(x, y, z, 1), context)
+    const existingEntityIds = snapshotItemEntityIds(bot)
+    const observedDrops = []
+    const onEntitySpawn = (entity) => {
+      if (
+        entity.name === 'item' &&
+        !existingEntityIds.has(entity.id) &&
+        entity.position.distanceTo(block.position) <= 8
+      ) {
+        observedDrops.push(entity)
       }
-      collected = await waitForInventoryIncrease({
+    }
+    bot.on('entitySpawn', onEntitySpawn)
+    let digAttempt
+    let collection
+    try {
+      digAttempt = await digCancelable(bot, block, context, {
+        serverVersion: params.serverVersion,
+        attemptNumber: params.attemptNumber,
+        recordAttempt: params.recordDigAttempt
+      })
+      const postDigVerificationMs = Number(
+        params.postDigVerificationMs ?? 500
+      )
+      await new Promise((resolve) => setTimeout(resolve, postDigVerificationMs))
+      context.assertActive()
+      const blockAfterDig = bot.blockAt(new Vec3(x, y, z))
+      if (blockAfterDig?.type !== 0) {
+        throw new Error('Server still reports the target block after digging')
+      }
+
+      collection = await trackAndCollectDrop({
         bot,
         itemName: precondition.logName,
         beforeCount: precondition.logsBefore,
-        context
+        origin: new Vec3(x, y, z),
+        existingEntityIds,
+        preObservedDrops: observedDrops,
+        context,
+        spawnTimeoutMs: params.dropSpawnTimeoutMs,
+        collectionTimeoutMs: params.dropCollectionTimeoutMs
       })
+    } finally {
+      bot.removeListener('entitySpawn', onEntitySpawn)
     }
 
-    return { blockBroken: true, collected, digAttempt }
+    return {
+      blockBroken: true,
+      collected: collection.collected,
+      collection,
+      digAttempt
+    }
   },
 
   async verifyProgress({ bot, precondition, execution }) {
@@ -173,7 +193,8 @@ export const collectWoodSkill = {
         logName: precondition.logName,
         logsBefore: precondition.logsBefore,
         logsAfter,
-        target: precondition.target
+        target: precondition.target,
+        collection: execution?.collection ?? null
       }
     }
   }

@@ -5,7 +5,7 @@
   "description": "Executor limitado e cancelavel para skills Mineflayer.",
   "type": "module",
   "scripts": {
-    "test": "node test/run-tests.js",
+    "test": "node test/run-tests.js && node test/drops.test.js",
     "check": "node --check index.js && node --check manual-run.js && node --check experiments/run-skill-matrix.js",
     "manual": "node manual-run.js",
     "experiment:skills": "node --env-file-if-exists=../.env.local experiments/run-skill-matrix.js",

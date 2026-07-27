@@ -264,6 +264,7 @@ await test('collect_wood succeeds only when the drop reaches inventory', async (
   const target = {
     type: 17,
     name: 'oak_log',
+    diggable: true,
     position: {
       x: 2,
       y: 64,

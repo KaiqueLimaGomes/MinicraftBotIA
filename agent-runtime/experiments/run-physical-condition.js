@@ -10,11 +10,13 @@ import { createSkillRegistry } from '../runtime/skill-registry.js'
 
 const { pathfinder, Movements } = pathfinderPackage
 const { Vec3 } = vec3Package
+const experimentId = process.env.PHYSICAL_EXPERIMENT ?? '0007A'
 const serverVersion = process.env.PHYSICAL_SERVER_VERSION
 const movement = process.env.PHYSICAL_MOVEMENT ?? 'none'
 const gamePort = Number(process.env.MC_PORT)
 const rconPort = Number(process.env.MC_RCON_PORT)
 const repetitions = Number(process.env.PHYSICAL_REPETITIONS ?? 5)
+const warmupMs = Number(process.env.PHYSICAL_WARMUP_MS ?? 5_000)
 const username = `Executor${serverVersion?.replaceAll('.', '')}`
 const propertiesPath = path.resolve(process.env.MC_SERVER_PROPERTIES)
 const properties = await fs.readFile(propertiesPath, 'utf8')
@@ -86,7 +88,7 @@ async function prepare(sample) {
       Math.abs(bot.entity.position.y - y) < 1,
     `teleport sample ${sample}`
   )
-  await delay(1_000)
+  await delay(warmupMs)
   await command(`setblock ${target.x} ${target.y} ${target.z} minecraft:oak_log`)
   await waitUntil(
     () => bot.blockAt(new Vec3(target.x, target.y, target.z))?.name === 'oak_log',
@@ -126,7 +128,7 @@ async function executeCondition() {
     })
     results.push({ sample, ...result })
     console.log(
-      `[0007A] ${serverVersion}/${movement} ${sample}/${repetitions} ` +
+      `[${experimentId}] ${serverVersion}/${movement} ${sample}/${repetitions} ` +
       `${result.status} ${result.code} ${result.durationMs}ms`
     )
   }
@@ -135,7 +137,7 @@ async function executeCondition() {
 async function writeReport() {
   const condition = `${serverVersion}-${movement}`
   const report = {
-    experiment: '0007A',
+    experiment: experimentId,
     condition,
     serverVersion,
     movement,
@@ -147,7 +149,7 @@ async function writeReport() {
     results,
     digAttempts
   }
-  const directory = path.resolve('experiment-results/0007A')
+  const directory = path.resolve(`experiment-results/${experimentId}`)
   await fs.mkdir(directory, { recursive: true })
   await fs.writeFile(
     path.join(directory, `${condition}.json`),
@@ -172,6 +174,6 @@ try {
   } catch {
     // Keep the original condition result.
   }
-  bot.quit('0007A condition completed')
+  bot.quit(`${experimentId} condition completed`)
   await rcon.end()
 }

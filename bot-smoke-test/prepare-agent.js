@@ -14,16 +14,17 @@ let finished = false
 let inventoryPrintTimer
 
 bot.once('spawn', () => {
+  bot.inventory.on('updateSlot', scheduleInventoryPrint)
   console.log(`[prepare] ${bot.username} connected without planner or snapshots.`)
   console.log('[prepare] Apply server-console commands now. Press Ctrl+C when ready.')
   printState()
 })
 
 bot.on('health', printState)
-bot.inventory.on('updateSlot', () => {
+function scheduleInventoryPrint() {
   clearTimeout(inventoryPrintTimer)
   inventoryPrintTimer = setTimeout(printState, 100)
-})
+}
 bot.on('kicked', reason => console.error('[prepare:kicked]', reason))
 bot.on('error', error => console.error('[prepare:error]', error))
 bot.on('end', () => {
